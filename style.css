@@ -204,7 +204,7 @@ label {
 label:hover {
 	color: #000;
 }
-#pagetitle {
+#pagetitle, #searchtitle {
 	font-size: 18px;
 	font-weight: bold;
 }
@@ -352,6 +352,30 @@ ul.pagelist li.next {
 input#search_input {
 	width: 150px;
 }
+#searchshowmore {
+	font-size: 13px;
+}
+#searchcategory {
+	font-size: 18px;
+	font-weight: bold;
+}
+#searchcategory p {
+	font-size: 13px;
+	font-weight: normal;
+	margin-top: 3px;
+	margin-bottom: 7px;
+}
+#searchcategory ul {
+	list-style-type: none;
+	padding: 0px;
+	margin: 5px 5px -5px 5px;
+}
+#searchcategory li {
+    background-image: url(images/arrow_right.gif);
+	background-repeat: no-repeat;
+	background-position: 0px 3px;
+	padding-left: 15px; 
+}
 
 /* Footer
 ------------------------------ */
@@ -468,7 +492,7 @@ a:hover {
 html, body, #sidebar, #container, #contents, #content-error {
 	background-color: white;
 }
-#imgtitle, .comment, #pagecontent, #newscontent {
+#imgtitle, .comment, #pagecontent, #newscontent, #searchcategory {
 	background-color: #F8F9F2;
 }
 #imgprevious, #imgnext, #tags, #slideshowlink, #metadata, input#code, .inputbox, textarea, .button, #hitcounter , .fb-like, #newsprevious, #newsnext {
@@ -477,14 +501,14 @@ html, body, #sidebar, #container, #contents, #content-error {
 #commententry, #album {
 	background-color: #fbfbfb;
 }
-#header a, #commentcontent h3, #comments h3, #pagetitle, #newstitle, ul.pagelist li.current a {
+#header a, #commentcontent h3, #comments h3, #pagetitle, #newstitle, #searchtitle, ul.pagelist li.current a {
 	color: black;
 }
 /* Borders
 --------------------------------*/
 #menu, #image img, #imgtitle, #imgprevious, #imgnext, #tags, .comment, #commententry, textarea, .button,
 #pagecontent, #album, #albumthumb img, #imagethumb, #imagethumb img, #footer, #header, #slideshowlink, #metadata,
-#pagetitle, #newstitle, #newscontent, .inputbox, #hitcounter, .fb-like, #newsprevious, #newsnext, #search_input {
+#pagetitle, #newstitle, #newscontent, #searchtitle, #searchcategory, .inputbox, #hitcounter, .fb-like, #newsprevious, #newsnext, #search_input {
 	border: 1px solid darkgray;
 	-moz-border-radius: 8px;
 	-webkit-border-radius: 8px;
@@ -494,7 +518,7 @@ html, body, #sidebar, #container, #contents, #content-error {
 /* Margins and padding
 --------------------------------*/
 #image, #imgtitle, #imgprevious, #imgnext, #tags, #slideshowlink, #metadata, #commentcontent, .comment,
-textarea, .button, #pagetitle, #pagecontent, #newstitle, #newscontent, #menu, #album, #imagethumb,
+textarea, .button, #pagetitle, #pagecontent, #newstitle, #newscontent, #searchtitle, #searchcategory, #menu, #album, #imagethumb,
 #hitcounter, .fb-like, #newsprevious, #newsnext, #search_input {
 	margin-bottom: 5px;
 }
@@ -514,7 +538,7 @@ textarea, .button, #pagetitle, #pagecontent, #newstitle, #newscontent, #menu, #a
 img#captcha, #mailform label, #registration_form label, .errorbox, #video {
 	margin-bottom: 10px;
 }
-#content, #newsarticle, #imgtitle, #pagetitle, #pagecontent, #newstitle, #newscontent {
+#content, #newsarticle, #imgtitle, #pagetitle, #pagecontent, #newstitle, #newscontent, #searchtitle, #searchcategory {
 	padding: 10px;
 }
 #imgprevious, #imgnext, #tags, #slideshowlink, #metadata, #album, #imagethumb, #hitcounter, #newsprevious, #newsnext {

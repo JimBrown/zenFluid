@@ -60,48 +60,56 @@
 		<div id="container">
 			<div id="contents">
 				<div id="content">
-					<?php if ($total > 0 ) {
-						printf(ngettext('%1$u Hit for <em>%2$s</em>','%1$u Hits for <em>%2$s</em>',$total), $total, html_encode($searchwords));
-					}
+					<?php if ($total > 0 ) { ?>
+						<div id="searchtitle">
+							<?php printf(ngettext('%1$u Hit for <em>%2$s</em>','%1$u Hits for <em>%2$s</em>',$total), $total, html_encode($searchwords)); ?>
+						</div>
+					<?php }
 					if ($_zp_page == 1) { //test of zenpage searches
 
 						if ($numpages > 0) {
-							$number_to_show = 1;
-							$c = 0;
-							printf(gettext('Pages (%s)'), $numpages);
-							printZDSearchShowMoreLink("pages", $number_to_show); ?>
-							<ul class="searchresults">
-								<?php while (next_page()) {
-									$c++; ?>
-									<li<?php printZDToggleClass('pages', $c, $number_to_show); ?>>
-										<?php printPageURL();
-										echo shortenContent(strip_tags(getPageContent()), 80, getOption("zenpage_textshorten_indicator")); ?>
-									</li>
-								<?php }	?>
-							</ul>
+							$number_to_show = 5;
+							$c = 0; ?>
+							<div id="searchcategory">
+								<?php printf(gettext('Pages (%s)'), $numpages);?>
+								<span id="searchshowmore"><?php printZDSearchShowMoreLink("pages", $number_to_show); ?></span>
+								<ul class="searchresults">
+									<?php while (next_page()) {
+										$c++; ?>
+										<li<?php printZDToggleClass('pages', $c, $number_to_show); ?>>
+											<?php printPageURL(); ?>
+											<p><?php echo shortenContent(strip_tags(getPageContent()), 150, getOption("zenpage_textshorten_indicator")); ?> </p>
+										</li>
+									<?php }	?>
+								</ul>
+							</div>
 						<?php }
 						
 						if ($numnews > 0) {
-							$number_to_show = 1;
-							$c = 0;
-							printf(gettext('Articles (%s)'), $numnews);
-							printZDSearchShowMoreLink("news", $number_to_show); ?>
-							<ul class="searchresults">
-								<?php while (next_news()) {
-									$c++; ?>
-									<li<?php printZDToggleClass('news', $c, $number_to_show); ?>>
-										<?php printNewsURL();
-										echo shortenContent(strip_tags(getNewsContent()), 80, getOption("zenpage_textshorten_indicator")); ?>
-									</li>
-								<?php } ?>
-							</ul>
+							$number_to_show = 5;
+							$c = 0; ?>
+							<div id="searchcategory">
+								<?php printf(gettext('Articles (%s)'), $numnews); ?>
+								<span id="searchshowmore"><?php printZDSearchShowMoreLink("news", $number_to_show); ?></span>
+								<ul class="searchresults">
+									<?php while (next_news()) {
+										$c++; ?>
+										<li<?php printZDToggleClass('news', $c, $number_to_show); ?>>
+											<?php printNewsURL(); ?>
+											<p><?php echo shortenContent(strip_tags(getNewsContent()), 80, getOption("zenpage_textshorten_indicator")); ?> </p>
+										</li>
+									<?php } ?>
+								</ul>
+							</div>
 						<?php }
 						
 					} 
 					
 					$doslideshowlink = false;
-					if ($numalbums > 0) {
-					printf(gettext('Albums (%s)'), $numalbums); ?>
+					if ($numalbums > 0) { ?>
+					<div id="searchcategory">
+						<?php printf(gettext('Albums (%s)'), $numalbums); ?>
+					</div>
 					<div id="albums">
 						<?php while (next_album()){
 							$doslideshowlink = false;?>
@@ -117,10 +125,13 @@
 							</div>
 						<?php } ?>
 					</div>
-					<?php }
+					<?php } ?>
+					<div class="clearing"></div>
 					
-					if ($numimages > 0) {
-						printf(gettext('Images (%s)'), $numimages); ?>
+					<?php if ($numimages > 0) { ?>
+						<div id="searchcategory">
+							<?php printf(gettext('Images (%s)'), $numimages); ?>
+						</div>
 						<div id= "imagethumbs">
 							<?php while (next_image()){
 								$doslideshowlink = true;?>
@@ -130,17 +141,19 @@
 							<?php } ?>
 						</div>
 					<?php }?>
-
 					<div class="clearing"></div>
+
 					<?php printPageListWithNav("« prev", "next »");
 					if ($doslideshowlink) {?>
 						<div id="slideshowlink">
 							<?php printSlideShowLink();?>
 						</div>
 					<?php }
-					if ($total == 0) {
-						echo "<p>".gettext("Sorry, no matches found. Try refining your search.")."</p>";
-					} ?>
+					if ($total == 0) { ?>
+						<div id="searchtitle">
+							<?php echo gettext("Sorry, no matches found. Try refining your search."); ?>
+						</div>
+					<?php } ?>
 					
 				</div>
 			</div>
