@@ -17,9 +17,10 @@ class ThemeOptions {
 		setThemeOptionDefault('zenfluid_menuupper', false);
 		setThemeOptionDefault('zenfluid_titlebreadcrumb', false);
 		setThemeOptionDefault('zenfluid_randomimage', true);
-		setThemeOptionDefault('albums_per_page', 10);
+		setThemeOptionDefault('zenfluid_imageroot', '');
+		setThemeOptionDefault('albums_per_page', 2);
 		setThemeOptionDefault('albums_per_row', 10);
-		setThemeOptionDefault('images_per_page', 30);
+		setThemeOptionDefault('images_per_page', 2);
 		setThemeOptionDefault('images_per_row', 30);
 		setThemeOptionDefault('image_size', 1920, NULL, 'zenpage');
 		setThemeOptionDefault('image_use_side', 'width', NULL, 'zenpage');
@@ -42,7 +43,7 @@ class ThemeOptions {
 		$options = array(	gettext('Use Colorbox') => array('key' => 'Use_thickbox','order' => 4, 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Check to display of the full size image with Colorbox.')),
 							gettext('Allow search')	=> array('key' => 'Allow_search','order' => 3, 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Check to enable search form.')),
 							gettext('Use UPPERCASE menu') => array('key' => 'zenfluid_menuupper','order' => 6, 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Check this if you want all menu entries to be uppercase')),
-							gettext('Random/Latest image root folder') => array('key' => 'zenfluid_imageroot','order' => 8, 'type' => OPTION_TYPE_TEXTBOX, 'desc' => gettext('Enter the case sensitive name of the album folder from which the random or latest image will be taken.')),
+							gettext('Random/Latest image root folder') => array('key' => 'zenfluid_imageroot','order' => 8, 'type' => OPTION_TYPE_TEXTBOX, 'desc' => gettext('Optional: Enter the case sensitive path/name of the album folder from which the random or latest image will be taken.')),
 							gettext('Use random image') => array('key' => 'zenfluid_randomimage','order' => 7, 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Check this if you want a random image displayed on the home page, otherwise the latest image will be displayed')),
 							gettext('Print title breadcrumb') => array('key' => 'zenfluid_titlebreadcrumb','order' => 9, 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Check this if you want the album title to be included before the image title'))
 							);
@@ -57,7 +58,7 @@ class ThemeOptions {
 	}
 
   function getOptionsDisabled() {
-  	return array('custom_index_page');
+  	return array('custom_index_page','albums_per_row','images_per_row');
   }
 
 	function handleOption($option, $currentValue) {
