@@ -40,6 +40,7 @@ if (!defined('WEBPATH')) die();
 							</div>
 						<?php endwhile;?>
 					</div>
+					<div class="clearing"></div>
 					<div id= "imagethumbs">
 						<?php while (next_image()):
 							if (isImagePhoto()) {
