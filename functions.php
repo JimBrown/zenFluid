@@ -4,7 +4,32 @@
  * Remove admin toolbox for all but site and album admins.
  */
 if (!zp_loggedin(ADMIN_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS)) zp_remove_filter('theme_body_close', 'adminToolbox');
- 
+
+/**
+ * Returns an image for the home page
+ *
+ */
+ function printHomepageImage($imageRoot, $imageRandom) {
+	global $_zp_gallery;
+
+	if (empty($imageRoot) && $imageRandom) {
+		$albums = $_zp_gallery->getAlbums();
+		$imageRoot = $albums[rand(0, count($albums) - 1)];
+	}
+	if (is_dir(getAlbumFolder() . $imageRoot) && (!(count(glob(getAlbumFolder() . $imageRoot . "/*")) === 0))) {
+		if ($imageRandom) {
+			$titleImage = getRandomImagesAlbum($imageRoot);
+		} else {
+			$titleImage = getLatestImagesAlbum($imageRoot);
+		}
+	} else {
+		debugLog('PrintHomepageImage: No images found in album path "' . $imageRoot .'"');
+	}
+	if (isset($titleImage)) {
+		echo '<a href='.$titleImage->getLink().'><img class="imgheight" src='.$titleImage->getCustomImage(null, null, null, null, null, null, null).' title='.$titleImage->getTitle().' /></a>';
+	}
+ }
+
 /**
  * Returns latest image from the album or its subalbums. (May be NULL if none exists. Cannot be used on dynamic albums.)
  *
@@ -12,10 +37,10 @@ if (!zp_loggedin(ADMIN_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS)) zp_remove_filter('them
  *
  * @return object
  */
-function getLatestImagesAlbum($rootAlbum = NULL) {
+function getLatestImagesAlbum($rootAlbum = '') {
 	global $_zp_current_album, $_zp_gallery, $_zp_current_search;
 	if (empty($rootAlbum)) {
-		$album = $_zp_current_album;
+		return getLatestImage();
 	} else {
 		if (is_object($rootAlbum)) {
 			$album = $rootAlbum;
@@ -54,6 +79,30 @@ function getLatestImagesAlbum($rootAlbum = NULL) {
 		$image = filterImageQuery($result, $album->name);
 	}
 	return $image;
+}
+
+/**
+ * Returns the latest selected image from the gallery. (May be NULL if none exists)
+ *
+ * @return object
+ */
+function getLatestImage() {
+	global $_zp_gallery;
+	if (zp_loggedin()) {
+		$imageWhere = '';
+	} else {
+		$imageWhere = " AND " . prefix('images') . ".show=1";
+	}
+	$result = query('SELECT `folder`, `filename` ' .
+					' FROM ' . prefix('images') . ', ' . prefix('albums') .
+					' WHERE ' . prefix('albums') . '.folder!="" AND ' . prefix('images') . '.albumid = ' .
+					prefix('albums') . '.id ' . $imageWhere . ' ORDER BY '.prefix("images").'.date DESC');
+
+	$image = filterImageQuery($result, NULL);
+	if ($image) {
+		return $image;
+	}
+	return NULL;
 }
 
 function printFormattedGalleryDesc($galleryDesc = "") {

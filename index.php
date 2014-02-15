@@ -22,14 +22,7 @@
 			<div id="contents">
 				<div id="imagecontent">
 					<div id="image">
-						<?php if (is_dir(getAlbumFolder() . getOption('zenfluid_imageroot')) && (!(count(glob(getAlbumFolder() . getOption('zenfluid_imageroot') . "/*")) === 0))) {
-							if (getOption('zenfluid_randomimage')) {
-								$titleImage = getRandomImagesAlbum(getOption('zenfluid_imageroot'));
-							} else {
-								$titleImage = getLatestImagesAlbum(getOption('zenfluid_imageroot'));
-							} ?>
-							<a href="<?php echo $titleImage->getLink();?>"><img class="imgheight" src="<?php echo $titleImage->getCustomImage(null, null, null, null, null, null, null);?>" title="<?php echo $titleImage->getTitle();?>" /></a>
-						<?php } ?>
+						<?php printHomepageImage(getOption('zenfluid_imageroot'),getOption('zenfluid_randomimage'));?>
 					</div>
 				</div>
 			</div>
