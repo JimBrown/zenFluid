@@ -27,7 +27,7 @@ if (!zp_loggedin(ADMIN_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS)) zp_remove_filter('them
 		debugLog('PrintHomepageImage: No images found in album path "' . $imageRoot .'"');
 	}
 	if (isset($titleImage)) {
-		echo '<a href='.$titleImage->getLink().'><img class="imgheight" src='.$titleImage->getCustomImage(null, null, null, null, null, null, null).' title='.$titleImage->getTitle().' /></a>';
+		echo '<a href="'.$titleImage->getLink().'"><img class="imgheight" src="'.$titleImage->getCustomImage(null, null, null, null, null, null, null).'" title="'.$titleImage->getTitle().'" /></a>';
 	}
  }
 
