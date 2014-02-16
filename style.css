@@ -1,5 +1,9 @@
 html, body {
 	color: #222222;
+	height: 99%;
+	width: 100%;
+	padding: 0px;
+	margin: 0px;
 }
 body {
 	font-family: "Helvetica Neue", "Lucida Grande", Arial, Helvetica, sans-serif;
@@ -390,6 +394,7 @@ input#search_input {
 	font-size: 0.7em;
 	margin-left: 4px;
 	margin-right: 4px;
+	margin-bottom: 4px;
 }
 #zen-part {
 	font-size: 1.3em;

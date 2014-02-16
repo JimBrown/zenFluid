@@ -1,7 +1,5 @@
 <?php
-
-// force UTF-8 Ø
-
+	// force UTF-8 Ø
 ?>
 <div id="sidebar">
 	<div id="menu">

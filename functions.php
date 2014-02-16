@@ -1,4 +1,5 @@
-<?php 
+<?php
+	// force UTF-8
 
 /**
  * Remove admin toolbox for all but site and album admins.

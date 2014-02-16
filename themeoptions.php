@@ -1,5 +1,4 @@
 <?php
-
 // force UTF-8 Ø
 
 /* Plug-in for theme option handling

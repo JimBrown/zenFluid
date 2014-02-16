@@ -1,3 +1,6 @@
+<?php
+	// force UTF-8 Ø
+?>
 
 		<?php zp_apply_filter('theme_body_open');?>
 		<div id="header">
