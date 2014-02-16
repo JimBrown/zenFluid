@@ -245,6 +245,10 @@ label:hover {
 }
 .submenu {
 }
+#menu li.menu-active-1 > a, #menu li.menu-active a, #menu li a.menu-active {
+    color: #002E5B;
+}
+
 /* Page Navigation
 ------------------------------ */
 
