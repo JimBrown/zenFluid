@@ -13,21 +13,23 @@ if (!zp_loggedin(ADMIN_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS)) zp_remove_filter('them
  function printHomepageImage($imageRoot, $imageRandom) {
 	global $_zp_gallery;
 
-	if (empty($imageRoot) && $imageRandom) {
-		$albums = $_zp_gallery->getAlbums();
-		$imageRoot = $albums[rand(0, count($albums) - 1)];
-	}
-	if (is_dir(getAlbumFolder() . $imageRoot) && (!(count(glob(getAlbumFolder() . $imageRoot . "/*")) === 0))) {
+	if (empty($imageRoot)) {
+		if ($imageRandom) {
+			$titleImage = getRandomImages();
+		} else {
+			$titleImage = getLatestImages();
+		}
+	} else if (is_dir(getAlbumFolder() . $imageRoot) && (!(count(glob(getAlbumFolder() . $imageRoot . "/*")) === 0))) {
 		if ($imageRandom) {
 			$titleImage = getRandomImagesAlbum($imageRoot);
 		} else {
 			$titleImage = getLatestImagesAlbum($imageRoot);
 		}
-	} else {
-		debugLog('PrintHomepageImage: No images found in album path "' . $imageRoot .'"');
 	}
 	if (isset($titleImage)) {
 		echo '<a href="'.$titleImage->getLink().'"><img class="imgheight" src="'.$titleImage->getCustomImage(null, null, null, null, null, null, null).'" title="'.$titleImage->getTitle().'" /></a>';
+	} else {
+		debugLog('PrintHomepageImage: No images found in album path "' . $imageRoot .'"');
 	}
  }
 
@@ -41,7 +43,7 @@ if (!zp_loggedin(ADMIN_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS)) zp_remove_filter('them
 function getLatestImagesAlbum($rootAlbum = '') {
 	global $_zp_current_album, $_zp_gallery, $_zp_current_search;
 	if (empty($rootAlbum)) {
-		return getLatestImage();
+		$album = $_zp_current_album;
 	} else {
 		if (is_object($rootAlbum)) {
 			$album = $rootAlbum;
@@ -87,7 +89,7 @@ function getLatestImagesAlbum($rootAlbum = '') {
  *
  * @return object
  */
-function getLatestImage() {
+function getLatestImages() {
 	global $_zp_gallery;
 	if (zp_loggedin()) {
 		$imageWhere = '';
