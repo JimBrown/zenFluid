@@ -14,6 +14,11 @@ body {
 	margin-right: auto; */
 }
 /* Layout */
+#header {
+	margin-left: 4px;
+	margin-right: 4px;
+	margin-top: 4px;
+}
 #headertitle {
 	font-family: Times,"Times New Roman",Georgia,serif;
 	font-size: 27px;
@@ -22,8 +27,19 @@ body {
 	line-height: 24px;
 	padding-bottom: 5px;
 }
-#subtitle {
-	font-size: 0.7em;
+#headersubtitle {
+	font-size: 10px;
+}
+#sidebartitle {
+	font-family: Times,"Times New Roman",Georgia,serif;
+	font-size: 27px;
+	font-style: italic;
+	font-weight: bold;
+	line-height: 24px;
+	padding-bottom: 5px;
+}
+#sidebarsubtitle {
+	font-size: 10px;
 }
 #container {
 	overflow:hidden;
@@ -57,13 +73,9 @@ body {
 	margin-right: auto;
 }
 #commentstage {
-	max-width: 900px;
-	margin-left: auto;
-	margin-right: auto;
 }
 #image img{
 	max-width: 100%;
-/*	height: auto; */
 }
 #imgtitle {
 	font-size: 18px;
@@ -82,6 +94,7 @@ body {
 }
 #buttons {
 	text-align: center;
+	height: auto;
 }
 .tags_title {
 }
@@ -510,7 +523,7 @@ html, body, #sidebar, #container, #contents, #content-error {
 #commententry, #album {
 	background-color: #fbfbfb;
 }
-#header a, #commentcontent h3, #comments h3, #pagetitle, #newstitle, #searchtitle, ul.pagelist li.current a {
+#commentcontent h3, #comments h3, #pagetitle, #newstitle, #searchtitle, ul.pagelist li.current a {
 	color: black;
 }
 /* Borders
@@ -547,7 +560,7 @@ textarea, .button, #pagetitle, #pagecontent, #newstitle, #newscontent, #searchti
 img#captcha, #mailform label, #registration_form label, .errorbox, #video {
 	margin-bottom: 10px;
 }
-#content, #newsarticle, #imgtitle, #pagetitle, #pagecontent, #newstitle, #newscontent, #searchtitle, #searchcategory {
+#header, #content, #newsarticle, #imgtitle, #pagetitle, #pagecontent, #newstitle, #newscontent, #searchtitle, #searchcategory {
 	padding: 10px;
 }
 #imgprevious, #imgnext, #tags, #slideshowlink, #metadata, #album, #imagethumb, #hitcounter, #newsprevious, #newsnext {

@@ -12,11 +12,11 @@
 			<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/fonts/stylesheet.css" type="text/css" />
 		<?php } ?>
 		<?php zp_apply_filter('theme_head'); ?>
-		<?php echo ImageJS(70); ?>
+		<?php echo ImageJS(); ?>
 	</head>
 	<body>
 
-		<?php zp_apply_filter('theme_body_open'); ?>
+		<?php include("header.php");?>
 
 		<div id="container">
 			<div id="contents">

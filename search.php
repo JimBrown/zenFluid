@@ -16,7 +16,7 @@
 	</head>
 	<body>
 
-		<?php zp_apply_filter('theme_body_open');
+		<?php include("header.php");?>
 
 		$zenpage = extensionEnabled('zenpage');
 		$numimages = getNumImages();

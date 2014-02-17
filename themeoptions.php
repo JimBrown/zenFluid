@@ -18,6 +18,7 @@ class ThemeOptions {
 		setThemeOptionDefault('zenfluid_randomimage', true);
 		setThemeOptionDefault('zenfluid_imageroot', '');
 		setThemeOptionDefault('zenfluid_transitionnewrow', true);
+		setThemeOptionDefault('zenfluid_showheader', false);
 		setThemeOptionDefault('albums_per_page', 2);
 		setThemeOptionDefault('albums_per_row', 10);
 		setThemeOptionDefault('images_per_page', 2);
@@ -46,6 +47,7 @@ class ThemeOptions {
 							gettext('Random/Latest image root folder') => array('key' => 'zenfluid_imageroot','order' => 8, 'type' => OPTION_TYPE_TEXTBOX, 'desc' => gettext('Optional: Enter the case sensitive path/name of the album folder from which the random or latest image will be taken.')),
 							gettext('Use random image') => array('key' => 'zenfluid_randomimage','order' => 7, 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Enable if you want a random image displayed on the home page, otherwise the latest image will be displayed')),
 							gettext('Transition on new row') => array('key' => 'zenfluid_transitionnewrow','order' => 10, 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('If combined transition is selected above, enable this if you wish the transition to start on a new row, otherwise the transition will continue on the same row')),
+							gettext('Show header') => array('key' => 'zenfluid_showheader','order' => 11, 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Enable to show a header with gallery title and description across the top of the screen instead of at the top of the sidebar')),
 							gettext('Print title breadcrumb') => array('key' => 'zenfluid_titlebreadcrumb','order' => 9, 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Check this if you want the album title to be included before the image title'))
 							);
 

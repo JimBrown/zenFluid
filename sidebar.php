@@ -2,15 +2,17 @@
 	// force UTF-8 Ø
 ?>
 <div id="sidebar">
-	<div id="menu">
-		<div id="headertitle">
-			<a href="<?php echo getGalleryIndexURL(); ?>"><?php printGalleryTitle();?></a>
+	<?php if (!getOption('zenfluid_showheader')) { ?>
+		<div id="menu">
+			<div id="sidebartitle">
+				<a href="<?php echo getGalleryIndexURL(); ?>"><?php printGalleryTitle();?></a>
+			</div>
+			<div id="sidebarsubtitle">
+				<?php printFormattedGalleryDesc(getGalleryDesc());?>
+			</div>
 		</div>
-		<div id="subtitle">
-			<?php printFormattedGalleryDesc(getGalleryDesc());?>
-		</div>
-	</div>
-	<?php if (getOption('zenfluid_menuupper')) {?>
+	<?php }
+	if (getOption('zenfluid_menuupper')) {?>
 		<div style="text-transform: uppercase;">
 	<?php }
 	if (getOption('Allow_search')) { ?>

@@ -16,14 +16,14 @@
 
 	<body>
 	
-		<?php zp_apply_filter('theme_body_open');?>
+		<?php include("header.php");?>
 
 			<div id="container">
 			<div id="contents">
 				<div id="imagecontent">
 					<?php $doSlideShowLink = false;
 					if (isImagePhoto()) {
-						echo ImageJS(70);
+						echo ImageJS();
 						if (zp_has_filter('theme_head', 'colorbox::css')) {
 							echo colorBoxJS();
 						}

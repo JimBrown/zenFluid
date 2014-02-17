@@ -16,7 +16,8 @@ if (function_exists('printRegistrationForm')) {?>
 			<?php zp_apply_filter('theme_head'); ?>
 		</head>
 		<body>
-			<?php zp_apply_filter('theme_body_open'); ?>
+		
+			<?php include("header.php");?>
 
 			<div id="container">
 				<div id="contents">

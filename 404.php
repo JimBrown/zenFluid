@@ -16,6 +16,8 @@
 
 	<body>
 
+		<?php include("header.php");?>
+
 		<div id="container">
 			<div id="contents">
 				<div id="content-error">

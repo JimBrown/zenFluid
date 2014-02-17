@@ -114,13 +114,16 @@ function printFormattedGalleryDesc($galleryDesc = "") {
 	return;
 }
 
-function ImageJS($footerHeight = 0) {
+function ImageJS() {
 	$ImageJS = '
 		<script type="text/javascript">
 			// <!-- <![CDATA[
 			var viewportwidth;
 			var viewportheight;
-			var imgheight
+			var imgheight;
+			var headerheight = 0;
+			var footerheight = 0;
+			var titleheight = 0;
 			function setStage(){
 				if (typeof window.innerWidth != "undefined") {
 					viewportwidth = window.innerWidth,
@@ -132,8 +135,14 @@ function ImageJS($footerHeight = 0) {
 					viewportwidth = document.getElementsByTagName("body")[0].clientWidth,
 					viewportheight = document.getElementsByTagName("body")[0].clientHeight
 				}
+				headerheight = $("#header").outerHeight(true);
+				footerheight = $("#footer").outerHeight(true);
+				titleheight = $("#imgtitle").outerHeight(true);
+				if (!titleheight) {
+					titleheight = 12;
+				};
 				if ($(".imgheight").css("max-height") !== undefined) {
-					imgheight = viewportheight - ' . $footerHeight . '
+					imgheight = viewportheight - headerheight - footerheight - titleheight;
 					$(".imgheight").css({"max-height" : imgheight + "px"})
 				};
 			};
