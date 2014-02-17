@@ -40,7 +40,9 @@
 							</div>
 						<?php endwhile;?>
 					</div>
-					<div class="clearing"></div>
+					<?php if (getOption('zenfluid_transitionnewrow')) { ?>
+						<div class="clearing"></div>
+					<?php } ?>
 					<div id= "imagethumbs">
 						<?php while (next_image()):
 							if (isImagePhoto()) {
