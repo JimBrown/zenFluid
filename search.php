@@ -18,7 +18,7 @@
 
 		<?php include("header.php");?>
 
-		$zenpage = extensionEnabled('zenpage');
+		<?php $zenpage = extensionEnabled('zenpage');
 		$numimages = getNumImages();
 		$numalbums = getNumAlbums();
 		$total = $numimages + $numalbums;
