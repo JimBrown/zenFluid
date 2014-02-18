@@ -18,7 +18,7 @@
 	
 		<?php include("header.php");?>
 
-			<div id="container">
+		<div id="container">
 			<div id="contents">
 				<div id="imagecontent">
 					<?php $doSlideShowLink = false;
@@ -47,8 +47,10 @@
 						<div id="video">
 							<?php printCustomSizedImageMaxSpace(getBareImageTitle(),null,null);?>
 						</div>
-					<?php } ?>
-					<div id="commentstage">
+					<?php }
+					$commentWidth = strtolower(getOption('zenfluid_commentwidth'));
+					$commentWidth = ($commentWidth == "auto") ? $commentWidth : $commentWidth . "px";?>
+					<div id="commentstage" style='max-width: <?php echo $commentWidth;?>;'>
 						<div id="imgtitle">
 							<?php if (getOption('zenfluid_titlebreadcrumb')) {
 								$parentalbum = $_zp_current_album->getParent();
