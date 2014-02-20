@@ -251,6 +251,10 @@ label:hover {
 #menu {
 	padding: 5px;
 }
+#menutitle {
+	padding: 5px;
+	font-style: italic;
+}
 #menu ul {
 	list-style-type: none;
 	padding: 0px;

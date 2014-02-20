@@ -21,8 +21,9 @@
 		</div>
 	<?php } ?>
 	<div id="menu">
+		<?php if (getOption('zenfluid_menutitles')) echo '<div id="menutitle">Gallery</div>'; ?>
 		<?php if (extensionEnabled('print_album_menu')) {
-			printAlbumMenu("list",NULL,"","menu-active","submenu","menu-active","<p>Home</p>");
+			printAlbumMenu("list",NULL,"","menu-active","submenu","menu-active","Home<br />&nbsp;");
 		} else {
 			echo("The ZenFluid theme requires that the print_album_menu plugin be enabled.");
 		} ?>
@@ -30,11 +31,13 @@
 	<?php if (extensionEnabled('zenpage')) {
 		if (getNumPages(true)) { ?>
 			<div id="menu">
+				<?php if (getOption('zenfluid_menutitles')) echo '<div id="menutitle">Pages</div>'; ?>
 				<?php printPageMenu("list","","menu-active","submenu","menu-active");?>
 			</div>
 		<?php }
 		if (getNumNews(true)) { ?>
 			<div id="menu">
+				<?php if (getOption('zenfluid_menutitles')) echo '<div id="menutitle">News</div>'; ?>
 				<?php printAllNewsCategories(gettext("All news"), TRUE, "", "menu-active", true, "submenu", "menu-active"); ?>
 			</div>
 		<?php }
