@@ -55,11 +55,13 @@
 						<?php printCustomPageURL('Contact us', 'contact', '', ''); ?>
 					</li>
 				<?php }
-				if(function_exists('printUserLogin_out')) {?>
-					<li>
-						<?php printUserLogin_out();?>
-					</li>
-					<?php if (!zp_loggedin()) {?>
+				if(function_exists('printUserLogin_out')) {
+					if ($_zp_gallery_page != 'register.php') { ?>
+						<li>
+							<?php printUserLogin_out();?>
+						</li>
+					<?php }
+					if (!zp_loggedin()) {?>
 						<li>
 							<?php printCustomPageURL('Register', 'register', '', '');?>
 						</li>
