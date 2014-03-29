@@ -115,9 +115,9 @@
 							$doslideshowlink = false;?>
 							<div id="album">
 								<div id="albumthumb">
-									<a href="<?php echo html_encode(getAlbumLinkURL());?>" title="<?php echo 'View album: '; printBareAlbumTitle();?>"><?php printCustomAlbumThumbImage(getBareAlbumTitle(), NULL, 95, 95, 95, 95); ?></a>
+									<a href="<?php echo html_encode(getAlbumURL());?>" title="<?php echo 'View album: '; printBareAlbumTitle();?>"><?php printCustomAlbumThumbImage(getBareAlbumTitle(), NULL, 95, 95, 95, 95); ?></a>
 									<div id="albumdesc">
-										<a href="<?php echo html_encode(getAlbumLinkURL());?>" title="<?php echo 'View album: '; printBareAlbumTitle();?>"><?php printAlbumTitle(); ?></a>
+										<a href="<?php echo html_encode(getAlbumURL());?>" title="<?php echo 'View album: '; printBareAlbumTitle();?>"><?php printAlbumTitle(); ?></a>
 										<br /><?php printAlbumDate("");
 										echo shortenContent(getAlbumDesc(), 90,'...');?>
 									</div>
@@ -136,7 +136,7 @@
 							<?php while (next_image()){
 								$doslideshowlink = true;?>
 								<div id="imagethumb">
-									<a href="<?php echo html_encode(getImageLinkURL());?>" title="<?php printBareImageTitle();?>"><?php printImageThumb(getBareImageTitle()); ?></a>
+									<a href="<?php echo html_encode(getImageURL());?>" title="<?php printBareImageTitle();?>"><?php printImageThumb(getBareImageTitle()); ?></a>
 								</div>
 							<?php } ?>
 						</div>

@@ -67,7 +67,7 @@
 						</li>
 					<?php } else { ?>
 						<li>
-							<?php printLink(WEBPATH . '/' . ZENFOLDER . '/admin-users.php?page=users', 'Profile', 'Your user profile');?>
+							<?php printLinkHTML(WEBPATH . '/' . ZENFOLDER . '/admin-users.php?page=users', 'Profile', 'Your user profile');?>
 						</li>
 					<?php }
 				} ?>

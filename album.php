@@ -30,9 +30,9 @@
 						while (next_album()):?>
 							<div id="album">
 								<div id="albumthumb">
-									<a href="<?php echo html_encode(getAlbumLinkURL());?>" title="<?php echo 'View album: '; printBareAlbumTitle();?>"><?php printAlbumThumbImage(getBareAlbumTitle()); ?></a>
+									<a href="<?php echo html_encode(getAlbumURL());?>" title="<?php echo 'View album: '; printBareAlbumTitle();?>"><?php printAlbumThumbImage(getBareAlbumTitle()); ?></a>
 									<div id="albumdesc">
-										<a href="<?php echo html_encode(getAlbumLinkURL());?>" title="<?php echo 'View album: '; printBareAlbumTitle();?>"><?php printAlbumTitle(); ?></a>
+										<a href="<?php echo html_encode(getAlbumURL());?>" title="<?php echo 'View album: '; printBareAlbumTitle();?>"><?php printAlbumTitle(); ?></a>
 										<br /><?php printAlbumDate("");
 										echo shortenContent(getAlbumDesc(), 130,'...');?>
 									</div>
@@ -48,14 +48,14 @@
 							if (isImagePhoto()) {
 								if (getNumImages() > 1) {$doslideshowlink = true;}?>
 								<div id="imagethumb">
-									<a href="<?php echo html_encode(getImageLinkURL());?>" title="<?php printBareImageTitle();?>"><?php printImageThumb(getBareImageTitle()); ?></a>
+									<a href="<?php echo html_encode(getImageURL());?>" title="<?php printBareImageTitle();?>"><?php printImageThumb(getBareImageTitle()); ?></a>
 								</div>
 							<?php } else { ?>
 								<div id="album">
 									<div id="albumthumb">
-										<a href="<?php echo html_encode(getImageLinkURL());?>" title="<?php echo 'View video: '; printBareImageTitle();?>"><?php printImageThumb(getBareImageTitle()); ?></a>
+										<a href="<?php echo html_encode(getImageURL());?>" title="<?php echo 'View video: '; printBareImageTitle();?>"><?php printImageThumb(getBareImageTitle()); ?></a>
 										<div id="albumdesc">
-											<a href="<?php echo html_encode(getImageLinkURL());?>" title="<?php echo 'View video: '; printBareImageTitle();?>"><?php printImageTitle(); ?></a>
+											<a href="<?php echo html_encode(getImageURL());?>" title="<?php echo 'View video: '; printBareImageTitle();?>"><?php printImageTitle(); ?></a>
 											<br /><?php printImageDate("");
 											echo shortenContent(getImageDesc(), 90,'...');?>
 										</div>
