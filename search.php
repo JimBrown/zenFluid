@@ -130,15 +130,29 @@
 					
 					<?php if ($numimages > 0) { ?>
 						<div id="searchcategory">
-							<?php printf(gettext('Images (%s)'), $numimages); ?>
+							<?php printf(gettext('Images and Videos (%s)'), $numimages); ?>
 						</div>
 						<div id= "imagethumbs">
 							<?php while (next_image()){
-								$doslideshowlink = true;?>
-								<div id="imagethumb">
-									<a href="<?php echo html_encode(getImageURL());?>" title="<?php printBareImageTitle();?>"><?php printImageThumb(getBareImageTitle()); ?></a>
-								</div>
-							<?php } ?>
+								if (isImagePhoto())	{
+//									$doslideshowlink = true;?>
+									<div id="imagethumb">
+										<a href="<?php echo html_encode(getImageURL());?>" title="<?php printBareImageTitle();?>"><?php printImageThumb(getBareImageTitle()); ?></a>
+									</div>
+								<?php }
+								if (isImageVideo())	{ ?>
+									<div id="album">
+										<div id="albumthumb">
+											<a href="<?php echo html_encode(getImageURL());?>" title="<?php echo 'View video: '; printBareImageTitle();?>"><?php printImageThumb(getBareImageTitle()); ?></a>
+											<div id="albumdesc">
+												<a href="<?php echo html_encode(getImageURL());?>" title="<?php echo 'View video: '; printBareImageTitle();?>"><?php printImageTitle(); ?></a>
+												<br /><?php printImageDate("");
+												echo shortenContent(getImageDesc(), 90,'...');?>
+											</div>
+										</div>
+									</div>
+								<?php }
+							} ?>
 						</div>
 					<?php }?>
 					<div class="clearing"></div>
