@@ -46,10 +46,10 @@ class ThemeOptions {
 	
 		$list = array();
 		genAlbumList($list);
-		$list['*All Albums*'] = '';
 		foreach ($list as $fullfolder => $albumtitle) {
 			$list[$fullfolder] = $fullfolder;
 		}
+		$list['*All Albums*'] = '';
 
 	
 		$options = array(	gettext('Use Colorbox') => array('key' => 'Use_thickbox','order' => 4, 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Enable to display full size image with Colorbox.')),

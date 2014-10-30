@@ -13,6 +13,8 @@ if (!zp_loggedin(ADMIN_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS)) zp_remove_filter('them
  function printHomepageImage($imageRoot, $imageRandom) {
 	global $_zp_gallery;
 
+	if ($imageRoot == '*All Albums*') $imageRoot = '';
+	
 	if (empty($imageRoot)) {
 		if ($imageRandom) {
 			$titleImage = getRandomImages();
