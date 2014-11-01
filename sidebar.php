@@ -50,7 +50,7 @@
 		<div id="menu">
 			<ul>
 				<?php if (function_exists('printContactForm')) {
-					if (!commentFormUseCaptcha()) setOption("contactform_captcha",0,false); ?>
+					if (!function_exists('commentFormUseCaptcha') || !commentFormUseCaptcha()) setOption("contactform_captcha",0,false); ?>
 					<li>
 						<?php printCustomPageURL('Contact us', 'contact', '', ''); ?>
 					</li>
