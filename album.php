@@ -66,9 +66,15 @@
 					</div>
 					<div class="clearing"></div>
 					<?php printPageListWithNav("« prev", "next »");
-					if ($doslideshowlink && function_exists('printSlideShowLink')) {?>
-						<div id="slideshowlink">
-							<?php printSlideShowLink();?>
+					if ($doslideshowlink && function_exists('printSlideShowLink')) {
+						$commentWidth = strtolower(getOption('zenfluid_commentwidth'));
+						$commentWidth = ($commentWidth == "auto") ? $commentWidth : $commentWidth . "px";?>
+						<div id="commentstage" style='max-width: <?php echo $commentWidth;?>;'>
+							<div id="buttons">
+								<div id="slideshowlink">
+									<?php printSlideShowLink();?>
+								</div>
+							</div>
 						</div>
 					<?php }
 					if(getTags()) {?>
