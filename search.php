@@ -115,9 +115,9 @@
 							$doslideshowlink = false;?>
 							<div id="album">
 								<div id="albumthumb">
-									<a href="<?php echo html_encode(getAlbumURL());?>" title="<?php echo 'View album: '; printBareAlbumTitle();?>"><?php printCustomAlbumThumbImage(getBareAlbumTitle(), NULL, 95, 95, 95, 95); ?></a>
+									<a href="<?php echo html_encode(getAlbumURL());?>" title="<?php echo gettext('View album: '); printBareAlbumTitle();?>"><?php printCustomAlbumThumbImage(getBareAlbumTitle(), NULL, 95, 95, 95, 95); ?></a>
 									<div id="albumdesc">
-										<a href="<?php echo html_encode(getAlbumURL());?>" title="<?php echo 'View album: '; printBareAlbumTitle();?>"><?php printAlbumTitle(); ?></a>
+										<a href="<?php echo html_encode(getAlbumURL());?>" title="<?php echo gettext('View album: '); printBareAlbumTitle();?>"><?php printAlbumTitle(); ?></a>
 										<br /><?php printAlbumDate("");
 										echo shortenContent(getAlbumDesc(), 90,'...');?>
 									</div>
@@ -143,9 +143,9 @@
 								if (isImageVideo())	{ ?>
 									<div id="album">
 										<div id="albumthumb">
-											<a href="<?php echo html_encode(getImageURL());?>" title="<?php echo 'View video: '; printBareImageTitle();?>"><?php printImageThumb(getBareImageTitle()); ?></a>
+											<a href="<?php echo html_encode(getImageURL());?>" title="<?php echo gettext('View video: '); printBareImageTitle();?>"><?php printImageThumb(getBareImageTitle()); ?></a>
 											<div id="albumdesc">
-												<a href="<?php echo html_encode(getImageURL());?>" title="<?php echo 'View video: '; printBareImageTitle();?>"><?php printImageTitle(); ?></a>
+												<a href="<?php echo html_encode(getImageURL());?>" title="<?php echo gettext('View video: '); printBareImageTitle();?>"><?php printImageTitle(); ?></a>
 												<br /><?php printImageDate("");
 												echo shortenContent(getImageDesc(), 90,'...');?>
 											</div>
@@ -157,7 +157,7 @@
 					<?php }?>
 					<div class="clearing"></div>
 
-					<?php printPageListWithNav("« prev", "next »");
+					<?php printPageListWithNav(gettext("« prev"), gettext("next »"));
 					if ($doslideshowlink) {?>
 						<div id="slideshowlink">
 							<?php printSlideShowLink();?>

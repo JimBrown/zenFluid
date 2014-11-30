@@ -22,7 +22,7 @@ if (function_exists('printRegistrationForm')) {?>
 			<div id="container">
 				<div id="contents">
 					<div id="pagetitle">
-						User Registration
+						<?php echo gettext('User Registration'); ?>
 					</div>
 					<div id="pagecontent">
 						<?php printRegistrationForm(); ?>

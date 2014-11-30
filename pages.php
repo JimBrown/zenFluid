@@ -28,7 +28,7 @@
 					<div id="buttons">
 						<?php if (function_exists('getHitcounter')) { ?>
 							<div id="hitcounter">
-								<?php echo "Views: " . getHitcounter();?>
+								<?php echo gettext("Views: ") . getHitcounter();?>
 							</div>
 						<?php }
 						if (function_exists('printLikeButton')) {
@@ -36,7 +36,7 @@
 						}
 						if(getTags()) {?>
 							<div id="tags">
-								<?php printTags('links', 'Tags: ', 'taglist', ', ');?>
+								<?php printTags('links', gettext('Tags: '), 'taglist', ', ');?>
 							</div>
 						<?php } ?>
 					</div>

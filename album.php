@@ -24,15 +24,15 @@
 						<?php printAlbumTitle();
 						printAlbumDesc();?>
 					</div>
-					<?php printPageListWithNav("« prev", "next »");?>
+					<?php printPageListWithNav(gettext("« prev"), gettext("next »"));?>
 					<div id="albums">
 						<?php $doslideshowlink = false;
 						while (next_album()):?>
 							<div id="album">
 								<div id="albumthumb">
-									<a href="<?php echo html_encode(getAlbumURL());?>" title="<?php echo 'View album: '; printBareAlbumTitle();?>"><?php printAlbumThumbImage(getBareAlbumTitle()); ?></a>
+									<a href="<?php echo html_encode(getAlbumURL());?>" title="<?php echo gettext('View album: '); printBareAlbumTitle();?>"><?php printAlbumThumbImage(getBareAlbumTitle()); ?></a>
 									<div id="albumdesc">
-										<a href="<?php echo html_encode(getAlbumURL());?>" title="<?php echo 'View album: '; printBareAlbumTitle();?>"><?php printAlbumTitle(); ?></a>
+										<a href="<?php echo html_encode(getAlbumURL());?>" title="<?php echo gettext('View album: '); printBareAlbumTitle();?>"><?php printAlbumTitle(); ?></a>
 										<br /><?php printAlbumDate("");
 										echo shortenContent(getAlbumDesc(), 130,'...');?>
 									</div>
@@ -53,9 +53,9 @@
 							<?php } else { ?>
 								<div id="album">
 									<div id="albumthumb">
-										<a href="<?php echo html_encode(getImageURL());?>" title="<?php echo 'View video: '; printBareImageTitle();?>"><?php printImageThumb(getBareImageTitle()); ?></a>
+										<a href="<?php echo html_encode(getImageURL());?>" title="<?php echo gettext('View video: '); printBareImageTitle();?>"><?php printImageThumb(getBareImageTitle()); ?></a>
 										<div id="albumdesc">
-											<a href="<?php echo html_encode(getImageURL());?>" title="<?php echo 'View video: '; printBareImageTitle();?>"><?php printImageTitle(); ?></a>
+											<a href="<?php echo html_encode(getImageURL());?>" title="<?php echo gettext('View video: '); printBareImageTitle();?>"><?php printImageTitle(); ?></a>
 											<br /><?php printImageDate("");
 											echo shortenContent(getImageDesc(), 90,'...');?>
 										</div>
@@ -65,7 +65,7 @@
 						endwhile; ?>
 					</div>
 					<div class="clearing"></div>
-					<?php printPageListWithNav("« prev", "next »");
+					<?php printPageListWithNav(gettext("« prev"), gettext("next »"));
 					if ($doslideshowlink && function_exists('printSlideShowLink')) {
 						$commentWidth = strtolower(getOption('zenfluid_commentwidth'));
 						$commentWidth = ($commentWidth == "auto") ? $commentWidth : $commentWidth . "px";?>
@@ -79,7 +79,7 @@
 					<?php }
 					if(getTags()) {?>
 						<div id="tags">
-							<?php printTags('links', 'Tags: ', 'taglist', ', ');?>
+							<?php printTags('links', gettext('Tags: '), 'taglist', ', ');?>
 						</div>
 					<?php } ?>
 				</div>

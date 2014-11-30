@@ -21,7 +21,7 @@
 		<div id="container">
 			<div id="contents">
 				<div id="pagetitle">
-					Contact us
+					<?php echo gettext('Contact us'); ?>
 				</div>
 				<div id="pagecontent">
 					<?php if (zp_loggedin()) setOption('contactform_captcha',false,false);

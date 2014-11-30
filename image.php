@@ -67,12 +67,12 @@
 							} ?>
 						</div>
 						<div id="buttons">
-							<?php if (hasPrevImage()) { ?>
-								<div id="imgprevious"><a href="<?php echo html_encode(getPrevImageURL()); ?>" title="Previous Image">« Prev</a></div>
-							<?php }
-							if (hasNextImage()) { ?>
-								<div id="imgnext"><a href="<?php echo html_encode(getNextImageURL()); ?>" title="Next Image">Next »</a></div>
-							<?php }
+							<?php if (hasPrevImage()) {
+								echo '<div id="imgprevious"><a href="' . html_encode(getPrevImageURL()) . '" title="' . gettext('Previous Image') . '">' . gettext('« Prev') . '</a></div>';
+							}
+							if (hasNextImage()) {
+								echo '<div id="imgnext"><a href="' . html_encode(getNextImageURL()) . '" title="' . gettext('Next Image') . '">' . gettext('Next »') . '</a></div>';
+							}
 							if ($doSlideShowLink && function_exists('printSlideShowLink')) { ?>
 								<div id="slideshowlink">
 									<?php printSlideShowLink();?>
@@ -85,12 +85,12 @@
 							<?php }
 							if(getTags()) {?>
 								<div id="tags">
-									<?php printTags('links', 'Tags: ', 'taglist', ', ');?>
+									<?php printTags('links', gettext('Tags: '), 'taglist', ', ');?>
 								</div>
 							<?php }
 							if (function_exists('getHitcounter')) { ?>
 								<div id="hitcounter">
-									<?php echo "Views: " . getHitcounter();?>
+									<?php echo gettext("Views: ") . getHitcounter();?>
 								</div>
 							<?php }
 							if (function_exists('printLikeButton')) {

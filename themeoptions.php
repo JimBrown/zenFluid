@@ -65,10 +65,10 @@ class ThemeOptions {
 							);
 
 		if (!extensionEnabled('zenpage')) {
-			$options['note1'] = array('key'	=> 'zenfluid_zenpage','order' => 1,'type'	=> OPTION_TYPE_NOTE,'desc'	=> '<p class="errorbox">ZenFluid requires that the <em><b>ZenPage</b></em> plugin be enabled.</p>', 'zenfluid');
+			$options['note1'] = array('key'	=> 'zenfluid_zenpage','order' => 1,'type'	=> OPTION_TYPE_NOTE,'desc'	=> gettext('<p class="errorbox">ZenFluid requires that the <em><b>ZenPage</b></em> plugin be enabled.</p>'), 'zenfluid');
 		}
 		if (!extensionEnabled('print_album_menu')) {
-			$options['note2'] = array('key'	=> 'zenfluid_pamenu','order' => 2,'type'	=> OPTION_TYPE_NOTE,'desc'	=> '<p class="errorbox">ZenFluid requires that the <em><b>print_album_menu</b></em> plugin be enabled.</p>', 'zenfluid');
+			$options['note2'] = array('key'	=> 'zenfluid_pamenu','order' => 2,'type'	=> OPTION_TYPE_NOTE,'desc'	=> gettext('<p class="errorbox">ZenFluid requires that the <em><b>print_album_menu</b></em> plugin be enabled.</p>'), 'zenfluid');
 		}
 	return $options;
 	}
