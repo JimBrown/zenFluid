@@ -4,7 +4,7 @@
 /**
  * Remove admin toolbox for all but site and album admins.
  */
-if (!zp_loggedin(ADMIN_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS)) zp_remove_filter('theme_head', 'adminToolbox');
+if (!zp_loggedin(ADMIN_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS)) zp_remove_filter('theme_body_close', 'adminToolbox');
 
 /**
  * Returns an image for the home page
