@@ -3,6 +3,6 @@
 ?>
 	<div id="footer">
 		<?php echo gettext('ZenFluid theme designed by '); ?> Jim Brown&nbsp;|&nbsp;
-		<?php printZenphotoLink(); ?>
+		<?php printZenphotoLink(); echo "\n"; ?>
 	</div>
 <?php zp_apply_filter('theme_body_close'); ?>

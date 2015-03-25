@@ -8,7 +8,7 @@
 				<a href="<?php echo getGalleryIndexURL(); ?>"><?php printGalleryTitle();?></a>
 			</div>
 			<div id="sidebarsubtitle">
-				<?php printFormattedGalleryDesc(getGalleryDesc());?>
+				<?php printFormattedGalleryDesc(getGalleryDesc()); echo "\n";?>
 			</div>
 		</div>
 	<?php }
@@ -21,7 +21,7 @@
 		</div>
 	<?php } ?>
 	<div id="menu">
-		<?php if (getOption('zenfluid_menutitles')) echo '<div id="menutitle">' . gettext('Gallery') . '</div>'; ?>
+		<?php if (getOption('zenfluid_menutitles')) echo '<div id="menutitle">' . gettext('Gallery') . '</div>';echo "\n"; ?>
 		<?php if (extensionEnabled('print_album_menu')) {
 			printAlbumMenu("list",NULL,"","menu-active","submenu","menu-active",gettext("Home<br />&nbsp;"));
 		} else {
@@ -31,13 +31,13 @@
 	<?php if (extensionEnabled('zenpage')) {
 		if (getNumPages(true)) { ?>
 			<div id="menu">
-				<?php if (getOption('zenfluid_menutitles')) echo '<div id="menutitle">' . gettext('Pages') . '</div>'; ?>
+				<?php if (getOption('zenfluid_menutitles')) echo '<div id="menutitle">' . gettext('Pages') . '</div>';echo "\n"; ?>
 				<?php printPageMenu("list","","menu-active","submenu","menu-active");?>
 			</div>
 		<?php }
 		if (getNumNews(true)) { ?>
 			<div id="menu">
-				<?php if (getOption('zenfluid_menutitles')) echo '<div id="menutitle">' . gettext('News') . '</div>'; ?>
+				<?php if (getOption('zenfluid_menutitles')) echo '<div id="menutitle">' . gettext('News') . '</div>';echo "\n"; ?>
 				<?php printAllNewsCategories(gettext("All news"), TRUE, "", "menu-active", true, "submenu", "menu-active"); ?>
 			</div>
 		<?php }
@@ -51,24 +51,18 @@
 			<ul>
 				<?php if (function_exists('printContactForm')) {
 					if (!commentFormUseCaptcha()) setOption("contactform_captcha",0,false); ?>
-					<li>
-						<?php printCustomPageURL(gettext('Contact us'), 'contact', '', ''); ?>
-					</li>
+					<li><?php printCustomPageURL(gettext('Contact us'), 'contact', '', '');?></li>
 				<?php }
 				if(function_exists('printUserLogin_out')) {
 					if ($_zp_gallery_page != 'register.php') { ?>
 						<li>
-							<?php printUserLogin_out();?>
-						</li>
+              <?php printUserLogin_out();?>
+            </li>
 					<?php }
 					if (!zp_loggedin()) {?>
-						<li>
-							<?php printCustomPageURL(gettext('Register'), 'register', '', '');?>
-						</li>
+						<li><?php printCustomPageURL(gettext('Register'), 'register', '', '');?></li>
 					<?php } else { ?>
-						<li>
-							<?php printLinkHTML(WEBPATH . '/' . ZENFOLDER . '/admin-users.php?page=users', gettext('Profile'), gettext('Your user profile'));?>
-						</li>
+						<li><?php printLinkHTML(WEBPATH . '/' . ZENFOLDER . '/admin-users.php?page=users', gettext('Profile'), gettext('Your user profile'));?></li>
 					<?php }
 				} ?>
 			</ul>

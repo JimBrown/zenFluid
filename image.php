@@ -4,6 +4,7 @@
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
+<?php if (getOption('zenfluid_makeneat')) makeNeatStart(); ?>
 	<head>
 		<?php zp_apply_filter('theme_head'); ?>
 		<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
@@ -34,12 +35,12 @@
 								$boxclass = "";
 							}
 							$tburl = getFullImageURL();
-							if (!empty($tburl)) { ?>
-								<a href="<?php echo html_encode(pathurlencode($tburl)); ?>" <?php echo $boxclass; ?> title="<?php printBareImageTitle(); ?>">
-							<?php }
+							if (!empty($tburl)) {
+								echo '<a href="' . html_encode(pathurlencode($tburl)) . '" ' . $boxclass . 'title="' . getBareImageTitle() . '">' . "\n";
+							}
 							printCustomSizedImageMaxSpace(getBareImageTitle(),null,null,"imgheight");
 							if (!empty($tburl)) {
-								?></a><?php
+								echo "\n</a>\n";
 							}?>
 						</div>
 					<?php } else { ?>
@@ -63,14 +64,15 @@
 							printImageTitle();
 							if (getImageDesc()) {
 								printImageDesc();
-							} ?>
+							}
+              echo "\n"; ?>
 						</div>
 						<div id="buttons">
 							<?php if (hasPrevImage()) {
-								echo '<div id="imgprevious"><a href="' . html_encode(getPrevImageURL()) . '" title="' . gettext('Previous Image') . '">' . gettext('« Prev') . '</a></div>';
+								echo '<div id="imgprevious">' . "\n" . '<a href="' . html_encode(getPrevImageURL()) . '" title="' . gettext('Previous Image') . '">' . gettext('« Prev') . '</a>' . "\n" . '</div>' . "\n";
 							}
 							if (hasNextImage()) {
-								echo '<div id="imgnext"><a href="' . html_encode(getNextImageURL()) . '" title="' . gettext('Next Image') . '">' . gettext('Next »') . '</a></div>';
+								echo '<div id="imgnext">' . "\n" . '<a href="' . html_encode(getNextImageURL()) . '" title="' . gettext('Next Image') . '">' . gettext('Next »') . '</a>' . "\n" . '</div>' . "\n";
 							}
 							if ($doSlideShowLink && function_exists('printSlideShowLink')) { ?>
 								<div id="slideshowlink">
@@ -89,7 +91,7 @@
 							<?php }
 							if (function_exists('getHitcounter')) { ?>
 								<div id="hitcounter">
-									<?php echo gettext("Views: ") . getHitcounter();?>
+									<?php echo gettext("Views: ") . getHitcounter() . "\n";?>
 								</div>
 							<?php }
 							if (function_exists('printLikeButton')) {
@@ -107,4 +109,5 @@
 		</div>
 		<?php include("footer.php");?>
 	</body>
+<?php if (getOption('zenfluid_makeneat')) makeNeatEnd(); ?>
 </html>

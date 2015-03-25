@@ -8,7 +8,7 @@
 				<div id="headertitle">
 					<a href="<?php echo getGalleryIndexURL(); ?>"><?php printGalleryTitle();?></a>
 					<div id="headersubtitle">
-						<?php printGalleryDesc();?>
+						<?php printGalleryDesc();echo "\n";?>
 					</div>
 				</div>
 			</div>
