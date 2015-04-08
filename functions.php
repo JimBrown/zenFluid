@@ -271,6 +271,9 @@ function makeNeatEnd() {
   $notJS = array();
   $notCSS = array();
   
+  $theBody = makeNeat_extract($data, '~<body>(.*)</body>~msU');
+  $body = $theBody[1][0];
+
   $matches = makeNeat_extract($data, '~<script(?:|\s*type="text/javascript"|)\s*src="(.*)"(?:|\s*type="text/javascript"|)\s*></script>~msU');
   foreach ($matches[0] as $key => $str) {
     if (strpos($str, 'text/javascript') === false) {
@@ -278,14 +281,31 @@ function makeNeatEnd() {
       unset($matches[1][$key]);
     }
   }
-  $js = array();
+  $headJS = array();
   while (!empty($matches[1])) { // flush out the duplicates. Earliest wins
     $file = array_pop($matches[1]);
-    $js[basename($file)] = $file;
+    $headJS[basename($file)] = $file;
   }
-  $js = array_reverse($js);
-  foreach ($js as $key => $jsLine) {
-    $js[$key] = '<script type="text/javascript" src="' . trim($jsLine) . '"></script>';
+  $headJS = array_reverse($headJS);
+  foreach ($headJS as $key => $headJSLine) {
+    $headJS[$key] = '<script type="text/javascript" src="' . trim($headJSLine) . '"></script>';
+  }
+
+  $matches = makeNeat_extract($body, '~<script(?:|\s*type="text/javascript"|)\s*src="(.*)"(?:|\s*type="text/javascript"|)\s*></script>~msU');
+  foreach ($matches[0] as $key => $str) {
+    if (strpos($str, 'text/javascript') === false) {
+      $notJS[] = $matches[0][$key];
+      unset($matches[1][$key]);
+    }
+  }
+  $bodyJS = array();
+  while (!empty($matches[1])) { // flush out the duplicates. Earliest wins
+    $file = array_pop($matches[1]);
+    $bodyJS[basename($file)] = $file;
+  }
+  $bodyJS = array_reverse($bodyJS);
+  foreach ($bodyJS as $key => $bodyJSLine) {
+    $bodyJS[$key] = '<script type="text/javascript" src="' . trim($bodyJSLine) . '"></script>';
   }
 
   $matches = makeNeat_extract($data, '~<link\s*(?:|type="text/css"|)\s*rel="stylesheet"\s*href="(.*)"\s*(?:|type="text/css"|)(?:\s*)/>~msU');
@@ -305,11 +325,11 @@ function makeNeatEnd() {
     $cs[$key] = '<link type="text/css" rel="stylesheet" href="' . trim($csLine) . '" />';
   }
 
+  $jsi = array();
   $matches = makeNeat_extract($data, '~<script(?:\s*)type="text/javascript"(?:\s*)>(.*)</script>~msU');
   $inlinejs = $matches[1];
-  $jsi = array();
   if (!empty($inlinejs)) {
-    array_push($jsi, '// <!-- <![CDATA[');
+    if (empty($jsi)) array_push($jsi, '// <!-- <![CDATA[');
     foreach ($inlinejs as $somejs) {
       $somejs = str_replace('// <!-- <![CDATA[', '', $somejs);
       $somejs = str_replace('// ]]> -->', '', $somejs);
@@ -321,8 +341,24 @@ function makeNeatEnd() {
         if (!empty($somejsbit)) array_push($jsi, $somejsbit);
       }
     }
-    array_push($jsi, '// ]]> -->');
   }
+  $matches = makeNeat_extract($body, '~<script(?:\s*)type="text/javascript"(?:\s*)>(.*)</script>~msU');
+  $inlinejs = $matches[1];
+  if (!empty($inlinejs)) {
+    if (empty($jsi)) array_push($jsi, '// <!-- <![CDATA[');
+    foreach ($inlinejs as $somejs) {
+      $somejs = str_replace('// <!-- <![CDATA[', '', $somejs);
+      $somejs = str_replace('// ]]> -->', '', $somejs);
+      $somejs = trim($somejs);
+      $somejsbits = explode("\n",$somejs);
+      $somejsbits = array_map('trim',$somejsbits);
+      array_push($jsi, "/**/");
+      foreach($somejsbits as $somejsbit) {
+        if (!empty($somejsbit)) array_push($jsi, $somejsbit);
+      }
+    }
+  }
+  if (!empty($jsi)) array_push($jsi, '// ]]> -->');
 
   $matches = makeNeat_extract($data, '~<title>(.*)</title>~msU');
   $title = $matches[0];
@@ -358,8 +394,7 @@ function makeNeatEnd() {
     }
   }
 
-  $matches = makeNeat_extract($data, '~<body>(.*)</body>~msU');
-  $body = explode("\n", trim(preg_replace('/\s+/', ' ', $matches[1][0])));
+  $body = explode("\n", trim(preg_replace('/\s+/', ' ', $body)));
   foreach ($body as $key => $line) {
     $line = trim($line);
     if (empty($line)) {
@@ -400,9 +435,9 @@ function makeNeatEnd() {
     }
     tabLine('<!-- ' . gettext('end of other Link references') . " -->", --$tabSize);
   }
-  if (!empty($js)) {
+  if (!empty($headJS)) {
     tabLine('<!-- ' . gettext('external Javascript') . " -->", $tabSize++);
-    foreach ($js as $line) {
+    foreach ($headJS as $line) {
       tabLine($line, $tabSize);
     }
     tabLine('<!-- ' . gettext('end of external Javascript') . " -->", --$tabSize);
@@ -431,6 +466,13 @@ function makeNeatEnd() {
     tabScript($jsi, $tabSize);
     tabLine('</script>',--$tabSize);
     tabLine('<!-- ' . gettext('end of in-line Javascript') . " -->", --$tabSize);
+  }
+  if (!empty($bodyJS)) {
+    tabLine('<!-- ' . gettext('external Javascript') . " -->", $tabSize++);
+    foreach ($bodyJS as $line) {
+      tabLine($line, $tabSize);
+    }
+    tabLine('<!-- ' . gettext('end of external Javascript') . " -->", --$tabSize);
   }
 }
 
