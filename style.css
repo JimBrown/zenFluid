@@ -175,6 +175,10 @@ img#captcha {
 	display: block;
 	float: left;
 }
+#recaptcha_widget {
+	position: relative;
+	top: 13px;
+}
 input#code {
 	float: left;
 	margin-left: 10px;
