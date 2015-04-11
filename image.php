@@ -96,7 +96,7 @@
 								}
 								?>
 								<div id="hitcounter">
-									<a href="#addComment"><?php echo $comments; ?></a>
+									<a href="#readComment"><?php echo $comments; ?></a>
 								</div>
 								<div id="hitcounter">
 									<a href="#addComment">Add Comment</a>
@@ -121,8 +121,8 @@
 							echo "\n"; ?>
 						</div>
 						<?php if (function_exists('printCommentForm') && ($_zp_current_image->getCommentsAllowed() || getCommentCount())) { ?>
-							<a id="addComment"></a>
-							<?php printCommentForm(true, '', false); ?>
+							<a id="readComment"></a>
+							<?php printCommentForm(true, '<a id="addComment"></a>', false); ?>
 						<?php }?>
 					</div>
 				</div>
