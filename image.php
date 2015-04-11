@@ -54,25 +54,9 @@
 					<?php }
 					$commentWidth = strtolower(getOption('zenfluid_commentwidth'));
 					$commentWidth = ($commentWidth == "auto") ? $commentWidth : $commentWidth . "px";
-					$commentMarginTop = (extensionEnabled('jPlayer')) ? 50 : 10;
+					$commentMarginTop = (extensionEnabled('jPlayer')) ? 50 : 10; // jPlayer adds a 40 px controls bar below the video. Others add the bar in the video.
 					?>
 					<div id="commentstage" style="margin-top: <?php echo $commentMarginTop; ?>px; max-width: <?php echo $commentWidth;?>;">
-						<div id="imgtitle">
-							<?php if (getOption('zenfluid_titlebreadcrumb')) {
-								$parentalbum = $_zp_current_album->getParent();
-								if(!empty($parentalbum)) {
-									$parentAlbumTitle = $parentalbum->getTitle();
-									echo "$parentAlbumTitle: ";
-								}
-								printAlbumTitle();
-								echo ": ";
-							}
-							printImageTitle();
-							if (getImageDesc()) {
-								printImageDesc();
-							}
-							echo "\n"; ?>
-						</div>
 						<div id="buttons">
 							<?php if (hasPrevImage()) {
 								echo '<div id="imgprevious">' . "\n" . '<a href="' . html_encode(getPrevImageURL()) . '" title="' . gettext('Previous Image') . '">' . gettext('« Prev') . '</a>' . "\n" . '</div>' . "\n";
@@ -102,12 +86,44 @@
 							<?php }
 							if (function_exists('printLikeButton')) {
 								printLikeButton();
-							} ?>
+							}
+							if (function_exists('printCommentForm') && ($_zp_current_image->getCommentsAllowed() || getCommentCount())) { 
+								$num = getCommentCount();
+								if ($num == 0) {
+									$comments = gettext('No Comments');
+								} else {
+									$comments = sprintf(ngettext('%u Comment', '%u Comments', $num), $num);
+								}
+								?>
+								<div id="hitcounter">
+									<a href="#addComment"><?php echo $comments; ?></a>
+								</div>
+								<div id="hitcounter">
+									<a href="#addComment">Add Comment</a>
+								</div>
+							<?php }?>
 						</div>
 						<div class="clearing" ></div>
-						<?php if (function_exists('printCommentForm') && ($_zp_current_image->getCommentsAllowed() || getCommentCount())) {
-							printCommentForm();
-						}?>
+						<div id="imgtitle">
+							<?php if (getOption('zenfluid_titlebreadcrumb')) {
+								$parentalbum = $_zp_current_album->getParent();
+								if(!empty($parentalbum)) {
+									$parentAlbumTitle = $parentalbum->getTitle();
+									echo "$parentAlbumTitle: ";
+								}
+								printAlbumTitle();
+								echo ": ";
+							}
+							printImageTitle();
+							if (getImageDesc()) {
+								printImageDesc();
+							}
+							echo "\n"; ?>
+						</div>
+						<?php if (function_exists('printCommentForm') && ($_zp_current_image->getCommentsAllowed() || getCommentCount())) { ?>
+							<a id="addComment"></a>
+							<?php printCommentForm(true, '', false); ?>
+						<?php }?>
 					</div>
 				</div>
 			</div>
