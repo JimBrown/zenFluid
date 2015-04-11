@@ -11,7 +11,6 @@
       <link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/fonts/stylesheet.css" type="text/css" />
     <?php } ?>
     <?php zp_apply_filter('theme_head'); ?>
-    <?php echo ImageJS();?>
   </head>
   <body>
 
@@ -21,6 +20,7 @@
       <div id="contents">
         <div id="imagecontent">
           <div id="image">
+			<?php echo ImageJS();?>
             <?php printHomepageImage(getOption('zenfluid_imageroot'),getOption('zenfluid_randomimage')); echo "\n";?>
           </div>
         </div>

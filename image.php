@@ -23,7 +23,7 @@
 				<div id="imagecontent">
 					<?php $doSlideShowLink = false;
 					if (isImagePhoto()) {
-						echo ImageJS();
+						echo ImageJS(getOption("zenfluid_titlemargin"));
 						if (zp_has_filter('theme_head', 'colorbox::css')) {
 							echo colorBoxJS();
 						}
@@ -43,14 +43,20 @@
 								echo "\n</a>\n";
 							}?>
 						</div>
-					<?php } else { ?>
-						<div id="video">
-							<?php printCustomSizedImageMaxSpace(getBareImageTitle(),null,null);?>
+					<?php } else {
+						$metadata = getImageMetaData(NULL,false);
+						$vidWidth = $metadata['VideoResolution_x'];
+						$vidHeight = $metadata['VideoResolution_y'];
+						echo VideoJS($vidWidth, $vidHeight, getOption("zenfluid_titlemargin"));?>
+						<div id="video" style="max-width: <?php echo $vidWidth; ?>px; max-height: <?php echo $vidHeight; ?>px;">
+							<?php printCustomSizedImageMaxSpace(getBareImageTitle(),null,null); ?>
 						</div>
 					<?php }
 					$commentWidth = strtolower(getOption('zenfluid_commentwidth'));
-					$commentWidth = ($commentWidth == "auto") ? $commentWidth : $commentWidth . "px";?>
-					<div id="commentstage" style='max-width: <?php echo $commentWidth;?>;'>
+					$commentWidth = ($commentWidth == "auto") ? $commentWidth : $commentWidth . "px";
+					$commentMarginTop = (extensionEnabled('jPlayer')) ? 50 : 10;
+					?>
+					<div id="commentstage" style="margin-top: <?php echo $commentMarginTop; ?>px; max-width: <?php echo $commentWidth;?>;">
 						<div id="imgtitle">
 							<?php if (getOption('zenfluid_titlebreadcrumb')) {
 								$parentalbum = $_zp_current_album->getParent();
@@ -65,7 +71,7 @@
 							if (getImageDesc()) {
 								printImageDesc();
 							}
-              echo "\n"; ?>
+							echo "\n"; ?>
 						</div>
 						<div id="buttons">
 							<?php if (hasPrevImage()) {

@@ -563,7 +563,7 @@ textarea, .button, #pagetitle, #pagecontent, #newstitle, #newscontent, #searchti
 #pagetitle, #pagecontent, #newstitle, #newscontent {
 	margin-left: 5px;
 }
-img#captcha, #mailform label, #registration_form label, .errorbox, #video {
+img#captcha, #mailform label, #registration_form label, .errorbox{
 	margin-bottom: 10px;
 }
 #header, #content, #newsarticle, #imgtitle, #pagetitle, #pagecontent, #newstitle, #newscontent, #searchtitle, #searchcategory {
