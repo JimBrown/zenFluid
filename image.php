@@ -74,19 +74,11 @@
 									<?php printImageMetadata(NULL, 'colorbox');?>
 								</div>
 							<?php }
-							if(getTags()) {?>
-								<div id="tags">
-									<?php printTags('links', gettext('Tags: '), 'taglist', ', ');?>
-								</div>
-							<?php }
 							if (function_exists('getHitcounter')) { ?>
 								<div id="hitcounter">
 									<?php echo gettext("Views: ") . getHitcounter() . "\n";?>
 								</div>
 							<?php }
-							if (function_exists('printLikeButton')) {
-								printLikeButton();
-							}
 							if (function_exists('printCommentForm') && ($_zp_current_image->getCommentsAllowed() || getCommentCount())) { 
 								$num = getCommentCount();
 								if ($num == 0) {
@@ -101,7 +93,10 @@
 								<div id="hitcounter">
 									<a href="#addComment">Add Comment</a>
 								</div>
-							<?php }?>
+							<?php }
+							if (function_exists('printLikeButton')) {
+								printLikeButton();
+							} ?>
 						</div>
 						<div class="clearing" ></div>
 						<div id="imgtitle">
@@ -123,7 +118,12 @@
 						<?php if (function_exists('printCommentForm') && ($_zp_current_image->getCommentsAllowed() || getCommentCount())) { ?>
 							<a id="readComment"></a>
 							<?php printCommentForm(true, '<a id="addComment"></a>', false); ?>
-						<?php }?>
+						<?php }
+						if(getTags()) {?>
+							<div id="tags">
+								<?php printTags('links', gettext('Tags: '), 'taglist', ', ');?>
+							</div>
+						<?php } ?>
 					</div>
 				</div>
 			</div>

@@ -550,24 +550,24 @@ html, body, #sidebar, #container, #contents, #content-error {
 /* Margins and padding
 --------------------------------*/
 #image, #imgprevious, #imgnext, #tags, #slideshowlink, #metadata, #commentcontent, .comment,
-textarea, .button, #pagetitle, #pagecontent, #newstitle, #newscontent, #searchtitle, #searchcategory, #menu, #album, #imagethumb,
+.button, #pagetitle, #pagecontent, #newstitle, #newscontent, #searchtitle, #searchcategory, #menu, #album, #imagethumb,
 #hitcounter, .fb-like, #newsprevious, #newsnext, #search_input {
 	margin-bottom: 5px;
 }
-#container {
+#container, .textarea_inputbox {
 	margin-top: 5px;
 }
 #imgprevious, #imgnext, #tags, #slideshowlink, #metadata, #album, #imagethumb, #hitcounter, .fb-like, #newsprevious, #newsnext {
 	margin-right: 5px;
 }
-#comments, #commententry {
+#commententry {
 	margin-top: 0px;
 	margin-bottom: 10px;
 }
 #pagetitle, #pagecontent, #newstitle, #newscontent {
 	margin-left: 5px;
 }
-img#captcha, #mailform label, #registration_form label, .errorbox{
+img#captcha, #mailform label, #registration_form label, .errorbox, #comments, #imgtitle {
 	margin-bottom: 10px;
 }
 #header, #content, #newsarticle, #imgtitle, #pagetitle, #pagecontent, #newstitle, #newscontent, #searchtitle, #searchcategory {
