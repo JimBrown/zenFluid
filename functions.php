@@ -186,12 +186,24 @@ function videoJS($vidWidth, $vidHeight, $titleMargin = 50) {
 				}
 				headerheight = $("#header").outerHeight(true);
 				vidheight = viewportheight - headerheight - $titleMargin;
+				vidwidth = viewportwidth - 208;
 				if (vidheight > maxvidheight) {
 					vidheight = maxvidheight;
 				}
-				vidwidth = vidheight / vidratio;
+				if (vidwidth > maxvidwidth) {
+					vidwidth = maxvidwidth;
+				}
+				if (vidheight / vidratio > vidwidth) {
+					vidheight = vidwidth * vidratio;
+				}
+				if (vidwidth * vidratio > vidheight) {
+					vidwidth = vidheight / vidratio;
+				}
 				$("#video").css({"max-width" : vidwidth + "px"});
 				$("#video").css({"max-height" : vidheight + "px"});
+				$(".jp-jplayer").css({"height" : vidheight + "px"});
+				$("[id^='jp_poster_']").css({"height" : vidheight + "px"});
+				$("[id^='jp_video_']").css({"height" : vidheight + "px"});
 			};
 			$(document).ready(function() {
 				setStage();
