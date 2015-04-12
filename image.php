@@ -46,11 +46,11 @@
 					<?php } else {
 						$metadata = getImageMetaData(NULL,false);
 						$vidWidth = $metadata['VideoResolution_x'];
-						$vidHeight = $metadata['VideoResolution_y']; ?>
+						$vidHeight = $metadata['VideoResolution_y'];
+						echo VideoJS($vidWidth, $vidHeight, getOption("zenfluid_titlemargin"));?>
 						<div id="video" style="max-width: <?php echo $vidWidth; ?>px; max-height: <?php echo $vidHeight; ?>px;">
 							<?php printCustomSizedImageMaxSpace(getBareImageTitle(),null,null); ?>
 						</div>
-						<?php echo VideoJS($vidWidth, $vidHeight, getOption("zenfluid_titlemargin"));?>
 					<?php }
 					$commentWidth = strtolower(getOption('zenfluid_commentwidth'));
 					$commentWidth = ($commentWidth == "auto") ? $commentWidth : $commentWidth . "px";
