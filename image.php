@@ -43,18 +43,19 @@
 								echo "\n</a>\n";
 							}?>
 						</div>
-					<?php } else {
+						<?php $commentMarginTop = 10;
+					} else {
 						$metadata = getImageMetaData(NULL,false);
 						$vidWidth = $metadata['VideoResolution_x'];
 						$vidHeight = $metadata['VideoResolution_y']; ?>
 						<div id="video" style="max-width: <?php echo $vidWidth; ?>px; max-height: <?php echo $vidHeight; ?>px;">
 							<?php printCustomSizedImageMaxSpace(getBareImageTitle(),null,null); ?>
 						</div>
-						<?php echo VideoJS($vidWidth, $vidHeight, getOption("zenfluid_titlemargin"));?>
-					<?php }
+						<?php echo VideoJS($vidWidth, $vidHeight, getOption("zenfluid_titlemargin"));
+						$commentMarginTop = (extensionEnabled('jPlayer')) ? 50 : 10; // jPlayer adds a 40 px controls bar below the video. Others add the bar in the video.
+					}
 					$commentWidth = strtolower(getOption('zenfluid_commentwidth'));
 					$commentWidth = ($commentWidth == "auto") ? $commentWidth : $commentWidth . "px";
-					$commentMarginTop = (extensionEnabled('jPlayer')) ? 50 : 10; // jPlayer adds a 40 px controls bar below the video. Others add the bar in the video.
 					?>
 					<div id="commentstage" style="margin-top: <?php echo $commentMarginTop; ?>px; max-width: <?php echo $commentWidth;?>;">
 						<div id="buttons">
