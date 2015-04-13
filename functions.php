@@ -149,7 +149,7 @@ function ImageJS($titleMargin = 50) {
 		$(document).ready(function() {
 		setStage();
 		});
-		jQuery(window).resize(setStage);
+		$(window).resize(setStage);
 			window.addEventListener("orientationchange", setStage, false);
 		// ]]> -->
 	</script>
@@ -186,7 +186,7 @@ function videoJS($vidWidth, $vidHeight, $titleMargin = 50) {
 				}
 				headerheight = $("#header").outerHeight(true);
 				vidheight = viewportheight - headerheight - $titleMargin;
-				vidwidth = viewportwidth - 208;
+				vidwidth = viewportwidth - 227;
 				if (vidheight > maxvidheight) {
 					vidheight = maxvidheight;
 				}
@@ -203,13 +203,18 @@ function videoJS($vidWidth, $vidHeight, $titleMargin = 50) {
 				$("#video").css({"max-height" : vidheight + "px"});
 				$(".jp-jplayer").css({"height" : vidheight + "px"});
 				$("[id^='jp_poster_']").css({"height" : vidheight + "px"});
+				$(".jp-video").css({"height" : vidheight + "px"});
 				$("[id^='jp_video_']").css({"height" : vidheight + "px"});
+				$(".jp-video-play").css({"top" : vidheight / 2 + "px"});
 			};
 			$(document).ready(function() {
 				setStage();
+				$(".jp-video-play").click(function() {
+					$("[id^='jp_video_']").css({"height" : vidheight + "px"});
+				});
 			});
-			jQuery(window).resize(setStage);
-			window.addEventListener("orientationchange", setStage, false);		
+			$(window).resize(setStage);
+			window.addEventListener("orientationchange", setStage, false);
 		// ]]> -->
 		</script>
 EOJS;
