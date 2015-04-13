@@ -11,6 +11,10 @@
 class ThemeOptions {
 
 	function ThemeOptions() {
+		
+		if (!extensionEnabled('zenpage')) enableExtension('zenpage', 8291, true);
+		if (!extensionEnabled('print_album_menu')) enableExtension('print_album_menu', 1025, true);
+		
 		setThemeOptionDefault('Use_thickbox', true);
 		setThemeOptionDefault('Allow_search', true);
 		setThemeOptionDefault('zenfluid_menuupper', false);
@@ -67,13 +71,6 @@ class ThemeOptions {
 							gettext('Title Margin') => array('key' => 'zenfluid_titlemargin','order' => 14, 'type' => OPTION_TYPE_TEXTBOX, 'desc' => gettext('Set amount of the Title, buttons, comments that alwas show below the image or video')),
 							gettext('Make Neat') => array('key' => 'zenfluid_makeneat','order' => 99, 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Enabling this option will result in the html output to be buffered and captured, the head section consolidated, all scripts moved to the head section, and the body section neatened with appropriate line splitting, concatenating, and tabbing and then everything sent to the browser. This option will add processing time to the page.'))
 							);
-
-		if (!extensionEnabled('zenpage')) {
-			$options['note1'] = array('key'	=> 'zenfluid_zenpage','order' => 1,'type'	=> OPTION_TYPE_NOTE,'desc'	=> gettext('<p class="errorbox">ZenFluid requires that the <em><b>ZenPage</b></em> plugin be enabled.</p>'), 'zenfluid');
-		}
-		if (!extensionEnabled('print_album_menu')) {
-			$options['note2'] = array('key'	=> 'zenfluid_pamenu','order' => 2,'type'	=> OPTION_TYPE_NOTE,'desc'	=> gettext('<p class="errorbox">ZenFluid requires that the <em><b>print_album_menu</b></em> plugin be enabled.</p>'), 'zenfluid');
-		}
 	return $options;
 	}
 
