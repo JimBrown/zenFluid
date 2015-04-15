@@ -27,6 +27,7 @@ class ThemeOptions {
 		setThemeOptionDefault('zenfluid_menutitles', true);
 		setThemeOptionDefault('zenfluid_makeneat', false);
 		setThemeOptionDefault('zenfluid_titlemargin', 125);
+		setThemeOptionDefault('zenfluid_titletop', false);
 		setThemeOptionDefault('albums_per_page', 2);
 		setThemeOptionDefault('albums_per_row', 10);
 		setThemeOptionDefault('images_per_page', 2);
@@ -69,6 +70,7 @@ class ThemeOptions {
 							gettext('Menu section titles') => array('key' => 'zenfluid_menutitles','order' => 13, 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Enable the display of a title for each sidebar menu section.')),
 							gettext('Print title breadcrumb') => array('key' => 'zenfluid_titlebreadcrumb','order' => 9, 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Enable this if you want the album title to be included before the image title')),
 							gettext('Title Margin') => array('key' => 'zenfluid_titlemargin','order' => 14, 'type' => OPTION_TYPE_TEXTBOX, 'desc' => gettext('Set amount of the Title, buttons, comments that alwas show below the image or video')),
+							gettext('Title on top') => array('key' => 'zenfluid_titletop','order' => 15, 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Enable this if you want the image title to be displayed above the image')),
 							gettext('Make Neat') => array('key' => 'zenfluid_makeneat','order' => 99, 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Enabling this option will result in the html output to be buffered and captured, the head section consolidated, all scripts moved to the head section, and the body section neatened with appropriate line splitting, concatenating, and tabbing and then everything sent to the browser. This option will add processing time to the page.'))
 							);
 	return $options;

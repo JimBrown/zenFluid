@@ -22,8 +22,28 @@
 			<div id="contents">
 				<div id="imagecontent">
 					<?php $doSlideShowLink = false;
+					$commentWidth = strtolower(getOption('zenfluid_commentwidth'));
+					$commentWidth = ($commentWidth == "auto") ? $commentWidth : $commentWidth . "px";
+					$titleMargin = getOption("zenfluid_titlemargin");
+					if (getOption('zenfluid_titletop')) {
+						$titleMargin = $titleMargin + 20; ?>
+						<div id="commentstage" style="max-width: <?php echo $commentWidth;?>;">
+							<div id="imgtitle">
+								<?php if (getOption('zenfluid_titlebreadcrumb')) {
+									$parentalbum = $_zp_current_album->getParent();
+									if(!empty($parentalbum)) {
+										$parentAlbumTitle = $parentalbum->getTitle();
+										echo "$parentAlbumTitle: ";
+									}
+									printAlbumTitle();
+									echo ": ";
+								}
+								printImageTitle(); ?>
+							</div>
+						</div>
+					<?php }
 					if (isImagePhoto()) {
-						echo ImageJS(getOption("zenfluid_titlemargin"));
+						echo ImageJS($titleMargin);
 						if (zp_has_filter('theme_head', 'colorbox::css')) {
 							echo colorBoxJS();
 						}
@@ -36,14 +56,14 @@
 							}
 							$tburl = getFullImageURL();
 							if (!empty($tburl)) {
-								echo '<a href="' . html_encode(pathurlencode($tburl)) . '" ' . $boxclass . 'title="' . getBareImageTitle() . '">' . "\n";
+								echo '<a href="' . html_encode(pathurlencode($tburl)) . '" ' . $boxclass . ' title="' . getBareImageTitle() . '">' . "\n";
 							}
 							printCustomSizedImageMaxSpace(getBareImageTitle(),null,null,"imgheight");
 							if (!empty($tburl)) {
 								echo "\n</a>\n";
 							}?>
 						</div>
-						<?php $commentMarginTop = 10;
+						<?php $commentMarginTop = 0;
 					} else {
 						$metadata = getImageMetaData(NULL,false);
 						$vidWidth = $metadata['VideoResolution_x'];
@@ -53,10 +73,7 @@
 						</div>
 						<?php echo VideoJS($vidWidth, $vidHeight, getOption("zenfluid_titlemargin"));
 						$commentMarginTop = (extensionEnabled('jPlayer')) ? 50 : 10; // jPlayer adds a 40 px controls bar below the video. Others add the bar in the video.
-					}
-					$commentWidth = strtolower(getOption('zenfluid_commentwidth'));
-					$commentWidth = ($commentWidth == "auto") ? $commentWidth : $commentWidth . "px";
-					?>
+					} ?>
 					<div id="commentstage" style="margin-top: <?php echo $commentMarginTop; ?>px; max-width: <?php echo $commentWidth;?>;">
 						<div id="buttons">
 							<?php if (hasPrevImage()) {
@@ -100,23 +117,30 @@
 							} ?>
 						</div>
 						<div class="clearing" ></div>
-						<div id="imgtitle">
-							<?php if (getOption('zenfluid_titlebreadcrumb')) {
-								$parentalbum = $_zp_current_album->getParent();
-								if(!empty($parentalbum)) {
-									$parentAlbumTitle = $parentalbum->getTitle();
-									echo "$parentAlbumTitle: ";
+						<?php if (getOption('zenfluid_titletop')) {
+							if (getImageDesc()) { ?>
+								<div id="imgtitle">
+									<?php printImageDesc(); ?>
+								</div>
+							<?php }
+						} else { ?>
+							<div id="imgtitle">
+								<?php if (getOption('zenfluid_titlebreadcrumb')) {
+									$parentalbum = $_zp_current_album->getParent();
+									if(!empty($parentalbum)) {
+										$parentAlbumTitle = $parentalbum->getTitle();
+										echo "$parentAlbumTitle: ";
+									}
+									printAlbumTitle();
+									echo ": ";
 								}
-								printAlbumTitle();
-								echo ": ";
-							}
-							printImageTitle();
-							if (getImageDesc()) {
-								printImageDesc();
-							}
-							echo "\n"; ?>
-						</div>
-						<?php if (function_exists('printCommentForm') && ($_zp_current_image->getCommentsAllowed() || getCommentCount())) { ?>
+								printImageTitle();
+								if (getImageDesc()) {
+									printImageDesc();
+								} ?>
+							</div>
+						<?php }
+						if (function_exists('printCommentForm') && ($_zp_current_image->getCommentsAllowed() || getCommentCount())) { ?>
 							<a id="readComment"></a>
 							<?php printCommentForm(true, '<a id="addComment"></a>', false); ?>
 						<?php }

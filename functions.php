@@ -118,7 +118,7 @@ function printFormattedGalleryDesc($galleryDesc = "") {
 /**
  * Javascript to resize the image whenever the browser is resized.
  */
-function ImageJS($titleMargin = 50) {
+function ImageJS($titleMargin = 0) {
 	return <<<EOJS
 	<script type="text/javascript">
 		// <!-- <![CDATA[
@@ -141,8 +141,9 @@ function ImageJS($titleMargin = 50) {
 			viewportheight = document.getElementsByTagName("body")[0].clientHeight;
 		}
 		headerheight = $("#header").outerHeight(true);
+		footerheight = $("#footer").outerHeight(true);
 		if ($(".imgheight").css("max-height") !== undefined) {
-			imgheight = viewportheight - headerheight - $titleMargin;
+			imgheight = viewportheight - headerheight - footerheight - $titleMargin - 15;
 			$(".imgheight").css({"max-height" : imgheight + "px"});
 		};
 		};
