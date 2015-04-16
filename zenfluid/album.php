@@ -20,7 +20,7 @@
 		<div id="container">
 			<div id="contents">
 				<div id="content">
-					<div id="imgtitle" style="max-width: 900px; margin-left: auto; margin-right: auto;">
+					<div id="imgtitle" style="text-align: center; margin-left: auto; margin-right: auto;">
 						<?php printAlbumTitle();
 						printAlbumDesc();?>
 					</div>
@@ -66,20 +66,18 @@
 					</div>
 					<div class="clearing"></div>
 					<?php printPageListWithNav(gettext("« prev"), gettext("next »"));
-					if ($doslideshowlink && function_exists('printSlideShowLink')) {
-						$commentWidth = strtolower(getOption('zenfluid_commentwidth'));
-						$commentWidth = ($commentWidth == "auto") ? $commentWidth : $commentWidth . "px";?>
-						<div id="commentstage" style='max-width: <?php echo $commentWidth;?>;'>
-							<div id="buttons">
-								<div id="slideshowlink">
-									<?php printSlideShowLink();?>
-								</div>
+					if ($doslideshowlink && function_exists('printSlideShowLink')) { ?>
+						<div id="buttons">
+							<div id="slideshowlink" style="display: inline-block; float: none;">
+								<?php printSlideShowLink();?>
 							</div>
 						</div>
 					<?php }
 					if(getTags()) {?>
-						<div id="tags">
-							<?php printTags('links', gettext('Tags: '), 'taglist', ', ');?>
+						<div id="buttons">
+							<div id="tags" style="display: inline-block; float: none;">
+								<?php printTags('links', gettext('Tags: '), 'taglist', ', ');?>
+							</div>
 						</div>
 					<?php } ?>
 				</div>

@@ -26,12 +26,12 @@ class ThemeOptions {
 		setThemeOptionDefault('zenfluid_commentwidth', 'auto');
 		setThemeOptionDefault('zenfluid_menutitles', true);
 		setThemeOptionDefault('zenfluid_makeneat', false);
-		setThemeOptionDefault('zenfluid_titlemargin', 125);
+		setThemeOptionDefault('zenfluid_titlemargin', 50);
 		setThemeOptionDefault('zenfluid_titletop', false);
-		setThemeOptionDefault('albums_per_page', 2);
-		setThemeOptionDefault('albums_per_row', 10);
-		setThemeOptionDefault('images_per_page', 2);
-		setThemeOptionDefault('images_per_row', 30);
+		setThemeOptionDefault('albums_per_page', 20);
+		setThemeOptionDefault('albums_per_row', 20);
+		setThemeOptionDefault('images_per_page', 50);
+		setThemeOptionDefault('images_per_row', 50);
 		setThemeOptionDefault('image_size', 1920, NULL, 'zenpage');
 		setThemeOptionDefault('image_use_side', 'width', NULL, 'zenpage');
 		setThemeOptionDefault('thumb_size',100, NULL, 'zenpage');

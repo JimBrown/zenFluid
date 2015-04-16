@@ -308,6 +308,7 @@ ul.pagelist li.next {
 }
 
 .pagelist {
+	text-align: center;
 }
 
 .pagenav {
@@ -315,7 +316,7 @@ ul.pagelist li.next {
 }
 
 .disabled_nav {
-	visibility: hidden;
+	display: none;
 }
 /* Album Thumbnails
 ------------------------------ */
