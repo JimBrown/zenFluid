@@ -136,6 +136,9 @@ body {
 .commentinfo {
 	margin-top: -10px;
 }
+.beforetext {
+	padding-right: 5px;
+}
 .commenttext {
 	margin-top: -10px;
 }
