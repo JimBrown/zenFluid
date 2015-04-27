@@ -48,9 +48,7 @@
 						<?php } ?>
 					</div>
 					<div class="clearing" ></div>
-					<?php if (function_exists('printCommentForm') && ($_zp_current_zenpage_page->getCommentsAllowed() || getCommentCount())) {
-						printCommentForm();
-					}?>
+					<?php @call_user_func('printCommentForm');?>
 				</div>
 			</div>
 			<?php include("sidebar.php");?>
