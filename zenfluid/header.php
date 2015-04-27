@@ -4,7 +4,7 @@
 
 		<?php zp_apply_filter('theme_body_open');
 		if (getOption('zenfluid_showheader')) { ?>
-			<div id="header">
+			<div id="header" class="border colour">
 				<div id="headertitle">
 					<a href="<?php echo getGalleryIndexURL(); ?>"><?php printGalleryTitle();?></a>
 					<div id="headersubtitle">

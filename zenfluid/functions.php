@@ -29,7 +29,7 @@ function printHomepageImage($imageRoot, $imageRandom) {
 		}
 	}
 	if (isset($titleImage)) {
-		echo '<a href="'.$titleImage->getLink().'"><img class="imgheight" src="'.$titleImage->getCustomImage(null, null, null, null, null, null, null).'" title="'.$titleImage->getTitle().'" /></a>';
+		echo '<a href="'.$titleImage->getLink().'"><img class="imgheight border" src="'.$titleImage->getCustomImage(null, null, null, null, null, null, null).'" title="'.$titleImage->getTitle().'" /></a>';
 	} else {
 		debugLog('PrintHomepageImage: No images found in album path "' . $imageRoot .'"');
 	}
@@ -118,7 +118,7 @@ function printFormattedGalleryDesc($galleryDesc = "") {
 /**
  * Javascript to resize the image whenever the browser is resized.
  */
-function ImageJS($titleMargin = 0) {
+function ImageJS($titleMargin = 0,$stageWidth = 0) {
 	return <<<EOJS
 	<script type="text/javascript">
 		// <!-- <![CDATA[
@@ -126,29 +126,35 @@ function ImageJS($titleMargin = 0) {
 		var viewportwidth;
 		var viewportheight;
 		var imgheight;
+		var imgwidth;
 		var headerheight = 0;
 		var footerheight = 0;
 		var titleheight = 0;
 		function setStage(){
-		if (typeof window.innerWidth != "undefined") {
-			viewportwidth = window.innerWidth;
-			viewportheight = window.innerHeight;
-		} else if (typeof document.documentElement != "undefined" && typeof document.documentElement.clientWidth != "undefined" && document.documentElement.clientWidth != 0) {
-			viewportwidth = document.documentElement.clientWidth;
-			viewportheight = document.documentElement.clientHeight;
-		} else {
-			viewportwidth = document.getElementsByTagName("body")[0].clientWidth;
-			viewportheight = document.getElementsByTagName("body")[0].clientHeight;
-		}
-		headerheight = $("#header").outerHeight(true);
-		footerheight = $("#footer").outerHeight(true);
-		if ($(".imgheight").css("max-height") !== undefined) {
-			imgheight = viewportheight - headerheight - footerheight - $titleMargin - 15;
+			viewportwidth = $(window).width();
+			viewportheight = $(window).height();
+			headerheight = $("#header").outerHeight(true);
+			footerheight = $("#footer").outerHeight(true);
+			sidebarwidth = $("#sidebar").outerWidth(false);
+			bodymarginleft = parseInt($("body").css("margin-left"));
+			bodymarginright = parseInt($("body").css("margin-right"));
+			imgheightmarginleft = parseInt($(".imgheight").css("margin-left"));
+			imgheightmarginright = parseInt($(".imgheight").css("margin-right"));
+			imgheightborderleft = parseInt($(".imgheight.border").css("border-left-width"));
+			imgheightborderright = parseInt($(".imgheight.border").css("border-right-width"));
+			if (footerheight > 0) { footerheight = footerheight + 11; };
+			imgheight = viewportheight - headerheight - footerheight - $titleMargin;
+			imgwidth = viewportwidth - sidebarwidth - bodymarginleft - bodymarginright - imgheightmarginleft - imgheightmarginright - imgheightborderleft - imgheightborderright - 4;
+			if ($stageWidth > 0 && imgwidth > $stageWidth - 8) {
+				imgwidth = $stageWidth - 8;
+			};
+//			alert('Here are the values: viewportwidth = ' + viewportwidth + ' bodymarginleft = ' + bodymarginleft + ' bodymarginright = ' + bodymarginright + ' imgheightmarginleft = ' + imgheightmarginleft + ' imgheightmarginright = ' + imgheightmarginright + ' imgheightborderleft = ' + imgheightborderleft + ' imgheightborderright = ' + imgheightborderright +' sidebarwidth = ' + sidebarwidth + ' imgwidth = ' + imgwidth, 'Alert Dialog');
 			$(".imgheight").css({"max-height" : imgheight + "px"});
-		};
+			$(".imgheight").css({"max-width" : imgwidth + "px"});
 		};
 		$(document).ready(function() {
-		setStage();
+			setStage();
+			window.setTimeout(setStage,500);
 		});
 		$(window).resize(setStage);
 			window.addEventListener("orientationchange", setStage, false);
@@ -163,61 +169,58 @@ EOJS;
 			titleheight = 12;
 		};
 */
-function videoJS($vidWidth, $vidHeight, $titleMargin = 50) {
+function videoJS($vidWidth, $vidHeight, $titleMargin = 50, $stageWidth = 0) {
 	return <<<EOJS
-		<script type="text/javascript">
-		// <!-- <![CDATA[
-			var viewportwidth;
-			var viewportheight;
-			var maxvidheight = $vidHeight;
-			var maxvidwidth = $vidWidth;
-			var vidwidth;
-			var vidheight;
-			var vidratio = maxvidheight / maxvidwidth;
-			function setStage(){
-				if (typeof window.innerWidth != "undefined") {
-					viewportwidth = window.innerWidth;
-					viewportheight = window.innerHeight;
-				} else if (typeof document.documentElement != "undefined" && typeof document.documentElement.clientWidth != "undefined" && document.documentElement.clientWidth != 0) {
-					viewportwidth = document.documentElement.clientWidth;
-					viewportheight = document.documentElement.clientHeight;
-				} else {
-					viewportwidth = document.getElementsByTagName("body")[0].clientWidth;
-					viewportheight = document.getElementsByTagName("body")[0].clientHeight;
-				}
-				headerheight = $("#header").outerHeight(true);
-				vidheight = viewportheight - headerheight - $titleMargin;
-				vidwidth = viewportwidth - 227;
-				if (vidheight > maxvidheight) {
-					vidheight = maxvidheight;
-				}
-				if (vidwidth > maxvidwidth) {
-					vidwidth = maxvidwidth;
-				}
-				if (vidheight / vidratio > vidwidth) {
-					vidheight = vidwidth * vidratio;
-				}
-				if (vidwidth * vidratio > vidheight) {
-					vidwidth = vidheight / vidratio;
-				}
-				$("#video").css({"max-width" : vidwidth + "px"});
-				$("#video").css({"max-height" : vidheight + "px"});
-				$(".jp-jplayer").css({"height" : vidheight + "px"});
-				$("[id^='jp_poster_']").css({"height" : vidheight + "px"});
-				$(".jp-video").css({"height" : vidheight + "px"});
+	<script type="text/javascript">
+	// <!-- <![CDATA[
+		var viewportwidth;
+		var viewportheight;
+		var maxvidheight = $vidHeight;
+		var maxvidwidth = $vidWidth;
+		var vidwidth;
+		var vidheight;
+		var vidratio = maxvidheight / maxvidwidth;
+		function setStage(){
+			viewportwidth = $(window).width();
+			viewportheight = $(window).height();
+			headerheight = $("#header").outerHeight(true);
+			vidheight = viewportheight - headerheight - $titleMargin;
+			vidwidth = viewportwidth - 204;
+			if (vidheight > maxvidheight) {
+				vidheight = maxvidheight;
+			}
+			if (vidwidth > maxvidwidth) {
+				vidwidth = maxvidwidth;
+			}
+			if (vidheight / vidratio > vidwidth) {
+				vidheight = vidwidth * vidratio;
+			}
+			if (vidwidth * vidratio > vidheight) {
+				vidwidth = vidheight / vidratio;
+			}
+			if ($stageWidth > 0 && vidwidth > $stageWidth - 8) {
+				vidwidth = $stageWidth - 8;
+				vidheight = vidwidth * vidratio;
+			}
+			$("#video").css({"max-width" : vidwidth + "px"});
+			$("#video").css({"max-height" : vidheight + "px"});
+			$(".jp-jplayer").css({"height" : vidheight + "px"});
+			$("[id^='jp_poster_']").css({"height" : vidheight + "px"});
+			$(".jp-video").css({"height" : vidheight + "px"});
+			$("[id^='jp_video_']").css({"height" : vidheight + "px"});
+			$(".jp-video-play").css({"top" : vidheight / 2 + "px"});
+		};
+		$(document).ready(function() {
+			setStage();
+			$(".jp-video-play").click(function() {
 				$("[id^='jp_video_']").css({"height" : vidheight + "px"});
-				$(".jp-video-play").css({"top" : vidheight / 2 + "px"});
-			};
-			$(document).ready(function() {
-				setStage();
-				$(".jp-video-play").click(function() {
-					$("[id^='jp_video_']").css({"height" : vidheight + "px"});
-				});
 			});
-			$(window).resize(setStage);
-			window.addEventListener("orientationchange", setStage, false);
-		// ]]> -->
-		</script>
+			window.setTimeout(setStage,500);
+		});
+		$(window).resize(setStage);
+		window.addEventListener("orientationchange", setStage, false);
+	// ]]> -->
+	</script>
 EOJS;
 }
 function colorBoxJS() {
@@ -551,7 +554,7 @@ function tabLine($theLine, $tabSize) {
 }
 
 function tabScript($theLines,$tabSize) {
-	// Pass 1: Split lines on ';', '}'
+	// Pass 1: Split lines on ';' or '}'
 	$cnt1 = 0;
 	$quoting = false;
 	while ($cnt1 < count($theLines)) {
@@ -566,11 +569,11 @@ function tabScript($theLines,$tabSize) {
 					$cnt2++;
 				}
 				do {
-					if ($theLine[$cnt2++] == $quote) {
+					if (($theLine[$cnt2 - 1] != '\\') && ($theLine[$cnt2] == $quote)) {
 						$quoting = false;
 						break;
 					}
-				} while ($cnt2 < strlen($theLine));
+				} while ($cnt2++ < strlen($theLine));
 			} else {
 				if ($char == '{' && strlen($theLine) == 1) {
 					$theLines[$cnt1 - 1] = $theLines[$cnt1 - 1] . " " . $theLines[$cnt1];
@@ -584,8 +587,8 @@ function tabScript($theLines,$tabSize) {
 					array_splice($theLines, $cnt1+1, 0, trim(substr($theLine, $cnt2+1)));
 					break;
 				}
-				$cnt2++;
 			}
+			$cnt2++;
 		}
 		$cnt1++;
 	}

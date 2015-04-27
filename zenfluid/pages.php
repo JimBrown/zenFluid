@@ -8,7 +8,8 @@
 	<head>
 		<?php zp_apply_filter('theme_head'); ?>
 		<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
-		<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" type="text/css" />
+		<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style/theme.css" type="text/css" />
+		<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style/admintoolbox.css" type="text/css" />
 		<?php if (file_exists(__DIR__ . "/fonts/stylesheet.css")){?>
 			<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/fonts/stylesheet.css" type="text/css" />
 		<?php } ?>
@@ -20,23 +21,29 @@
 
 		<div id="container">
 			<div id="contents">
-				<div id="pagetitle">
+				<?php $stageWidth = getOption('zenfluid_stagewidth');
+				$stageStyle = ($stageWidth > 0) ? 'style="max-width: ' . $stageWidth . 'px; margin-left: auto; margin-right: auto;"' : ''; ?>
+				<div id="stage" <?php echo $stageStyle;?>>
+					<div id="title" class="border colour">
 					<?php printPageTitle();?>
-				</div>
-				<div id="pagecontent">
-					<?php printPageContent();?>
+					</div>
+					<div id="content" class="border colour">
+						<?php printPageContent();?>
+					</div>
 					<div id="buttons">
 						<?php if (function_exists('getHitcounter')) { ?>
-							<div id="hitcounter">
+							<div id="button" class="border colour">
 								<?php echo gettext("Views: ") . getHitcounter();?>
 							</div>
 						<?php }
-						if (function_exists('printLikeButton')) {
-							printLikeButton();
-						}
-						if(getTags()) {?>
-							<div id="tags">
+						if(getTags()) { ?>
+							<div id="button" class="border colour">
 								<?php printTags('links', gettext('Tags: '), 'taglist', ', ');?>
+							</div>
+						<?php }
+						if (function_exists('printLikeButton')) { ?>
+							<div id="button" class="fb-button border colour">
+								<?php printLikeButton(); ?>
 							</div>
 						<?php } ?>
 					</div>

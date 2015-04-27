@@ -7,7 +7,8 @@
 	<head>
 		<?php zp_apply_filter('theme_head'); ?>
 		<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
-		<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" type="text/css" />
+		<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style/theme.css" type="text/css" />
+		<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style/admintoolbox.css" type="text/css" />
 		<?php if (file_exists(__DIR__ . "/fonts/stylesheet.css")){?>
 			<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/fonts/stylesheet.css" type="text/css" />
 		<?php } ?>
@@ -19,10 +20,10 @@
 
 		<div id="container">
 			<div id="contents">
-				<div id="pagetitle">
+				<div id="title" class="border colour">
 					<?php echo gettext('Contact us'); ?>
 				</div>
-				<div id="pagecontent">
+				<div id="content" class="border colour">
 					<?php if (zp_loggedin()) setOption('contactform_captcha',false,false);
 					printContactForm(); ?>
 				</div>

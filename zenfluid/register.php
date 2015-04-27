@@ -10,7 +10,8 @@ if (function_exists('printRegistrationForm')) {?>
 		<head>
 			<title><?php echo getBareGalleryTitle(); ?></title>
 			<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
-			<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" type="text/css" />
+		<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style/theme.css" type="text/css" />
+		<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style/admintoolbox.css" type="text/css" />
 			<?php if (file_exists(__DIR__ . "/fonts/stylesheet.css")){?>
 				<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/fonts/stylesheet.css" type="text/css" />
 			<?php } ?>
@@ -22,10 +23,10 @@ if (function_exists('printRegistrationForm')) {?>
 
 			<div id="container">
 				<div id="contents">
-					<div id="pagetitle">
+					<div id="title" class="border colour">
 						<?php echo gettext('User Registration'); ?>
 					</div>
-					<div id="pagecontent">
+					<div id="content" class="border colour">
 						<?php printRegistrationForm(); ?>
 					</div>
 				</div>

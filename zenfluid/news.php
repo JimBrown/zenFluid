@@ -8,7 +8,8 @@
 	<head>
 		<?php zp_apply_filter('theme_head'); ?>
 		<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
-		<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" type="text/css" />
+		<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style/theme.css" type="text/css" />
+		<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style/admintoolbox.css" type="text/css" />
 		<?php if (file_exists(__DIR__ . "/fonts/stylesheet.css")){?>
 			<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/fonts/stylesheet.css" type="text/css" />
 		<?php } ?>
@@ -20,91 +21,96 @@
 
 		<div id="container">
 			<div id="contents">
-				<div id="content">
+				<?php $stageWidth = getOption('zenfluid_stagewidth');
+				$stageStyle = ($stageWidth > 0) ? 'style="max-width: ' . $stageWidth . 'px; margin-left: auto; margin-right: auto;"' : ''; ?>
+				<div id="stage" <?php echo $stageStyle;?>>
 					<?php if (is_NewsArticle()) { // single news article ?>
 						<div id="newsnav">
 							<?php if (getPrevNewsURL()) { ?>
-								<div id="newsprevious">Previous:&nbsp
-								<?php printPrevNewsLink(''); ?>
+								<div id="button" class="border colour">
+									Previous:&nbsp
+									<?php printPrevNewsLink(''); ?>
 								</div>
 							<?php }
 							if (getNextNewsURL()) { ?>
-								<div id="newsnext">Next:&nbsp
+								<div id="button" class="border colour">
+									Next:&nbsp
 									<?php printNextNewsLink(''); ?>
 								</div>
 							<?php } ?>
 							<div class="clearing" ></div>
 						</div>
-						<div id="newstitle">
+						<div id="title" class="border colour">
 							<?php printNewsTitle(); ?>
 							<div id="newsdate">
 								<?php printNewsDate(); ?>
 							</div>
-						</div>
-						<div id="newscontent">
 							<?php printNewsContent();?>
-							<div id="buttons">
-								<?php if (function_exists('getHitcounter')) { ?>
-									<div id="hitcounter">
-										<?php echo "Views: " . getHitcounter();?>
-									</div>
-								<?php }
-								if (function_exists('printLikeButton')) {
-									printLikeButton();
-								}
-								if(getTags()) {?>
-									<div id="tags">
-										<?php printTags('links', gettext('Tags: '), 'taglist', ', ');?>
-									</div>
-								<?php }
-								if(getNewsCategories()) { ?>
-								<div id="tags">
-									<?php printNewsCategories(", ", gettext("Categories: "), "newscategories"); ?>
-								</div>
-								<?php } ?>
-							</div>
-							<div class="clearing" ></div>
-							<?php if (function_exists('printCommentForm') && ($_zp_current_zenpage_news->getCommentsAllowed() || getCommentCount())) {
-								printCommentForm();
-							}?>
 						</div>
-					<?php } else {
-						printNewsPageListWithNav(gettext('next »'), gettext('« prev'));
-						while (next_news()):;  // news article loop ?>
-							<div id="newstitle">
+						<div id="buttons">
+							<?php if (function_exists('getHitcounter')) { ?>
+								<div id="button" class="border colour">
+									<?php echo "Views: " . getHitcounter();?>
+								</div>
+							<?php }
+							if (function_exists('printLikeButton')) { ?>
+							<div id="button" class="fb-button border colour">
+								<?php printLikeButton(); ?>
+							</div>
+							<?php }
+							if(getTags()) {?>
+								<div id="button" class="border colour">
+									<?php printTags('links', gettext('Tags: '), 'taglist', ', ');?>
+								</div>
+							<?php }
+							if(getNewsCategories()) { ?>
+								<div id="button" class="border colour">
+									<?php printNewsCategories(", ", gettext("Categories: "), "taglist"); ?>
+								</div>
+							<?php } ?>
+						</div>
+						<div class="clearing" ></div>
+						<?php if (function_exists('printCommentForm') && ($_zp_current_zenpage_news->getCommentsAllowed() || getCommentCount())) {
+							printCommentForm();
+						}?>
+					<?php } else { ?>
+						<div id="buttons">
+							<?php if (getNextNewsPageURL() || getPrevNewsPageURL()) { ?>
+								<div id="button" class="border colour">
+									<?php printNewsPageListWithNav(gettext('Next'), gettext('Prev'), true, 'taglist', true); ?>
+								</div>
+							<?php } ?>
+						</div>
+						<div class="clearing" ></div>
+						<?php while (next_news()):;  // news article loop ?>
+							<div id="title" class="border colour">
 								<div id="newslink">
 									<?php printNewsURL();?>
 								</div>
 								<div id="newsdate">
 									<?php printNewsDate(); ?>
 								</div>
-							</div>
-							<div id="newscontent">
 								<?php printNewsContent();?>
-								<div id="slidebuttons">
-									<?php if (function_exists('getHitcounter')) { ?>
-										<div id="hitcounter">
-											<?php echo gettext("Views: ") . getHitcounter();?>
-										</div>
-									<?php }
-									if (function_exists('printLikeButton')) {
-										printLikeButton();
-									}
-									if(getTags()) {?>
-										<div id="tags">
-											<?php printTags('links', gettext('Tags: '), 'taglist', ', ');?>
-										</div>
-									<?php }
-									if(getNewsCategories()) { ?>
-									<div id="tags">
-										<?php printNewsCategories(", ", gettext("Categories: "), "newscategories"); ?>
-									</div>
-									<?php } ?>
-								</div>
-								<div class="clearing" ></div>
 							</div>
-						<?php endwhile;
-						printNewsPageListWithNav(gettext('next »'), gettext('« prev'), true, 'pagelist', true); ?>
+							<div id="buttons">
+								<?php if (function_exists('getHitcounter')) { ?>
+									<div id="button" class="border colour">
+										<?php echo "Views: " . getHitcounter();?>
+									</div>
+								<?php }
+								if(getTags()) {?>
+									<div id="button" class="border colour">
+										<?php printTags('links', gettext('Tags: '), 'taglist', ', ');?>
+									</div>
+								<?php }
+								if(getNewsCategories()) { ?>
+									<div id="button" class="border colour">
+										<?php printNewsCategories(", ", gettext("Categories: "), "taglist"); ?>
+									</div>
+								<?php } ?>
+							</div>
+							<div class="clearing" ></div>
+						<?php endwhile; ?>
 					<?php }	?>
 				</div>
 			</div>

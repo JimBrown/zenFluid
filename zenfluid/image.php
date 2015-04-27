@@ -8,7 +8,8 @@
 	<head>
 		<?php zp_apply_filter('theme_head'); ?>
 		<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
-		<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" type="text/css" />
+		<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style/theme.css" type="text/css" />
+		<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style/admintoolbox.css" type="text/css" />
 		<?php if (file_exists(__DIR__ . "/fonts/stylesheet.css")){?>
 			<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/fonts/stylesheet.css" type="text/css" />
 		<?php } ?>
@@ -20,136 +21,141 @@
 
 		<div id="container">
 			<div id="contents">
-				<div id="imagecontent">
-					<?php $doSlideShowLink = false;
-					$commentWidth = strtolower(getOption('zenfluid_commentwidth'));
-					$commentWidth = ($commentWidth == "auto") ? $commentWidth : $commentWidth . "px";
-					$titleMargin = getOption("zenfluid_titlemargin");
-					if (getOption('zenfluid_titletop')) {
-						$titleMargin = $titleMargin + 20; ?>
-						<div id="commentstage" style="max-width: <?php echo $commentWidth;?>;">
-							<div id="imgtitle">
-								<?php if (getOption('zenfluid_titlebreadcrumb')) {
-									$parentalbum = $_zp_current_album->getParent();
-									if(!empty($parentalbum)) {
-										$parentAlbumTitle = $parentalbum->getTitle();
-										echo "$parentAlbumTitle: ";
-									}
-									printAlbumTitle();
-									echo ": ";
-								}
-								printImageTitle(); ?>
-							</div>
+				<?php $doSlideShowLink = false;
+				$titleMargin = getOption("zenfluid_titlemargin");
+				$stageWidth = getOption('zenfluid_stagewidth');
+				$stageStyle = ($stageWidth > 0) ? 'style="max-width: ' . $stageWidth . 'px; margin-left: auto; margin-right: auto;"' : ''; ?>
+				<div id="stage" <?php echo $stageStyle;?>>
+					<?php if (getOption('zenfluid_titletop')) {
+						$titleMargin = $titleMargin - 20; ?>
+						<div id="title" class="border colour">
+							<?php if (getOption('zenfluid_titlebreadcrumb')) { ?>
+								<a href="<?php echo getGalleryIndexURL(); ?>" title="<?php gettext('Home'); ?>"><?php echo gettext("Home"); ?></a> : <?php
+								printParentBreadcrumb("", " : ", " : ");
+								printAlbumBreadcrumb("  ", " : ");
+							} ?>
+							<strong><?php printImageTitle(); ?></strong>
 						</div>
-					<?php }
-					if (isImagePhoto()) {
-						echo ImageJS($titleMargin);
-						if (zp_has_filter('theme_head', 'colorbox::css')) {
-							echo colorBoxJS();
-						}
-						if (getNumImages() > 1) {$doSlideShowLink = true;} ?>
-						<div id="image">
-							<?php if (getOption("Use_thickbox")) {
-								$boxclass = "class=\"thickbox\"";
-							} else {
-								$boxclass = "";
-							}
-							$tburl = getFullImageURL();
-							if (!empty($tburl)) {
-								echo '<a href="' . html_encode(pathurlencode($tburl)) . '" ' . $boxclass . ' title="' . getBareImageTitle() . '">' . "\n";
-							}
-							printCustomSizedImageMaxSpace(getBareImageTitle(),null,null,"imgheight");
-							if (!empty($tburl)) {
-								echo "\n</a>\n";
-							}?>
-						</div>
-						<?php $commentMarginTop = 0;
+					<?php } ?>
+				</div>
+				<?php if (isImagePhoto()) {
+					$doSlideShowLink = true;
+					if (getOption('zenfluid_imagewidth')) {
+						echo ImageJS($titleMargin,$stageWidth);
 					} else {
-						$metadata = getImageMetaData(NULL,false);
-						$vidWidth = $metadata['VideoResolution_x'];
-						$vidHeight = $metadata['VideoResolution_y']; ?>
-						<div id="video" style="max-width: <?php echo $vidWidth; ?>px; max-height: <?php echo $vidHeight; ?>px;">
+						echo ImageJS($titleMargin,0);
+					}
+					if (zp_has_filter('theme_head', 'colorbox::css')) {
+						echo colorBoxJS();
+					} ?>
+					<div id="image">
+						<?php if (getOption("Use_thickbox")) {
+							$boxclass = "class=\"thickbox\"";
+						} else {
+							$boxclass = "";
+						}
+						$tburl = getFullImageURL();
+						if (!empty($tburl)) {
+							echo '<a href="' . html_encode(pathurlencode($tburl)) . '" ' . $boxclass . ' title="' . getBareImageTitle() . '">' . "\n";
+						}
+						printCustomSizedImageMaxSpace(getBareImageTitle(),null,null,"imgheight border");
+						if (!empty($tburl)) {
+							echo "\n</a>\n";
+						}?>
+					</div>
+					<?php } else {
+					$metadata = getImageMetaData(NULL,false);
+					$vidWidth = $metadata['VideoResolution_x'];
+					$vidHeight = $metadata['VideoResolution_y'];
+					echo VideoJS($vidWidth, $vidHeight, $titleMargin, $stageWidth);
+					// jPlayer adds a 40 px controls bar below the video. Others add the bar in the video.
+					$playerMarginBottom = (extensionEnabled('jPlayer')) ? 'style="margin-bottom: 44px;"' : ''; ?>
+					<div id="videocontainer" <?php echo $playerMarginBottom; ?>>
+						<div id="video">
 							<?php printCustomSizedImageMaxSpace(getBareImageTitle(),null,null); ?>
 						</div>
-						<?php echo VideoJS($vidWidth, $vidHeight, getOption("zenfluid_titlemargin"));
-						$commentMarginTop = (extensionEnabled('jPlayer')) ? 50 : 10; // jPlayer adds a 40 px controls bar below the video. Others add the bar in the video.
-					} ?>
-					<div id="commentstage" style="margin-top: <?php echo $commentMarginTop; ?>px; max-width: <?php echo $commentWidth;?>;">
-						<div id="buttons">
-							<?php if (hasPrevImage()) {
-								echo '<div id="imgprevious">' . "\n" . '<a href="' . html_encode(getPrevImageURL()) . '" title="' . gettext('Previous Image') . '">' . gettext('« Prev') . '</a>' . "\n" . '</div>' . "\n";
-							}
-							if (hasNextImage()) {
-								echo '<div id="imgnext">' . "\n" . '<a href="' . html_encode(getNextImageURL()) . '" title="' . gettext('Next Image') . '">' . gettext('Next »') . '</a>' . "\n" . '</div>' . "\n";
-							}
-							if ($doSlideShowLink && function_exists('printSlideShowLink')) { ?>
-								<div id="slideshowlink">
-									<?php printSlideShowLink();?>
-								</div>
-							<?php }
-							if (getImageMetaData()) { ?>
-								<div id="metadata">
-									<?php printImageMetadata(NULL, 'colorbox');?>
-								</div>
-							<?php }
-							if (function_exists('getHitcounter')) { ?>
-								<div id="hitcounter">
-									<?php echo gettext("Views: ") . getHitcounter() . "\n";?>
-								</div>
-							<?php }
-							if (function_exists('printCommentForm') && ($_zp_current_image->getCommentsAllowed() || getCommentCount())) { 
-								$num = getCommentCount();
-								if ($num == 0) {
-									$comments = gettext('No Comments');
-								} else {
-									$comments = sprintf(ngettext('%u Comment', '%u Comments', $num), $num);
-								}
-								?>
-								<div id="hitcounter">
-									<a href="#readComment"><?php echo $comments; ?></a>
-								</div>
-								<div id="hitcounter">
-									<a href="#addComment">Add Comment</a>
-								</div>
-							<?php }
-							if (function_exists('printLikeButton')) {
-								printLikeButton();
-							} ?>
+					</div>
+				<?php } ?>
+				<div id="stage" <?php echo $stageStyle;?>>
+					<div id="buttons">
+						<?php if (hasPrevImage()) { ?>
+							<div id="button" class="border colour">
+								<a href="<?php echo html_encode(getPrevImageURL()) ?>" title="<?php echo gettext('Previous Image') ?>"><?php echo gettext('« Prev') ?></a>
+							</div>
+						<?php } ?>
+						<div id="button" class="border colour">
+							<?php echo imageNumber() . "/" . getNumImages(); ?>
 						</div>
-						<div class="clearing" ></div>
-						<?php if (getOption('zenfluid_titletop')) {
-							if (getImageDesc()) { ?>
-								<div id="imgtitle">
-									<?php printImageDesc(); ?>
-								</div>
-							<?php }
-						} else { ?>
-							<div id="imgtitle">
-								<?php if (getOption('zenfluid_titlebreadcrumb')) {
-									$parentalbum = $_zp_current_album->getParent();
-									if(!empty($parentalbum)) {
-										$parentAlbumTitle = $parentalbum->getTitle();
-										echo "$parentAlbumTitle: ";
-									}
-									printAlbumTitle();
-									echo ": ";
-								}
-								printImageTitle();
-								if (getImageDesc()) {
-									printImageDesc();
-								} ?>
+						<?php if (hasNextImage()) { ?>
+							<div id="button" class="border colour">
+								<a href="<?php echo html_encode(getNextImageURL()) ?>" title="<?php echo gettext('Next Image') ?>"><?php echo gettext('Next »') ?></a>
 							</div>
 						<?php }
-						if (function_exists('printCommentForm') && ($_zp_current_image->getCommentsAllowed() || getCommentCount())) { ?>
-							<a id="readComment"></a>
-							<?php printCommentForm(true, '<a id="addComment"></a>', false); ?>
+						if ($doSlideShowLink && function_exists('printSlideShowLink')) { ?>
+							<div id="button" class="border colour">
+								<?php printSlideShowLink();?>
+							</div>
 						<?php }
-						if(getTags()) {?>
-							<div id="tags">
-								<?php printTags('links', gettext('Tags: '), 'taglist', ', ');?>
+						if (getImageMetaData()) { ?>
+							<div id="button" class="border colour">
+								<?php printImageMetadata(NULL, 'colorbox');?>
+							</div>
+						<?php }
+						if (function_exists('getHitcounter')) { ?>
+							<div id="button" class="border colour">
+								<?php echo gettext("Views: ") . getHitcounter() . "\n";?>
+							</div>
+						<?php }
+						if (function_exists('printCommentForm') && ($_zp_current_image->getCommentsAllowed() || getCommentCount())) { 
+							$num = getCommentCount();
+							if ($num == 0) {
+								$comments = gettext('No Comments');
+							} else {
+								$comments = sprintf(ngettext('%u Comment', '%u Comments', $num), $num);
+							}
+							?>
+							<div id="button" class="border colour">
+								<a href="#readComment"><?php echo $comments; ?></a>
+							</div>
+							<div id="button" class="border colour">
+								<a href="#addComment">Add Comment</a>
+							</div>
+						<?php }
+						if (function_exists('printLikeButton')) { ?>
+							<div id="button" class="fb-button border colour">
+								<?php printLikeButton(); ?>
 							</div>
 						<?php } ?>
 					</div>
+					<div class="clearing" ></div>
+					<?php if (getOption('zenfluid_titletop')) {
+						if (getImageDesc()) { ?>
+							<div id="title" class="border colour">
+								<?php printImageDesc(); ?>
+							</div>
+						<?php }
+					} else { ?>
+						<div id="title" class="border colour">
+							<?php if (getOption('zenfluid_titlebreadcrumb')) {
+								printParentBreadcrumb("", " : ", " : ");
+								printAlbumBreadcrumb("  ", " : ");
+							} ?>
+							<?php printImageTitle();
+							if (getImageDesc()) {
+								printImageDesc();
+							} ?>
+						</div>
+					<?php } ?>
+					<div class="clearing" ></div>
+					<?php if (function_exists('printCommentForm') && ($_zp_current_image->getCommentsAllowed() || getCommentCount())) { ?>
+						<a id="readComment"></a>
+						<?php printCommentForm(true, '<a id="addComment"></a>', false); ?>
+					<?php }
+					if(getTags()) {?>
+						<div id="button" class="border colour">
+							<?php printTags('links', gettext('Tags: '), 'taglist', ', ');?>
+						</div>
+					<?php } ?>
 				</div>
 			</div>
 			<?php include("sidebar.php");?>

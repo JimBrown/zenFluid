@@ -8,7 +8,8 @@
 	<head>
 		<meta charset="<?php echo LOCAL_CHARSET; ?>" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" type="text/css" />
+		<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style/theme.css" type="text/css" />
+		<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style/admintoolbox.css" type="text/css" />
 		<?php if (file_exists(__DIR__ . "/fonts/stylesheet.css")){?>
 			<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/fonts/stylesheet.css" type="text/css" />
 		<?php } ?>

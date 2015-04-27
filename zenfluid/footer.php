@@ -1,7 +1,7 @@
 <?php
 	// force UTF-8 Ø
 ?>
-	<div id="footer">
+	<div id="footer" class="border colour">
 		<?php echo gettext('ZenFluid theme designed by '); ?> Jim Brown&nbsp;|&nbsp;
 		<?php printZenphotoLink(); echo "\n"; ?>
 	</div>
