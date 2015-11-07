@@ -384,7 +384,7 @@ function makeNeatEnd() {
 	}
 
 	$jsi = array();
-	$matches = makeNeat_extract($data, '~<script(?:\s*)type="text/javascript"(?:\s*)>(.*)</script>~msU');
+	$matches = makeNeat_extract($data, '~<script type="text/javascript"(?:\s*)>(.*)</script>~msU');
 	$inlinejs = $matches[1];
 	if (!empty($inlinejs)) {
 	if (empty($jsi)) array_push($jsi, '// <!-- <![CDATA[');
@@ -400,7 +400,7 @@ function makeNeatEnd() {
 		}
 	}
 	}
-	$matches = makeNeat_extract($body, '~<script(?:\s*)type="text/javascript"(?:\s*)>(.*)</script>~msU');
+	$matches = makeNeat_extract($body, '~<script type="text/javascript"(?:\s*)>(.*)</script>~msU');
 	$inlinejs = $matches[1];
 	if (!empty($inlinejs)) {
 	if (empty($jsi)) array_push($jsi, '// <!-- <![CDATA[');
