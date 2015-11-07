@@ -25,9 +25,9 @@
 				$titleMargin = getOption("zenfluid_titlemargin");
 				$stageWidth = getOption('zenfluid_stagewidth');
 				$stageStyle = ($stageWidth > 0) ? 'style="max-width: ' . $stageWidth . 'px; margin-left: auto; margin-right: auto;"' : ''; ?>
-				<div id="stage" <?php echo $stageStyle;?>>
-					<?php if (getOption('zenfluid_titletop')) {
-						$titleMargin = $titleMargin - 20; ?>
+				<?php if (getOption('zenfluid_titletop')) { ?>
+					<div id="stage" <?php echo $stageStyle;?>>
+						<?php $titleMargin = $titleMargin - 20; ?>
 						<div id="title" class="border colour">
 							<?php if (getOption('zenfluid_titlebreadcrumb')) { ?>
 								<a href="<?php echo getGalleryIndexURL(); ?>" title="<?php gettext('Home'); ?>"><?php echo gettext("Home"); ?></a> : <?php
@@ -36,9 +36,9 @@
 							} ?>
 							<strong><?php printImageTitle(); ?></strong>
 						</div>
-					<?php } ?>
-				</div>
-				<?php if (isImagePhoto()) {
+					</div>
+				<?php }
+				if (isImagePhoto()) {
 					$doSlideShowLink = true;
 					if (getOption('zenfluid_imagewidth')) {
 						echo ImageJS($titleMargin,$stageWidth);
@@ -67,7 +67,7 @@
 					$metadata = getImageMetaData(NULL,false);
 					$vidWidth = $metadata['VideoResolution_x'];
 					$vidHeight = $metadata['VideoResolution_y'];
-					// echo VideoJS($vidWidth, $vidHeight, $titleMargin, $stageWidth);
+					echo VideoJS($vidWidth, $vidHeight, $titleMargin, $stageWidth);
 					//jPlayer adds a 40 px controls bar below the video. Others add the bar in the video.
 					$playerMarginBottom = (extensionEnabled('jPlayer')) ? 'style="margin-bottom: 44px;"' : ''; ?>
 					<div id="videocontainer" <?php echo $playerMarginBottom; ?>>
