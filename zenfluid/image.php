@@ -67,11 +67,11 @@
 					$metadata = getImageMetaData(NULL,false);
 					$vidWidth = $metadata['VideoResolution_x'];
 					$vidHeight = $metadata['VideoResolution_y'];
-					echo VideoJS($vidWidth, $vidHeight, $titleMargin, $stageWidth);
-					// jPlayer adds a 40 px controls bar below the video. Others add the bar in the video.
+					// echo VideoJS($vidWidth, $vidHeight, $titleMargin, $stageWidth);
+					//jPlayer adds a 40 px controls bar below the video. Others add the bar in the video.
 					$playerMarginBottom = (extensionEnabled('jPlayer')) ? 'style="margin-bottom: 44px;"' : ''; ?>
 					<div id="videocontainer" <?php echo $playerMarginBottom; ?>>
-						<div id="video">
+						<div id="video" style="width: <?php echo $vidWidth; ?>px; height: <?php echo $vidHeight; ?>px;">
 							<?php printCustomSizedImageMaxSpace(getBareImageTitle(),null,null); ?>
 						</div>
 					</div>

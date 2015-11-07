@@ -20,12 +20,16 @@
 
 		<div id="container">
 			<div id="contents">
-				<div id="title" class="border colour">
-					<?php echo gettext('Contact us'); ?>
-				</div>
-				<div id="content" class="border colour">
-					<?php if (zp_loggedin()) setOption('contactform_captcha',false,false);
-					printContactForm(); ?>
+				<?php $stageWidth = getOption('zenfluid_stagewidth');
+				$stageStyle = ($stageWidth > 0) ? 'style="max-width: ' . $stageWidth . 'px; margin-left: auto; margin-right: auto;"' : ''; ?>
+				<div id="stage" <?php echo $stageStyle;?>>
+					<div id="title" class="border colour">
+						<?php echo gettext('Contact us'); ?>
+					</div>
+					<div id="content" class="border colour">
+						<?php if (zp_loggedin()) setOption('contactform_captcha',false,false);
+						printContactForm(); ?>
+					</div>
 				</div>
 			</div>
 			<?php include("sidebar.php");?>

@@ -33,6 +33,7 @@
 						<strong><?php printAlbumTitle(); ?></strong>
 					</div>
 				<?php } ?>
+				</div>
 					<div id="albums">
 						<?php while (next_album()):?>
 							<div id="thumbs" class="border colour">
@@ -72,7 +73,8 @@
 						<?php endwhile; ?>
 					</div>
 					<div class="clearing"></div>
-					<div id="buttons">
+				<div id="stage" <?php echo $stageStyle;?>>
+					<div id="albumbuttons">
 						<?php if (hasPrevPage() || hasNextPage()) { ?>
 							<div id="button" class="border colour">
 								<?php printPageListWithNav("Prev ", " Next", false, true, 'taglist', NULL, true); ?>

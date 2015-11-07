@@ -71,7 +71,7 @@ body {
 /* Generic elements
 --------------------------------------*/
 #title {
-	text-align: left;
+	text-align: center;
 	padding: 8px 8px 8px 8px;
 	font-size: 18px;
 }
@@ -189,17 +189,27 @@ a.menu-active {
 
 /* Buttons
 -------------------------------*/
+#albumbuttons {
+	text-align: center;
+	margin: 0px 0px 5px 0px;
+}
 #buttons {
+	text-align: center;
+	margin: -4px 0px 5px 0px;
 }
 
 #button {
+	margin: 0px 0px 0px 0px;
 	text-align: center;
 	font-size: 13px;
 	padding: 5px 5px 5px 5px;
-	float: left;
+/*	float: left; */
+	display: inline-block;
 }
 #button.fb-button {
-	padding: 3px 4px 2px 4px;
+	padding: 3px 4px 3px 4px;
+	position: relative;
+	top: 5px;
 }
 
 /* Comments and forms
