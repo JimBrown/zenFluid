@@ -148,7 +148,6 @@ function ImageJS($titleMargin = 0,$stageWidth = 0) {
 			if ($stageWidth > 0 && imgwidth > $stageWidth - 8) {
 				imgwidth = $stageWidth - 8;
 			};
-//			alert('Here are the values: viewportwidth = ' + viewportwidth + ' bodymarginleft = ' + bodymarginleft + ' bodymarginright = ' + bodymarginright + ' imgheightmarginleft = ' + imgheightmarginleft + ' imgheightmarginright = ' + imgheightmarginright + ' imgheightborderleft = ' + imgheightborderleft + ' imgheightborderright = ' + imgheightborderright +' sidebarwidth = ' + sidebarwidth + ' imgwidth = ' + imgwidth, 'Alert Dialog');
 			$(".imgheight").css({"max-height" : imgheight + "px"});
 			$(".imgheight").css({"max-width" : imgwidth + "px"});
 		};
@@ -162,14 +161,11 @@ function ImageJS($titleMargin = 0,$stageWidth = 0) {
 	</script>
 EOJS;
 }
-/*
-		footerheight = $("#footer").outerHeight(true);
-		titleheight = $("#imgtitle").outerHeight(true);
-		if (!titleheight) {
-			titleheight = 12;
-		};
-*/
-function videoJS($vidWidth, $vidHeight, $titleMargin = 50, $stageWidth = 0) {
+
+/**
+ * Javascript to resize the video whenever the browser is resized.
+ */
+function vidJS($vidWidth, $vidHeight, $titleMargin = 50, $stageWidth = 0) {
 	return <<<EOJS
 	<script type="text/javascript">
 	// <!-- <![CDATA[
@@ -202,19 +198,14 @@ function videoJS($vidWidth, $vidHeight, $titleMargin = 50, $stageWidth = 0) {
 				vidwidth = $stageWidth - 8;
 				vidheight = vidwidth * vidratio;
 			}
-			$("#video").css({"max-width" : vidwidth + "px"});
-			$("#video").css({"max-height" : vidheight + "px"});
-			$(".jp-jplayer").css({"height" : vidheight + "px"});
-			$("[id^='jp_poster_']").css({"height" : vidheight + "px"});
-			$(".jp-video").css({"height" : vidheight + "px"});
-			$("[id^='jp_video_']").css({"height" : vidheight + "px"});
-			$(".jp-video-play").css({"top" : vidheight / 2 + "px"});
+			$("#video").css({"width" : vidwidth + "px"});
+			$("#video").css({"height" : vidheight + "px"});
+			$(".video-js").css({"height" : vidheight + "px"});
+			$(".video-js").css({"width" : vidwidth + "px"});
+			$(".jp-video-play").css({"height" : vidheight + "px"});
 		};
 		$(document).ready(function() {
 			setStage();
-			$(".jp-video-play").click(function() {
-				$("[id^='jp_video_']").css({"height" : vidheight + "px"});
-			});
 			window.setTimeout(setStage,500);
 		});
 		$(window).resize(setStage);
@@ -223,6 +214,7 @@ function videoJS($vidWidth, $vidHeight, $titleMargin = 50, $stageWidth = 0) {
 	</script>
 EOJS;
 }
+
 function colorBoxJS() {
 	$close = gettext("Close");
 	return <<<EOJS

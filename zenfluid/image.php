@@ -67,7 +67,7 @@
 					$metadata = getImageMetaData(NULL,false);
 					$vidWidth = $metadata['VideoResolution_x'];
 					$vidHeight = $metadata['VideoResolution_y'];
-					echo VideoJS($vidWidth, $vidHeight, $titleMargin, $stageWidth);
+					echo vidJS($vidWidth, $vidHeight, $titleMargin, $stageWidth);
 					//jPlayer adds a 40 px controls bar below the video. Others add the bar in the video.
 					$playerMarginBottom = (extensionEnabled('jPlayer')) ? 'style="margin-bottom: 44px;"' : ''; ?>
 					<div id="videocontainer" <?php echo $playerMarginBottom; ?>>
