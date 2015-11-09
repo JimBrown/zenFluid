@@ -53,6 +53,9 @@ class ThemeOptions {
 	}
 	function getOptionsSupported() {
 	
+		$themeList = array(	gettext('Dark Gray') => 'darkgray',
+												gettext('Light Green') => 'lightgreen');
+	
 		$list = array();
 		genAlbumList($list);
 		foreach ($list as $fullfolder => $albumtitle) {
@@ -75,7 +78,8 @@ class ThemeOptions {
 							gettext('Menu section titles') => array('key' => 'zenfluid_menutitles','order' => 14, 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Enable the display of a title for each sidebar menu section.')),
 							gettext('Title Margin') => array('key' => 'zenfluid_titlemargin','order' => 15, 'type' => OPTION_TYPE_TEXTBOX, 'desc' => gettext('Set size (in pixels) of the title, buttons, and comments that always shows below the image or video')),
 							gettext('Title on top') => array('key' => 'zenfluid_titletop','order' => 16, 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Enable this if you want the image title to be displayed above the image')),
-							gettext('Make Neat') => array('key' => 'zenfluid_makeneat','order' => 99, 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Enabling this option will result in the html output buffered and captured, the head section consolidated, scripts with "src" moved to the head section, inline scripts moved to after the body, and the body section neatened with appropriate line splitting, concatenating, and tabbing and then everything sent to the browser. This option will add processing time to the page. If a script section should not be moved, add "nomove" after the script open tag. eg: "&lt;script nomove type=text/javascript&gt;"'))
+							gettext('Make Neat') => array('key' => 'zenfluid_makeneat','order' => 99, 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Enabling this option will result in the html output buffered and captured, the head section consolidated, scripts with "src" moved to the head section, inline scripts moved to after the body, and the body section neatened with appropriate line splitting, concatenating, and tabbing and then everything sent to the browser. This option will add processing time to the page. If a script section should not be moved, add "nomove" after the script open tag. eg: "&lt;script nomove type=text/javascript&gt;"')),
+							gettext('ZenFluid theme') => array('key' => 'zenfluid_theme', 'order' => 0, 'type' => OPTION_TYPE_SELECTOR, 'selections' => $themeList, 'desc' => gettext("Select the colour scheme."))
 							);
 	return $options;
 	}

@@ -4,6 +4,7 @@
 html, body {
 	height: 99%;
 	margin: 2px 4px 0px 0px;
+	background-color: lightgray;
 }
 body {
 	font-family: "Helvetica Neue", "Lucida Grande", Arial, Helvetica, sans-serif;
@@ -13,7 +14,7 @@ body {
 .border, #search_input, #search_submit, #searchextrashow, .comment,
 #commententry, .inputbox, input.button, .textarea_inputbox, .zenpage_customimage,
 #passwordform, form#confirm input, form#discard input {
-	border: 1px solid darkgray;
+	border: 1px solid black;
 	-moz-border-radius: 8px;
 	-webkit-border-radius: 8px;
 	border-radius: 8px;
@@ -22,17 +23,7 @@ body {
 }
 .colour, .comment, #commententry, #passwordform {
 /* fallback */
-	background-color: #E4E7D2;
-/* Safari 4-5, Chrome 1-9 */ 
-	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#E4E7D2), to(#D5DBAF)); 
-/* Safari 5.1, Chrome 10+ */ 
-	background: -webkit-linear-gradient(top, #E4E7D2, #D5DBAF);
-/* Firefox 3.6+ */
-	background: -moz-linear-gradient(top, #E4E7D2, #D5DBAF);
-/* IE 10 */
-	background: -ms-linear-gradient(top, #E4E7D2, #D5DBAF);
-/* Opera 11.10+ */ 
-	background: -o-linear-gradient(top, #E4E7D2, #D5DBAF);
+	background-color: darkgray;
 }
 #header {
 	padding: 10px 10px 10px 10px;
@@ -63,7 +54,7 @@ body {
 }
 #contents {
 	width: 100%;
-	border-left: 200px solid white;
+	border-left: 200px solid lightgray;
 	margin-left: -200px;
 	float: right;
 }
@@ -129,7 +120,7 @@ body {
 	margin: 0px 0px 0px 8px;
 }
 a.menu-active {
-	color: #002E5B !important;
+	color: white !important;
 }
 
 /* Album
@@ -147,7 +138,7 @@ a.menu-active {
 }
 #thumbtitle p {
 	margin: 8px 0px 0px 0px;
-	color: #002E5B;
+	color: black;
 }
 #videoplay {
 	width: 30px;
@@ -317,7 +308,7 @@ form#confirm input, form#discard input {
 }
 #articlethumb p {
 	margin: 8px 0px 0px 0px;
-	color: #002E5B;
+	color: #black;
 }
 
 
@@ -339,21 +330,20 @@ form#confirm input, form#discard input {
 ------------------------------ */
 a:link {
 	text-decoration: none;
-	color: #82996F;
+	color: black;
 }
 a:visited {
 	text-decoration: none;
-	color: #82996F;
+	color: black;
 }
 a:active {
 	text-decoration: none;
-	color: #002E5B;
+	color: white;
 }
 a:hover {
 	text-decoration: none;
-	color: #002E5B;
+	color: white;
 }
-
 /* Error Messages
 ------------------------------ */
 #content-error {
@@ -378,4 +368,29 @@ a:hover {
 }
 .errorlist {
 	list-style-type: none;
+}
+/* Admin Toolbox
+------------------------------ */
+#admin,#admin_data {
+	position: fixed;
+	right: 0px;
+	top: 0px;
+	width: 130px;
+	border-bottom: 1px solid black;
+	border-left: 1px solid black;
+	background: #lightgray;
+	z-index: 1001;
+	font-size: 13px;
+}
+
+#admin_data {
+	padding-top: 20px;
+	z-index: 1000;
+	line-height: 16px;
+}
+
+#admin h3 {
+	color: #999;
+	margin: 0;
+	text-align: center;
 }
