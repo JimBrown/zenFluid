@@ -56,8 +56,8 @@
 								<?php while (next_page()) {
 									$c++; ?>
 									<li<?php printZDToggleClass('pages', $c, $number_to_show); ?>>
-										<?php printPageURL(); ?>
-										<p><?php echo shortenContent(strip_tags(getPageContent()), 150, getOption("zenpage_textshorten_indicator")); ?> </p>
+										<?php printPageURL();
+										echo "<p>" . shortenContent(strip_tags(getPageContent()), 150, getOption("zenpage_textshorten_indicator")) . "</p>"; ?>
 									</li>
 								<?php }	?>
 							</ul>
@@ -84,8 +84,8 @@
 								<div id="thumbs" class="border">
 									<a href="<?php echo html_encode(getNewsURL());?>" title="<?php echo gettext('View: '); printNewsTitle();?>">
 										<div id="articlethumb">
-											<?php printNewsTitle(); ?>
-											<p><?php echo shortenContent(strip_tags(getNewsContent()), 180, getOption("zenpage_textshorten_indicator")); ?> </p>
+											<?php printNewsTitle();
+											echo "<p>" . shortenContent(strip_tags(getNewsContent()), 150, getOption("zenpage_textshorten_indicator")) . "</p>"; ?>
 										</div>
 									</a>
 								</div>
@@ -108,7 +108,7 @@
 										<div id="thumbtitle">
 											<?php $numItems = getNumImages() + getNumAlbums();
 											printAlbumTitle(); echo ' (' . $numItems . ')';
-											echo shortenContent(getAlbumDesc(), 100,'...');?>
+											echo "<p>" . shortenContent(strip_tags(getAlbumDesc()), 150, getOption("zenpage_textshorten_indicator")) . "</p>"; ?>
 										</div>
 									</div>
 								</a>
@@ -132,7 +132,7 @@
 									<?php } ?>
 									<div id="thumbtitle">
 										<?php printImageTitle();
-										echo shortenContent(getImageDesc(), 100,'...');?>
+											echo "<p>" . shortenContent(strip_tags(getImageDesc()), 150, getOption("zenpage_textshorten_indicator")) . "</p>"; ?>
 									</div>
 								</div>
 							</a>

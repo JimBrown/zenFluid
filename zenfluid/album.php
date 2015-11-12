@@ -37,7 +37,7 @@
 										<div id="thumbtitle">
 											<?php $numItems = getNumImages() + getNumAlbums();
 											printAlbumTitle(); echo ' (' . $numItems . ')';
-											echo shortenContent(getAlbumDesc(), 100,'...');?>
+											echo "<p>" . shortenContent(strip_tags(getAlbumDesc()), 150, getOption("zenpage_textshorten_indicator")) . "</p>"; ?>
 										</div>
 									</div>
 								</a>
@@ -59,7 +59,7 @@
 										<?php } ?>
 										<div id="thumbtitle">
 											<?php printImageTitle();
-											echo shortenContent(getImageDesc(), 100,'...');?>
+											echo "<p>" . shortenContent(strip_tags(getImageDesc()), 150, getOption("zenpage_textshorten_indicator")) . "</p>"; ?>
 										</div>
 									</div>
 								</a>
