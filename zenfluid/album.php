@@ -10,7 +10,7 @@
 	</head>
 	<body>
 
-		<?php include("header.php");?>
+		<?php include("inc-header.php");?>
 
 		<div id="container">
 			<div id="contents">
@@ -109,10 +109,10 @@
 					<?php } ?>
 				</div>
 			</div>
-			<?php include("sidebar.php");?>
+			<?php include("inc-sidebar.php");?>
 		</div>
 		
-		<?php include("footer.php");?>
+		<?php include("inc-footer.php");?>
 	</body>
 <?php if (getOption('zenfluid_makeneat')) makeNeatEnd(); ?>
 </html>

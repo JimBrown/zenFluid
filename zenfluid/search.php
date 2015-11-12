@@ -11,7 +11,7 @@
 	</head>
 	<body>
 
-		<?php include("header.php");?>
+		<?php include("inc-header.php");?>
 
 		<?php $zenpage = extensionEnabled('zenpage');
 		$numimages = getNumImages();
@@ -153,9 +153,9 @@
 					</div>
 				<?php } ?>
 			</div>
-			<?php include("sidebar.php"); ?>
+			<?php include("inc-sidebar.php"); ?>
 		</div>
-		<?php include("footer.php");?>
+		<?php include("inc-footer.php");?>
 	</body>
 <?php if (getOption('zenfluid_makeneat')) makeNeatEnd(); ?>
 </html>
