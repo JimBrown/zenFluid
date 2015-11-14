@@ -28,7 +28,6 @@
 						</div>
 					</div>
 				<?php } ?>
-				<div id="albums">
 					<?php while (next_album()):?>
 						<div id="thumbs" class="border colour">
 							<a href="<?php echo html_encode(getAlbumURL());?>" title="<?php echo gettext('View: '); printBareAlbumTitle();?>">
@@ -50,7 +49,7 @@
 						if (isImagePhoto()) {
 							$doSlideShowLink = true;
 						} ?>
-						<div id="thumbs" class="border colour">
+						<div id="thumbs" class="border">
 							<a href="<?php echo html_encode(getImageURL());?>" title="<?php echo gettext('View: '); printBareImageTitle();?>">
 								<div id="thumbimage">
 									<?php printImageThumb(getBareImageTitle(),"border");
@@ -65,7 +64,6 @@
 							</a>
 						</div>
 					<?php endwhile; ?>
-				</div>
 				<div class="clearing"></div>
 				<div id="stage" <?php echo $stageStyle;?>>
 					<?php if (hasPrevPage() || hasNextPage() || ($doSlideShowLink && function_exists('printSlideShowLink'))) { ?>
