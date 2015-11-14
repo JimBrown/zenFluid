@@ -71,7 +71,7 @@
 					</div>
 				<?php } ?>
 				<div id="stage" <?php echo $stageStyle;?>>
-					<div id="buttons">
+					<div id="imagebuttons">
 						<?php if (hasPrevImage()) { ?>
 							<div id="button" class="border colour">
 								<a href="<?php echo html_encode(getPrevImageURL()) ?>" title="<?php echo gettext('Previous Image') ?>"><?php echo gettext('« Prev') ?></a>

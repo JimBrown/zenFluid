@@ -24,6 +24,16 @@ body {
 .colour, .comment, #commententry, #passwordform {
 /* fallback */
 	background-color: darkgray;
+/* Safari 4-5, Chrome 1-9
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#E4E7D2), to(#D5DBAF)); 
+/* Safari 5.1, Chrome 10+
+	background: -webkit-linear-gradient(top, #E4E7D2, #D5DBAF);
+/* Firefox 3.6+
+	background: -moz-linear-gradient(top, #E4E7D2, #D5DBAF);
+/* IE 10
+	background: -ms-linear-gradient(top, #E4E7D2, #D5DBAF);
+/* Opera 11.10+
+	background: -o-linear-gradient(top, #E4E7D2, #D5DBAF); */
 }
 #header {
 	padding: 10px 10px 10px 10px;
@@ -184,7 +194,7 @@ a.menu-active {
 	text-align: center;
 	margin: 0px 0px 5px 0px;
 }
-#buttons {
+#imagebuttons {
 	text-align: center;
 	margin: -4px 0px 5px 0px;
 }

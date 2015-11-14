@@ -4,6 +4,7 @@
 html, body {
 	height: 99%;
 	margin: 2px 4px 0px 0px;
+	background-color: white;
 }
 body {
 	font-family: "Helvetica Neue", "Lucida Grande", Arial, Helvetica, sans-serif;
@@ -193,7 +194,7 @@ a.menu-active {
 	text-align: center;
 	margin: 0px 0px 5px 0px;
 }
-#buttons {
+#imagebuttons {
 	text-align: center;
 	margin: -4px 0px 5px 0px;
 }

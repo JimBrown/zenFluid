@@ -35,7 +35,10 @@
 				$searchwords .= ": ";
 			}
 			$searchwords .= $searchdate;
-		} ?>
+		}
+
+			$stageWidth = getOption('zenfluid_stagewidth');
+			$stageStyle = ($stageWidth > 0) ? 'style="max-width: ' . $stageWidth . 'px; margin-left: auto; margin-right: auto;"' : ''; ?>
 
 		<div id="container">
 			<div id="contents">
@@ -140,12 +143,14 @@
 					<?php endwhile; ?>
 				<?php }?>
 				<div class="clearing"></div>
-				<div id="buttons">
-					<?php if (hasPrevPage() || hasNextPage()) { ?>
-						<div id="button" class="border colour">
-							<?php printPageListWithNav("Prev ", " Next", false, true, 'taglist', NULL, true); ?>
-						</div>
-					<?php } ?>
+				<div id="stage" <?php echo $stageStyle;?>>
+					<div id="albumbuttons">
+						<?php if (hasPrevPage() || hasNextPage()) { ?>
+							<div id="button" class="border colour">
+								<?php printPageListWithNav("Prev ", " Next", false, true, 'taglist', NULL, true); ?>
+							</div>
+						<?php } ?>
+					</div>
 				</div>
 				<?php if ($total == 0) { ?>
 					<div id="title" class="border colour">

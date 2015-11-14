@@ -101,7 +101,7 @@
 						</div>
 					<?php }
 					if(getTags()) {?>
-						<div id="buttons">
+						<div id="albumbuttons">
 							<div id="button" class="border colour">
 								<?php printTags('links', gettext('Tags: '), 'taglist', ', ');?>
 							</div>
