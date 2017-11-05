@@ -118,7 +118,7 @@ function printFormattedGalleryDesc($galleryDesc = "") {
 /**
  * Javascript to resize the image whenever the browser is resized.
  */
-function ImageJS($titleMargin = 0,$stageWidth = 0) {
+function ImageJS($titleMargin = 0,$stageWidth = 0, $stageImage = true) {
 	return <<<EOJS
 	<script type="text/javascript">
 		// <!-- <![CDATA[
@@ -133,23 +133,33 @@ function ImageJS($titleMargin = 0,$stageWidth = 0) {
 		function setStage(){
 			viewportwidth = $(window).width();
 			viewportheight = $(window).height();
-			headerheight = $("#header").outerHeight(true);
-			footerheight = $("#footer").outerHeight(true);
+			headerheight = $(".header").outerHeight(true);
+			footerheight = $(".footer").outerHeight(true);
 			sidebarwidth = $("#sidebar").outerWidth(false);
+			sidebarheight = $("#sidebar").outerHeight(false) - 8;
 			bodymarginleft = parseInt($("body").css("margin-left"));
 			bodymarginright = parseInt($("body").css("margin-right"));
 			imgheightmarginleft = parseInt($(".imgheight").css("margin-left"));
 			imgheightmarginright = parseInt($(".imgheight").css("margin-right"));
 			imgheightborderleft = parseInt($(".imgheight.border").css("border-left-width"));
 			imgheightborderright = parseInt($(".imgheight.border").css("border-right-width"));
-			if (footerheight > 0) { footerheight = footerheight + 11; };
+			if (footerheight > 0) { 
+				footerheight = footerheight + 11;
+				if ((sidebarheight + footerheight) > viewportheight) {
+					footerheight = footerheight - (sidebarheight + footerheight - viewportheight);
+				};
+			};
+			if (footerheight < 8) { footerheight = 8; };
 			imgheight = viewportheight - headerheight - footerheight - $titleMargin;
 			imgwidth = viewportwidth - sidebarwidth - bodymarginleft - bodymarginright - imgheightmarginleft - imgheightmarginright - imgheightborderleft - imgheightborderright - 4;
-			if ($stageWidth > 0 && imgwidth > $stageWidth - 8) {
-				imgwidth = $stageWidth - 8;
+			if ($stageImage && $stageWidth > 0 && imgwidth > $stageWidth - 4) {
+				imgwidth = $stageWidth - 4;
 			};
-			$(".imgheight").css({"max-height" : imgheight + "px"});
-			$(".imgheight").css({"max-width" : imgwidth + "px"});
+			if ($stageImage) {
+				$("div.thumbstage").css({"max-width" : imgwidth + "px"});
+			};
+			$("img.imgheight").css({"max-height" : imgheight + "px"});
+			$("img.imgheight").css({"max-width" : imgwidth + "px"});
 		};
 		$(document).ready(function() {
 			setStage();
@@ -165,7 +175,7 @@ EOJS;
 /**
  * Javascript to resize the video whenever the browser is resized.
  */
-function vidJS($vidWidth, $vidHeight, $titleMargin = 50, $stageWidth = 0) {
+function vidJS($vidWidth, $vidHeight, $titleMargin = 50, $stageWidth = 0, $stageImage = true) {
 	return <<<EOJS
 	<script type="text/javascript">
 	// <!-- <![CDATA[
@@ -194,15 +204,15 @@ function vidJS($vidWidth, $vidHeight, $titleMargin = 50, $stageWidth = 0) {
 			if (vidwidth * vidratio > vidheight) {
 				vidwidth = vidheight / vidratio;
 			}
-			if ($stageWidth > 0 && vidwidth > $stageWidth - 8) {
-				vidwidth = $stageWidth - 8;
+			if ($stageImage && $stageWidth > 0 && vidwidth > $stageWidth - 4) {
+				vidwidth = $stageWidth - 4;
 				vidheight = vidwidth * vidratio;
 			}
-			$("#video").css({"width" : vidwidth + "px"});
-			$("#video").css({"height" : vidheight + "px"});
-			$(".video-js").css({"height" : vidheight + "px"});
-			$(".video-js").css({"width" : vidwidth + "px"});
-			$(".jp-video-play").css({"height" : vidheight + "px"});
+			$(".video").css({"max-width" : vidwidth + "px"});
+			$(".video").css({"max-height" : vidheight + "px"});
+			$(".video-js").css({"max-height" : vidheight + "px"});
+			$(".video-js").css({"max-width" : vidwidth + "px"});
+			$(".jp-video-play").css({"max-height" : vidheight + "px"});
 		};
 		$(document).ready(function() {
 			setStage();
@@ -211,6 +221,23 @@ function vidJS($vidWidth, $vidHeight, $titleMargin = 50, $stageWidth = 0) {
 		$(window).resize(setStage);
 		window.addEventListener("orientationchange", setStage, false);
 	// ]]> -->
+	</script>
+EOJS;
+}
+
+/**
+	* Javascript to hide comments div if no comments
+*/
+function CommentsJS ($commentCount = 0) {
+	return <<<EOJS
+	<script type="text/javascript">
+		// <!-- <![CDATA[
+		$(document).ready(function() {
+			if ($commentCount == 0) {
+				$("div#comments").css({"display" : "none"});
+			};
+		});
+		// ]]> -->
 	</script>
 EOJS;
 }

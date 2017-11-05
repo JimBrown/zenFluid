@@ -3,25 +3,25 @@
 ?>
 <div id="sidebar">
 	<?php if (!getOption('zenfluid_showheader')) { ?>
-		<div id="menu" class="border colour">
-			<div id="sidebartitle">
+		<div class="menu border colour">
+			<div class="sidebartitle">
 				<a href="<?php echo getGalleryIndexURL(); ?>"><?php printGalleryTitle();?></a>
 			</div>
-			<div id="sidebarsubtitle">
+			<div class="sidebarsubtitle">
 				<?php printFormattedGalleryDesc(getGalleryDesc()); echo "\n";?>
 			</div>
 		</div>
 	<?php }
 	if (getOption('zenfluid_menuupper')) {?>
-		<div style="text-transform: uppercase;">
+		<div class="menuupper">
 	<?php }
 	if (getOption('Allow_search')) { ?>
-		<div id="menu" class="border colour">
+		<div class="menu border colour">
 			<?php printSearchForm(NULL, "search", NULL, gettext("Search gallery")); ?>
 		</div>
 	<?php } ?>
-	<div id="menu" class="border colour">
-		<?php if (getOption('zenfluid_menutitles')) echo '<div id="menutitle">' . gettext('Gallery') . '</div>';echo "\n"; ?>
+	<div class="menu border colour">
+		<?php if (getOption('zenfluid_menutitles')) echo '<div class="menutitle">' . gettext('Gallery') . '</div>';echo "\n"; ?>
 		<?php if (extensionEnabled('print_album_menu')) {
 			printAlbumMenu("list",NULL,"","menu-active","submenu","menu-active",NULL);
 		} else {
@@ -30,24 +30,24 @@
 	</div>
 	<?php if (extensionEnabled('zenpage')) {
 		if (getNumPages(true)) { ?>
-			<div id="menu" class="border colour">
-				<?php if (getOption('zenfluid_menutitles')) echo '<div id="menutitle">' . gettext('Pages') . '</div>';echo "\n"; ?>
+			<div class="menu border colour">
+				<?php if (getOption('zenfluid_menutitles')) echo '<div class="menutitle">' . gettext('Pages') . '</div>';echo "\n"; ?>
 				<?php printPageMenu("list","","menu-active","submenu","menu-active");?>
 			</div>
 		<?php }
 		if (getNumNews(true)) { ?>
-			<div id="menu" class="border colour">
-				<?php if (getOption('zenfluid_menutitles')) echo '<div id="menutitle">' . gettext('News') . '</div>';echo "\n"; ?>
+			<div class="menu border colour">
+				<?php if (getOption('zenfluid_menutitles')) echo '<div class="menutitle">' . gettext('News') . '</div>';echo "\n"; ?>
 				<?php printAllNewsCategories(gettext("All news"), false, "", "menu-active", true, "submenu", "menu-active"); ?>
 			</div>
 		<?php }
 	} else { ?>
-		<div id="menu" class="border colour">
+		<div class="menu border colour">
 			<?php echo gettext("The ZenFluid theme requires that the zenpage plugin be enabled.");?>
 		</div>
 	<?php }
 	if (function_exists('printContactForm') || function_exists('printUserLogin_out')) { ?>
-		<div id="menu" class="border colour">
+		<div class="menu border colour">
 			<ul>
 				<?php if (function_exists('printContactForm')) {
 					if (!commentFormUseCaptcha()) setOption("contactform_captcha",0,false); ?>
@@ -70,8 +70,9 @@
 		</div>
 	<?php }
 	if (!zp_loggedin(ADMIN_RIGHTS) && function_exists('printGoogleAdSense')) { ?>
-		<div id="menu" class="border" style="text-align: center">
+		<div class="adsense border">
 			<?php printGoogleAdSense() ?>
 		</div>
-	<?php } ?>
+	<?php }
+	if (!getOption('zenfluid_showfooter')) include("inc-footer.php"); ?>
 </div>

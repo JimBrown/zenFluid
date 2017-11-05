@@ -1,7 +1,11 @@
 <?php
 	// force UTF-8 Ø
 ?>
-	<div id="footer" class="border colour">
+<?php if (getOption('zenfluid_showfooter')) { ?>
+	<div class="footer border colour">
+<?php } else { ?>
+	<div class="sidebarfooter border colour">
+<?php } ?>
 		<?php echo gettext('ZenFluid theme designed by '); ?> Jim Brown&nbsp;|&nbsp;
 		<?php printZenphotoLink(); echo "\n"; ?>
 	</div>

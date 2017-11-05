@@ -22,5 +22,4 @@
 		<?php } ?>
 	</body>
 <?php if (getOption('zenfluid_makeneat')) makeNeatEnd(); ?>
-<?php //makeNeatEnd();?>
 </html>

@@ -16,10 +16,11 @@
 			<div id="contents">
 				<?php $doSlideShowLink = false;
 				$stageWidth = getOption('zenfluid_stagewidth');
-				$stageStyle = ($stageWidth > 0) ? 'style="max-width: ' . $stageWidth . 'px; margin-left: auto; margin-right: auto;"' : ''; ?>
-				<?php if (getOption('zenfluid_titletop')) { ?>
-					<div id="stage" <?php echo $stageStyle;?>>
-						<div id="title" class="border colour">
+				$stageStyle = ($stageWidth > 0) ? 'style="max-width: ' . $stageWidth . 'px;"' : '';
+				$thumbstageStyle = (getOption('zenfluid_stagethumb')) ? $stageStyle : '';
+				if (getOption('zenfluid_titletop')) { ?>
+					<div class="stage" <?php echo $stageStyle;?>>
+						<div class="title border colour">
 							<?php if (getOption('zenfluid_titlebreadcrumb')) { ?>
 								<a href="<?php echo getGalleryIndexURL(); ?>" title="<?php gettext('Home'); ?>"><?php echo gettext("Home"); ?></a> : <?php
 								printParentBreadcrumb("", " : ", " : ");
@@ -28,54 +29,56 @@
 						</div>
 					</div>
 				<?php } ?>
-					<?php while (next_album()):?>
-						<div id="thumbs" class="border colour">
-							<a href="<?php echo html_encode(getAlbumURL());?>" title="<?php echo gettext('View: '); printBareAlbumTitle();?>">
-								<div id="thumbimage">
-									<?php printAlbumThumbImage(getBareAlbumTitle(),"border"); ?>
-									<div id="thumbtitle">
-										<?php $numItems = getNumImages() + getNumAlbums();
-										printAlbumTitle(); echo ' (' . $numItems . ')';
-										echo "<p>" . shortenContent(strip_tags(getAlbumDesc()), 150, getOption("zenpage_textshorten_indicator")) . "</p>"; ?>
+					<div class="thumbstage" <?php echo $thumbstageStyle;?>>
+						<?php while (next_album()):?>
+							<div class="thumbs border colour">
+								<a href="<?php echo html_encode(getAlbumURL());?>" title="<?php echo gettext('View: '); printBareAlbumTitle();?>">
+									<div class="thumbimage">
+										<?php printAlbumThumbImage(getBareAlbumTitle(),"border"); ?>
+										<div class="thumbtitle">
+											<?php $numItems = getNumImages() + getNumAlbums();
+											printAlbumTitle(); echo ' (' . $numItems . ')';
+											echo "<p>" . shortenContent(strip_tags(getAlbumDesc()), 150, getOption("zenpage_textshorten_indicator")) . "</p>"; ?>
+										</div>
 									</div>
-								</div>
-							</a>
-						</div>
-					<?php endwhile;
-					if (getOption('zenfluid_transitionnewrow')) { ?>
-						<div class="clearing"></div>
-					<?php }
-					while (next_image()):
-						if (isImagePhoto()) {
-							$doSlideShowLink = true;
-						} ?>
-						<div id="thumbs" class="border">
-							<a href="<?php echo html_encode(getImageURL());?>" title="<?php echo gettext('View: '); printBareImageTitle();?>">
-								<div id="thumbimage">
-									<?php printImageThumb(getBareImageTitle(),"border");
-									if (isImageVideo()) { ?>
-										<img id="videoplay" src="<?php echo $_zp_themeroot; ?>/images/videoplay.png">
-									<?php } ?>
-									<div id="thumbtitle">
-										<?php printImageTitle();
-										echo "<p>" . shortenContent(strip_tags(getImageDesc()), 150, getOption("zenpage_textshorten_indicator")) . "</p>"; ?>
+								</a>
+							</div>
+						<?php endwhile;
+						if (getOption('zenfluid_transitionnewrow') && getNumAlbums() > 0 && getNumImages() > 0) { ?>
+							<div class="clearing"></div>
+						<?php }
+						while (next_image()):
+							if (isImagePhoto()) {
+								$doSlideShowLink = true;
+							} ?>
+							<div class="thumbs border">
+								<a href="<?php echo html_encode(getImageURL());?>" title="<?php echo gettext('View: '); printBareImageTitle();?>">
+									<div class="thumbimage">
+										<?php printImageThumb(getBareImageTitle(),"border");
+										if (isImageVideo()) { ?>
+											<img class="videoplay" src="<?php echo $_zp_themeroot; ?>/images/videoplay.png">
+										<?php } ?>
+										<div class="thumbtitle">
+											<?php printImageTitle();
+											echo "<p>" . shortenContent(strip_tags(getImageDesc()), 150, getOption("zenpage_textshorten_indicator")) . "</p>"; ?>
+										</div>
 									</div>
-								</div>
-							</a>
-						</div>
-					<?php endwhile; ?>
+								</a>
+							</div>
+						<?php endwhile; ?>
+					</div>
 				<div class="clearing"></div>
-				<div id="stage" <?php echo $stageStyle;?>>
-					<?php if (hasPrevPage() || hasNextPage() || ($doSlideShowLink && function_exists('printSlideShowLink'))) { ?>
-						<div id="albumbuttons">
+				<div class="stage" <?php echo $stageStyle;?>>
+					<?php if (hasPrevPage() || hasNextPage() || (getNumImages() > 1 && $doSlideShowLink && function_exists('printSlideShowLink'))) { ?>
+						<div class="albumbuttons">
 							<?php if (hasPrevPage() || hasNextPage()) { ?>
-								<div id="button" class="border colour">
+								<div class="button border colour">
 									<?php printPageListWithNav("Prev ", " Next", false, true, 'taglist', NULL, true); ?>
 								</div>
 							<?php }
-							if ($doSlideShowLink && function_exists('printSlideShowLink')) { ?>
-								<div id="button" class="border colour">
-									<div id="slideshowlink" style="display: inline-block; float: none;">
+							if (getNumImages() > 1 && $doSlideShowLink && function_exists('printSlideShowLink')) { ?>
+								<div class="button border colour">
+									<div class="slideshowlink">
 										<?php printSlideShowLink();?>
 									</div>
 								</div>
@@ -85,12 +88,12 @@
 					<?php }
 					if (getOption('zenfluid_titletop')) {
 						if (getAlbumDesc()) { ?>
-							<div id="title" class="border colour">
+							<div class="title border colour">
 								<?php printAlbumDesc(); ?>
 							</div>
 						<?php }
 					} else { ?>
-						<div id="title" class="border colour">
+						<div class="title border colour">
 							<?php if (getOption('zenfluid_titlebreadcrumb')) {
 								printParentBreadcrumb("", " : ", " : ");
 							} ?>
@@ -101,8 +104,8 @@
 						</div>
 					<?php }
 					if(getTags()) {?>
-						<div id="albumbuttons">
-							<div id="button" class="border colour">
+						<div class="albumbuttons">
+							<div class="button border colour">
 								<?php printTags('links', gettext('Tags: '), 'taglist', ', ');?>
 							</div>
 						</div>
@@ -112,7 +115,8 @@
 			<?php include("inc-sidebar.php");?>
 		</div>
 		
-		<?php include("inc-footer.php");?>
+		<?php if(getOption('zenfluid_showfooter')) include("inc-footer.php");?>
+
 	</body>
 <?php if (getOption('zenfluid_makeneat')) makeNeatEnd(); ?>
 </html>

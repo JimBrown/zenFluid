@@ -16,16 +16,18 @@ if (function_exists('printRegistrationForm')) {?>
 
 			<div id="container">
 				<div id="contents">
-					<div id="title" class="border colour">
-						<?php echo gettext('User Registration'); ?>
-					</div>
-					<div id="content" class="border colour">
-						<?php printRegistrationForm(); ?>
+					<div class="stage" <?php echo $stageStyle;?>>
+						<div class="title border colour">
+							<?php echo gettext('User Registration'); ?>
+						</div>
+						<div class="content border colour">
+							<?php printRegistrationForm(); ?>
+						</div>
 					</div>
 				</div>
 				<?php include("inc-sidebar.php");?>
 			</div>
-			<?php include("inc-footer.php");?>
+		<?php if(getOption('zenfluid_showfooter')) include("inc-footer.php");?>
 		</body>
   <?php if (getOption('zenfluid_makeneat')) makeNeatEnd(); ?>
 	</html>

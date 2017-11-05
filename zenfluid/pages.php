@@ -15,39 +15,59 @@
 
 		<div id="container">
 			<div id="contents">
-				<?php $stageWidth = getOption('zenfluid_stagewidth');
-				$stageStyle = ($stageWidth > 0) ? 'style="max-width: ' . $stageWidth . 'px; margin-left: auto; margin-right: auto;"' : ''; ?>
-				<div id="stage" <?php echo $stageStyle;?>>
-					<div id="title" class="border colour">
+				<?php $commentCount = getCommentCount();
+				echo CommentsJS($commentCount);?>
+				<div class="stage" <?php echo $stageStyle;?>>
+					<div class="title border colour">
 					<?php printPageTitle();?>
 					</div>
-					<div id="content" class="border colour">
+					<div class="content border colour">
 						<?php printPageContent();?>
 					</div>
-					<div id="buttons">
+					<div class="imagebuttons">
 						<?php if (function_exists('getHitcounter')) { ?>
-							<div id="button" class="border colour">
+							<div class="button border colour">
 								<?php echo gettext("Views: ") . getHitcounter();?>
 							</div>
 						<?php }
-						if(getTags()) { ?>
-							<div id="button" class="border colour">
-								<?php printTags('links', gettext('Tags: '), 'taglist', ', ');?>
+						if (function_exists('printCommentForm') && ($_zp_current_page->getCommentsAllowed() || $commentCount)) { 
+							if ($commentCount == 0) {
+								$comments = gettext('No Comments');
+							} else {
+								$comments = sprintf(ngettext('%u Comment', '%u Comments', $commentCount), $commentCount);
+							}
+							?>
+							<div class="button border colour">
+								<a href="#readComment"><?php echo $comments; ?></a>
+							</div>
+							<div class="button border colour">
+								<a href="#addComment">Add Comment</a>
 							</div>
 						<?php }
 						if (function_exists('printLikeButton')) { ?>
-							<div id="button" class="fb-button border colour">
+							<div class="button fb-button border colour">
 								<?php printLikeButton(); ?>
 							</div>
 						<?php } ?>
 					</div>
 					<div class="clearing" ></div>
-					<?php @call_user_func('printCommentForm');?>
+					<?php if (function_exists('printCommentForm') && ($_zp_current_page->getCommentsAllowed() || $commentCount)) { ?>
+						<a id="readComment"></a>
+						<?php printCommentForm(true, '<a id="addComment"></a>', false); ?>
+					<?php } ?>
+						<?php if(getTags()) {?>
+							<div class="albumbuttons">
+								<div class="button border colour">
+									<?php printTags('links', gettext('Tags: '), 'taglist', ', ');?>
+								</div>
+							</div>
+							<div class="clearing" ></div>
+						<?php } ?>
 				</div>
 			</div>
 			<?php include("inc-sidebar.php");?>
 		</div>
-		<?php include("inc-footer.php");?>
+		<?php if(getOption('zenfluid_showfooter')) include("inc-footer.php");?>
 	</body>
 <?php if (getOption('zenfluid_makeneat')) makeNeatEnd(); ?>
 </html>

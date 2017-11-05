@@ -14,13 +14,11 @@
 
 		<div id="container">
 			<div id="contents">
-				<?php $stageWidth = getOption('zenfluid_stagewidth');
-				$stageStyle = ($stageWidth > 0) ? 'style="max-width: ' . $stageWidth . 'px; margin-left: auto; margin-right: auto;"' : ''; ?>
-				<div id="stage" <?php echo $stageStyle;?>>
-					<div id="title" class="border colour">
+				<div class="stage" <?php echo $stageStyle;?>>
+					<div class="title border colour">
 						<?php echo gettext('Contact us'); ?>
 					</div>
-					<div id="content" class="border colour">
+					<div class="content border colour">
 						<?php if (zp_loggedin()) setOption('contactform_captcha',false,false);
 						printContactForm(); ?>
 					</div>
@@ -28,6 +26,6 @@
 			</div>
 			<?php include("inc-sidebar.php");?>
 		</div>
-		<?php include("inc-footer.php");?>
+		<?php if(getOption('zenfluid_showfooter')) include("inc-footer.php");?>
 	</body>
 </html>

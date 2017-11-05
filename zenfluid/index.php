@@ -14,15 +14,16 @@
 
 		<div id="container">
 		  <div id="contents">
-			  <div id="image">
-				<?php echo ImageJS();?>
-				<?php printHomepageImage(getOption('zenfluid_imageroot'),getOption('zenfluid_randomimage'));?>
+			  <div class="image" <?php echo $imageStyle;?>>
+				<?php $imageWidth = (getOption('zenfluid_stageimage')) ? $stageWidth : 0;
+				echo ImageJS(0, $imageWidth);
+				printHomepageImage(getOption('zenfluid_imageroot'),getOption('zenfluid_randomimage'));?>
 			  </div>
 		  </div>
 		  <?php include("inc-sidebar.php"); ?>
 		</div>
 
-		<?php include("inc-footer.php");?>
+		<?php if(getOption('zenfluid_showfooter')) include("inc-footer.php");?>
 
 	</body>
 <?php if (getOption('zenfluid_makeneat')) makeNeatEnd(); ?>

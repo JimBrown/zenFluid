@@ -11,7 +11,7 @@ body {
 	font-size: 100%;
 }
 /* Layout */
-.border, #search_input, #search_submit, #searchextrashow, .comment,
+.border, #search_input, #search_submit, #searchextrashow, #comments,
 #commententry, .inputbox, input.button, .textarea_inputbox, .zenpage_customimage,
 #passwordform, form#confirm input, form#discard input {
 	border: 1px solid darkgray;
@@ -19,9 +19,10 @@ body {
 	-webkit-border-radius: 8px;
 	border-radius: 8px;
 	behavior: url(border-radius.htc);
+	box-shadow: 0.1em 0.1em 0.5em -0.2em #777;
 	margin: 0px 0px 4px 4px;
 }
-.colour, .comment, #commententry, #passwordform {
+.colour, #comments, #commententry, #passwordform {
 /* fallback */
 	background-color: #E4E7D2;
 /* Safari 4-5, Chrome 1-9 */ 
@@ -35,29 +36,6 @@ body {
 /* Opera 11.10+ */ 
 	background: -o-linear-gradient(top, #E4E7D2, #D5DBAF);
 }
-#header {
-	padding: 10px 10px 10px 10px;
-}
-#headertitle {
-	font-family: Times,"Times New Roman",Georgia,serif;
-	font-size: 27px;
-	font-style: italic;
-	font-weight: bold;
-}
-#headersubtitle {
-	font-size: 10px;
-}
-#sidebartitle {
-	font-family: Times,"Times New Roman",Georgia,serif;
-	font-size: 27px;
-	font-style: italic;
-	font-weight: bold;
-	line-height: 24px;
-	padding-bottom: 5px;
-}
-#sidebarsubtitle {
-	font-size: 10px;
-}
 #container {
 	overflow:hidden;
 	padding-left: 200px;
@@ -68,31 +46,71 @@ body {
 	margin-left: -200px;
 	float: right;
 }
+.header {
+	padding: 10px 10px 10px 10px;
+	text-align: center;
+}
+.headertitle {
+	font-family: Times,"Times New Roman",Georgia,serif;
+	font-size: 27px;
+	font-style: italic;
+	font-weight: bold;
+}
+.headersubtitle {
+	font-size: 10px;
+}
+.sidebartitle {
+	font-family: Times,"Times New Roman",Georgia,serif;
+	font-size: 27px;
+	font-style: italic;
+	font-weight: bold;
+	line-height: 24px;
+	padding-bottom: 5px;
+}
+.sidebarsubtitle {
+	font-size: 10px;
+}
 
 /* Generic elements
 --------------------------------------*/
-#title {
-	text-align: center;
+.title {
+	text-align: left;
 	padding: 8px 8px 8px 8px;
 	font-size: 18px;
 }
-#title.border.colour p {
+.title.border.colour p {
 	font-size: 15px;
 	padding: 4px 0px 4px 0px;
+	max-width: 800px;
 }
-#content {
+.content {
 	padding: 8px 8px 8px 8px;
 	font-size: 13px;
 }
-#content p {
+.content p {
 	padding: 4px 0px 4px 0px;
 }
-#thumbs {
-	float: left;
+.stage {
 }
+.thumbstage {
+	text-align: left;
+	font-size: 0px;
+}
+.thumbs {
+	text-align: left;
+	display: inline-block;
+	font-size: 13px;
+}
+
 /* Footer
 -------------------------------------*/
-#footer {
+.footer {
+	clear: both; 
+	text-align: center;
+	padding: 16px;
+	font-size: 13px;
+}
+.sidebarfooter {
 	clear: both; 
 	text-align: center;
 	padding: 16px;
@@ -115,15 +133,15 @@ body {
 	margin-left: -200px;
 	width: 200px;
 }
-#menu {
+.menu {
 	padding: 4px 4px 4px 4px;
 	font-size: 13px;
 }
-#menutitle {
+.menutitle {
 	font-style: italic;
 	padding: 0px 0px 4px 0px;
 }
-#menu ul {
+.menu ul {
 	list-style-type: none;
 }
 .submenu {
@@ -132,25 +150,29 @@ body {
 a.menu-active {
 	color: #002E5B !important;
 }
+.menuupper {
+	text-transform: uppercase;
+}
 
 /* Album
 -------------------------------*/
-#thumbimage {
+.thumbimage {
 	float: left;
 	margin: 4px 4px 0px 0px;
 	position: relative;
 }
-#thumbtitle {
+.thumbtitle {
 	width: 192px;
 	float: right;
 	padding: 0px 0px 0px 4px;
 	font-size: 13px;
 }
-#thumbtitle p {
+.thumbtitle p {
 	margin: 8px 0px 0px 0px;
 	color: #002E5B;
+	font-size: 12px;
 }
-#videoplay {
+.videoplay {
 	width: 30px;
 	position: absolute;
 	top: -2px;
@@ -158,25 +180,24 @@ a.menu-active {
 }
 /* Image or Video
 -------------------------------*/
-#image {
+.image {
 	text-align: center;
 }
-#videocontainer {
+.videocontainer {
 	margin: 0px 0px 4px 4px;
 }
-#video {
-	margin-left: auto;
-	margin-right: auto;
+.video {
 }
 
 /* Page and News
 -------------------------------*/
-#newsdate {
+.newsdate {
 	font-size: 13px;
 	font-style: italic;
 }
 .zenpage_customimage {
 	margin: 0px 0px 0px 0px;
+	max-width: -webkit-fill-available;
 }
 
 /* Pagelist Nav
@@ -190,16 +211,16 @@ a.menu-active {
 
 /* Buttons
 -------------------------------*/
-#albumbuttons {
-	text-align: center;
-	margin: 0px 0px 5px 0px;
+.albumbuttons {
+	text-align: left;
+	margin: 0px 0px 5px 4px;
 }
-#imagebuttons {
-	text-align: center;
-	margin: -4px 0px 5px 0px;
+.imagebuttons {
+	text-align: left;
+	margin: 0px 0px 5px 4px;
 }
 
-#button {
+.button {
 	margin: 0px 0px 0px 0px;
 	text-align: center;
 	font-size: 13px;
@@ -207,10 +228,14 @@ a.menu-active {
 /*	float: left; */
 	display: inline-block;
 }
-#button.fb-button {
+.button.fb-button {
 	padding: 3px 4px 3px 4px;
 	position: relative;
 	top: 5px;
+}
+.sideshowlink {
+	display: inline-block;
+	float: none;
 }
 
 /* Comments and forms
@@ -219,6 +244,8 @@ a.menu-active {
 }
 .comment {
 	padding: 8px 8px 8px 8px;
+	max-width: 800px;
+	text-align: left;
 }
 .commentinfo {
 	text-align: left;
@@ -239,16 +266,24 @@ a.menu-active {
 }
 #commentform {
 	padding: 8px 8px 8px 8px;
+	max-width: 800px;
+	text-align: left;
 }
 #commentform label {
 	width: 220px;
 	float: left;
 	padding: 4px 0px 4px 0px;
 }
+#mailform {
+	max-width: 800px;
+}
 #mailform label {
 	width: 220px;
 	float: left;
 	padding: 4px 0px 4px 0px;
+}
+#registration_form {
+	max-width: 800px;
 }
 #registration_form label {
 	width: 220px;
@@ -261,7 +296,7 @@ a.menu-active {
 .inputbox {
 	padding: 4px 8px 4px 8px;
 	margin: 0px 0px 4px 0px;
-	width: 296px;
+	width: 273px;
 }
 input.button {
 	margin: 0px;
@@ -296,6 +331,12 @@ form#confirm input, form#discard input {
 ------------------------------ */
 .clearing {
 	clear: both;
+}
+
+/* Google AdSense
+------------------------------ */
+.adsense {
+	 text-align: center
 }
 
 /* Search
