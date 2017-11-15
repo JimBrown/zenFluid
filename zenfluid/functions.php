@@ -10,7 +10,7 @@ if (!zp_loggedin(ADMIN_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS)) zp_remove_filter('them
  * Returns an image for the home page
  *
  */
-function printHomepageImage($imageRoot, $imageRandom) {
+function printHomepageImage($imageRoot, $imageRandom, $titleStyle, $imageStyle) {
 	global $_zp_gallery;
 
 	if ($imageRoot == '*All Albums*') $imageRoot = '';
@@ -29,7 +29,22 @@ function printHomepageImage($imageRoot, $imageRandom) {
 		}
 	}
 	if (isset($titleImage)) {
-		echo '<a href="'.$titleImage->getLink().'"><img class="imgheight border" src="'.$titleImage->getCustomImage(null, null, null, null, null, null, null).'" title="'.$titleImage->getTitle().'" /></a>';
+		$title = $titleImage->getTitle();
+		if (getOption('zenfluid_titletop')) {
+			if ($title) { ?>
+				<div class="title border colour" <?php echo $titleStyle;?>>
+					<a href="<?php echo $titleImage->getLink();?>"><?php echo $title; ?></a>
+				</div>
+			<?php }
+		}
+		echo '<a href="'.$titleImage->getLink().'"><img class="imgheight border" style="'.$imageStyle.'" src="'.$titleImage->getCustomImage(null, null, null, null, null, null, null).'" title="'.$title.'" /></a>';
+		if (!getOption('zenfluid_titletop')) {
+			if ($title) { ?>
+				<div class="title border colour" <?php echo $titleStyle;?>>
+					<a href="<?php echo $titleImage->getLink();?>"><?php echo $title; ?></a>
+				</div>
+			<?php }
+		}
 	} else {
 		debugLog('PrintHomepageImage: No images found in album path "' . $imageRoot .'"');
 	}
@@ -133,6 +148,7 @@ function ImageJS($titleMargin = 0,$stageWidth = 0, $stageImage = true) {
 		function setStage(){
 			viewportwidth = $(window).width();
 			viewportheight = $(window).height();
+			titleheight = $(".title").outerHeight(true) + 4;
 			headerheight = $(".header").outerHeight(true);
 			footerheight = $(".footer").outerHeight(true);
 			sidebarwidth = $("#sidebar").outerWidth(false);
@@ -150,7 +166,7 @@ function ImageJS($titleMargin = 0,$stageWidth = 0, $stageImage = true) {
 				};
 			};
 			if (footerheight < 8) { footerheight = 8; };
-			imgheight = viewportheight - headerheight - footerheight - $titleMargin;
+			imgheight = viewportheight - headerheight - footerheight - $titleMargin - titleheight;
 			imgwidth = viewportwidth - sidebarwidth - bodymarginleft - bodymarginright - imgheightmarginleft - imgheightmarginright - imgheightborderleft - imgheightborderright - 4;
 			if ($stageImage && $stageWidth > 0 && imgwidth > $stageWidth - 4) {
 				imgwidth = $stageWidth - 4;

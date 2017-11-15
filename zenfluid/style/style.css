@@ -4,59 +4,14 @@
 html, body {
 	height: 99%;
 	margin: 2px 4px 0px 0px;
-	background-color: lightgray;
 }
 body {
-	font-family: "Helvetica Neue", "Lucida Grande", Arial, Helvetica, sans-serif;
 	font-size: 100%;
 }
 /* Layout */
-.border, #search_input, #search_submit, #searchextrashow, .comment,
-#commententry, .inputbox, input.button, .textarea_inputbox, .zenpage_customimage,
+.border, #search_input, #search_submit, #searchextrashow, .inputbox, input.button, .textarea_inputbox, .zenpage_customimage,
 #passwordform, form#confirm input, form#discard input {
-	border: 1px solid black;
-	-moz-border-radius: 8px;
-	-webkit-border-radius: 8px;
-	border-radius: 8px;
-	behavior: url(border-radius.htc);
 	margin: 0px 0px 4px 4px;
-}
-.colour, .comment, #commententry, #passwordform {
-/* fallback */
-	background-color: darkgray;
-/* Safari 4-5, Chrome 1-9
-	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#E4E7D2), to(#D5DBAF)); 
-/* Safari 5.1, Chrome 10+
-	background: -webkit-linear-gradient(top, #E4E7D2, #D5DBAF);
-/* Firefox 3.6+
-	background: -moz-linear-gradient(top, #E4E7D2, #D5DBAF);
-/* IE 10
-	background: -ms-linear-gradient(top, #E4E7D2, #D5DBAF);
-/* Opera 11.10+
-	background: -o-linear-gradient(top, #E4E7D2, #D5DBAF); */
-}
-#header {
-	padding: 10px 10px 10px 10px;
-}
-#headertitle {
-	font-family: Times,"Times New Roman",Georgia,serif;
-	font-size: 27px;
-	font-style: italic;
-	font-weight: bold;
-}
-#headersubtitle {
-	font-size: 10px;
-}
-#sidebartitle {
-	font-family: Times,"Times New Roman",Georgia,serif;
-	font-size: 27px;
-	font-style: italic;
-	font-weight: bold;
-	line-height: 24px;
-	padding-bottom: 5px;
-}
-#sidebarsubtitle {
-	font-size: 10px;
 }
 #container {
 	overflow:hidden;
@@ -64,48 +19,58 @@ body {
 }
 #contents {
 	width: 100%;
-	border-left: 200px solid lightgray;
+	border-left: 200px;
 	margin-left: -200px;
 	float: right;
+}
+.header {
+	padding: 10px 10px 10px 10px;
+}
+.headertitle {
+}
+.headersubtitle {
+}
+.sidebartitle {
+	margin: 0px 0px 4px 0px;
+}
+.sidebarsubtitle {
 }
 
 /* Generic elements
 --------------------------------------*/
-#title {
-	text-align: center;
+.title {
 	padding: 8px 8px 8px 8px;
-	font-size: 18px;
 }
-#title.border.colour p {
+.title.border.colour p {
 	font-size: 15px;
 	padding: 4px 0px 4px 0px;
 }
-#content {
-	padding: 8px 8px 8px 8px;
-	font-size: 13px;
+.content {
 }
-#content p {
+.content p {
 	padding: 4px 0px 4px 0px;
 }
-#thumbs {
-	float: left;
+.stage {
 }
-/* Footer
--------------------------------------*/
-#footer {
-	clear: both; 
-	text-align: center;
-	padding: 16px;
+.thumbstage {
+	text-align: left;
+	font-size: 0px;
+}
+.thumbs {
+	text-align: left;
+	display: inline-block;
 	font-size: 13px;
 }
-#zen-part {
-	font-size: 1.3em;
-	font-family: Arial, Helvetica, sans-serif;
+
+/* Footer
+-------------------------------------*/
+.footer {
+	clear: both; 
+	padding: 16px;
 }
-#photo-part {
-	font-size: 1.0em;
-	font-family: Arial, Helvetica, sans-serif;
-	font-weight: bold;
+.sidebarfooter {
+	clear: both; 
+	padding: 16px 4px 16px 4px;
 }
 
 /* Sidebar
@@ -115,42 +80,42 @@ body {
 	margin-left: -200px;
 	width: 200px;
 }
-#menu {
+.menu {
 	padding: 4px 4px 4px 4px;
 	font-size: 13px;
 }
-#menutitle {
+.menutitle {
 	font-style: italic;
 	padding: 0px 0px 4px 0px;
 }
-#menu ul {
+.menu ul {
 	list-style-type: none;
 }
 .submenu {
 	margin: 0px 0px 0px 8px;
 }
-a.menu-active {
-	color: white !important;
+.menuupper {
+	text-transform: uppercase;
 }
 
 /* Album
 -------------------------------*/
-#thumbimage {
+.thumbimage {
 	float: left;
 	margin: 4px 4px 0px 0px;
 	position: relative;
 }
-#thumbtitle {
+.thumbtitle {
 	width: 192px;
 	float: right;
 	padding: 0px 0px 0px 4px;
 	font-size: 13px;
 }
-#thumbtitle p {
+.thumbtitle p {
 	margin: 8px 0px 0px 0px;
-	color: black;
+	font-size: 12px;
 }
-#videoplay {
+.videoplay {
 	width: 30px;
 	position: absolute;
 	top: -2px;
@@ -158,25 +123,29 @@ a.menu-active {
 }
 /* Image or Video
 -------------------------------*/
-#image {
-	text-align: center;
+.image {
 }
-#videocontainer {
+.imagedesc {
+	padding: 0px 8px 0px 8px;
+}
+.videocontainer {
 	margin: 0px 0px 4px 4px;
 }
-#video {
-	margin-left: auto;
-	margin-right: auto;
+.video {
 }
 
 /* Page and News
 -------------------------------*/
-#newsdate {
+.pagetext {
+	padding: 8px 8px 8px 8px;
+}
+.newsdate {
 	font-size: 13px;
 	font-style: italic;
 }
 .zenpage_customimage {
 	margin: 0px 0px 0px 0px;
+	max-width: -webkit-fill-available;
 }
 
 /* Pagelist Nav
@@ -190,16 +159,16 @@ a.menu-active {
 
 /* Buttons
 -------------------------------*/
-#albumbuttons {
-	text-align: center;
-	margin: 0px 0px 5px 0px;
+.albumbuttons {
+	text-align: left;
+	margin: 0px 0px 5px 4px;
 }
-#imagebuttons {
-	text-align: center;
-	margin: -4px 0px 5px 0px;
+.imagebuttons {
+	text-align: left;
+	margin: 0px 0px 5px 4px;
 }
 
-#button {
+.button {
 	margin: 0px 0px 0px 0px;
 	text-align: center;
 	font-size: 13px;
@@ -207,10 +176,14 @@ a.menu-active {
 /*	float: left; */
 	display: inline-block;
 }
-#button.fb-button {
+.button.fb-button {
 	padding: 3px 4px 3px 4px;
 	position: relative;
 	top: 5px;
+}
+.sideshowlink {
+	display: inline-block;
+	float: none;
 }
 
 /* Comments and forms
@@ -219,6 +192,7 @@ a.menu-active {
 }
 .comment {
 	padding: 8px 8px 8px 8px;
+	text-align: left;
 }
 .commentinfo {
 	text-align: left;
@@ -239,16 +213,24 @@ a.menu-active {
 }
 #commentform {
 	padding: 8px 8px 8px 8px;
+	text-align: left;
 }
 #commentform label {
 	width: 220px;
 	float: left;
 	padding: 4px 0px 4px 0px;
 }
+.contactbox {
+	padding: 8px 8px 8px 8px;
+}
+#mailform {
+}
 #mailform label {
 	width: 220px;
 	float: left;
 	padding: 4px 0px 4px 0px;
+}
+#registration_form {
 }
 #registration_form label {
 	width: 220px;
@@ -261,14 +243,13 @@ a.menu-active {
 .inputbox {
 	padding: 4px 8px 4px 8px;
 	margin: 0px 0px 4px 0px;
-	width: 296px;
+	width: 273px;
 }
 input.button {
 	margin: 0px;
 	padding: 8px 8px 8px 8px;
 }
 form label strong, form p strong {
-	color: red;
 }
 #private {
 	margin: 5px 0px 0px 0px;
@@ -277,7 +258,7 @@ form label strong, form p strong {
 	width: 100% !important;
 	height: 150px;
 	margin: 0px 0px 0px -1px;
-	font-family: "Helvetica Neue", "Lucida Grande", Arial, Helvetica, sans-serif;
+	padding: 8px 8px 8px 8px;
 }
 form#confirm input, form#discard input {
 	padding: 8px 8px 8px 8px;
@@ -296,6 +277,12 @@ form#confirm input, form#discard input {
 ------------------------------ */
 .clearing {
 	clear: both;
+}
+
+/* Google AdSense
+------------------------------ */
+.adsense {
+	 text-align: center
 }
 
 /* Search
@@ -318,7 +305,6 @@ form#confirm input, form#discard input {
 }
 #articlethumb p {
 	margin: 8px 0px 0px 0px;
-	color: #black;
 }
 
 
@@ -340,27 +326,23 @@ form#confirm input, form#discard input {
 ------------------------------ */
 a:link {
 	text-decoration: none;
-	color: black;
 }
 a:visited {
 	text-decoration: none;
-	color: black;
 }
 a:active {
 	text-decoration: none;
-	color: white;
 }
 a:hover {
 	text-decoration: none;
-	color: white;
 }
+
 /* Error Messages
 ------------------------------ */
 #content-error {
 	padding: 45px 25px 45px 25px;
 }
 .error {
-	color: #C33;
 }
 .errorbox {
 	padding: 20px;
@@ -368,13 +350,10 @@ a:hover {
 	border-left: 1px solid #FAA;
 	border-right: 1px solid #FAA;
 	border-bottom: 5px solid #FAA;
-	color: #DD6666;
 }
 
 .errorbox h2 {
-	color: #DD6666;
 	margin: 0px;
-	background-color: #FDD;
 }
 .errorlist {
 	list-style-type: none;
@@ -386,9 +365,9 @@ a:hover {
 	right: 0px;
 	top: 0px;
 	width: 130px;
-	border-bottom: 1px solid black;
-	border-left: 1px solid black;
-	background: #lightgray;
+	border-bottom: 1px solid #E6E6DF;
+	border-left: 1px solid #E6E6DF;
+	background: #fff;
 	z-index: 1001;
 	font-size: 13px;
 }
@@ -400,7 +379,6 @@ a:hover {
 }
 
 #admin h3 {
-	color: #999;
 	margin: 0;
 	text-align: center;
 }

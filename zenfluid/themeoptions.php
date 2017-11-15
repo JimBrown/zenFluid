@@ -17,7 +17,12 @@ class ThemeOptions {
 		
 		setThemeOptionDefault('Use_thickbox', true);
 		setThemeOptionDefault('Allow_search', true);
+		setThemeOptionDefault('zenfluid_theme', 'lightgreen');
+		setThemeOptionDefault('zenfluid_border', 'borderround');
+		setThemeOptionDefault('zenfluid_font', 'times');
 		setThemeOptionDefault('zenfluid_menuupper', false);
+		setThemeOptionDefault('zenfluid_homelink', false);
+		setThemeOptionDefault('zenfluid_thumbdesc', false);
 		setThemeOptionDefault('zenfluid_titlebreadcrumb', false);
 		setThemeOptionDefault('zenfluid_randomimage', true);
 		setThemeOptionDefault('zenfluid_imageroot', '');
@@ -25,7 +30,16 @@ class ThemeOptions {
 		setThemeOptionDefault('zenfluid_showheader', false);
 		setThemeOptionDefault('zenfluid_showfooter', false);
 		setThemeOptionDefault('zenfluid_stagewidth', 0);
+		setThemeOptionDefault('zenfluid_commentwidth', 0);
+    setThemeOptionDefault('zenfluid_descriptionwidth', 0);
+    setThemeOptionDefault('zenfluid_descriptionjustification', 0);
 		setThemeOptionDefault('zenfluid_stageposition', 'left');
+		setThemeOptionDefault('zenfluid_titleposition', 'left');
+		setThemeOptionDefault('zenfluid_buttonposition', 'left');
+		setThemeOptionDefault('zenfluid_commentposition', 'left');
+		setThemeOptionDefault('zenfluid_menuposition', 'left');
+		setThemeOptionDefault('zenfluid_descriptionposition', 'left');
+		setThemeOptionDefault('zenfluid_buttontitle', true);
 		setThemeOptionDefault('zenfluid_stageimage', false);
 		setThemeOptionDefault('zenfluid_stagethumb', false);
 		setThemeOptionDefault('zenfluid_menutitles', true);
@@ -56,7 +70,9 @@ class ThemeOptions {
 	}
 	function getOptionsSupported() {
 	
-		$themeList = array(	gettext('Dark Gray') => 'darkgray',	gettext('Light Green') => 'lightgreen');
+		$themeList = array(	gettext('White') => 'colorwhite', gettext('Light Green') => 'colorlightgreen', gettext('Dark gray') => 'colordarkgray');
+		$borderList = array(gettext('Round corners') => 'borderround',	gettext('Square corners') => 'bordersquare', gettext('No Border') => 'borderno');
+		$fontList = array(gettext('Times') => 'times/fonttimes', gettext('Com4T') => 'com4t/fontcom4t');
 		$positions = array( gettext('Left') => 'left', gettext('Center') => 'center', gettext('Right') => 'right');
 		$widths = array( gettext('Maximum') => '0', '312px' => '312', '624px' => '624', '936px' => '936', '1248px' => '1248', '1560px' => '1560', '1872px' => '1872', '2184px' => '2184');
 	
@@ -72,6 +88,8 @@ class ThemeOptions {
 							gettext('Allow search')	=> array('key' => 'Allow_search','order' => 3, 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Enable search form.')),
 							gettext('Use Colorbox') => array('key' => 'Use_thickbox','order' => 4, 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Enable to display full size image with Colorbox.')),
 							gettext('Use UPPERCASE menu') => array('key' => 'zenfluid_menuupper','order' => 6, 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Enable if you want all menu entries to be uppercase')),
+							gettext('Include HOME link') => array('key' => 'zenfluid_homelink','order' => 6, 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Enable if you want to include a HOME link at the top of the menus')),
+							gettext('Include title and description with thumbnail') => array('key' => 'zenfluid_thumbdesc','order' => 6, 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Enable if you want to include the title and description beside each thumbnail')),
 							gettext('Use random image') => array('key' => 'zenfluid_randomimage','order' => 7, 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Enable if you want a random image displayed on the home page, otherwise the latest image will be displayed')),
 							gettext('Random/Latest image root folder') => array('key' => 'zenfluid_imageroot','order' => 8, 'type' => OPTION_TYPE_SELECTOR, 'selections' => $list, 'desc' => gettext('Optional: Select the name of the album folder from which the random or latest image will be taken.')),
 							gettext('Print title breadcrumb') => array('key' => 'zenfluid_titlebreadcrumb','order' => 9, 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Enable this if you want the album title to be included before the image title')),
@@ -79,14 +97,25 @@ class ThemeOptions {
 							gettext('Show header') => array('key' => 'zenfluid_showheader','order' => 11, 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Enable to show a header with gallery title and description across the top of the screen instead of at the top of the sidebar')),
 							gettext('Show footer') => array('key' => 'zenfluid_showfooter','order' => 12, 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Enable to show a footer across the bottom of the screen instead of at the bottom of the sidebar')),
 							gettext('Stage maximum width') => array('key' => 'zenfluid_stagewidth','order' => 13, 'type' => OPTION_TYPE_SELECTOR, 'selections' => $widths, 'desc' => gettext('Enter the maximum width (in pixels) that the stage (everything to the right of the sidebar) should take.')),
+							gettext('Comment maximum width') => array('key' => 'zenfluid_commentwidth','order' => 13, 'type' => OPTION_TYPE_TEXTBOX, 'desc' => gettext('Enter the maximum width (in pixels) that the comments section should take. (Enter 0 (zero) to use the maximum width)')),
+              gettext('Description maximum width') => array('key' => 'zenfluid_descriptionwidth','order' => 13, 'type' => OPTION_TYPE_TEXTBOX, 'desc' => gettext('Enter the maximum width (in pixels) that the description section should take. (Enter 0 (zero) to use the maximum width)')),
+              gettext('Description justification') => array('key' => 'zenfluid_descriptionjustification','order' => 13, 'type' => OPTION_TYPE_SELECTOR, 'selections' => $positions, 'desc' => gettext('Enter the default justification for the description text (Overide individual descriptions in admin panel text editor).')),
 							gettext('Stage position') => array('key' => 'zenfluid_stageposition','order' => 14, 'type' => OPTION_TYPE_SELECTOR, 'selections' => $positions, 'desc' => gettext('Select the position of the stage when its width is less than the width of the window')),
+							gettext('Title position') => array('key' => 'zenfluid_titleposition','order' => 14, 'type' => OPTION_TYPE_SELECTOR, 'selections' => $positions, 'desc' => gettext('Select the position of the title')),
+							gettext('Description position') => array('key' => 'zenfluid_descriptionposition','order' => 14, 'type' => OPTION_TYPE_SELECTOR, 'selections' => $positions, 'desc' => gettext('Select the position of the image/album description.')),
+							gettext('Button position') => array('key' => 'zenfluid_buttonposition','order' => 14, 'type' => OPTION_TYPE_SELECTOR, 'selections' => $positions, 'desc' => gettext('Select the position of the buttons under the image')),
+							gettext('Comment position') => array('key' => 'zenfluid_commentposition','order' => 14, 'type' => OPTION_TYPE_SELECTOR, 'selections' => $positions, 'desc' => gettext('Select the position of the comments section when its width is less than the stage')),
+							gettext('Menu position') => array('key' => 'zenfluid_menuposition','order' => 14, 'type' => OPTION_TYPE_SELECTOR, 'selections' => $positions, 'desc' => gettext('Select the position of the sidebar menu items')),
+							gettext('Buttons before Title') => array('key' => 'zenfluid_buttontitle','order' => 14, 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Enable if you want the image buttons to appear before the title and description')),
 							gettext('Image width same as Stage') => array('key' => 'zenfluid_stageimage','order' => 15, 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Enable this to force the image width to match the stage width if the image width is larger than the stage width')),
 							gettext('Thumb list width same as Stage') => array('key' => 'zenfluid_stagethumb','order' => 16, 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Enable this to force the width of the list of thumbs to match the stage width')),
 							gettext('Menu section titles') => array('key' => 'zenfluid_menutitles','order' => 17, 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Enable the display of a title for each sidebar menu section.')),
 							gettext('Title Margin') => array('key' => 'zenfluid_titlemargin','order' => 18, 'type' => OPTION_TYPE_TEXTBOX, 'desc' => gettext('Set size (in pixels) of the title, buttons, and comments that always shows below the image or video')),
 							gettext('Title on top') => array('key' => 'zenfluid_titletop','order' => 19, 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Enable this if you want the image title to be displayed above the image')),
 							gettext('Make Neat') => array('key' => 'zenfluid_makeneat','order' => 99, 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Enabling this option will result in the html output buffered and captured, the head section consolidated, scripts with "src" moved to the head section, inline scripts moved to after the body, and the body section neatened with appropriate line splitting, concatenating, and tabbing and then everything sent to the browser. This option will add processing time to the page. If a script section should not be moved, add "nomove" after the script open tag. eg: "&lt;script nomove type=text/javascript&gt;"')),
-							gettext('ZenFluid theme') => array('key' => 'zenfluid_theme', 'order' => 0, 'type' => OPTION_TYPE_SELECTOR, 'selections' => $themeList, 'desc' => gettext("Select the colour scheme."))
+							gettext('ZenFluid theme') => array('key' => 'zenfluid_theme', 'order' => 0, 'type' => OPTION_TYPE_SELECTOR, 'selections' => $themeList, 'desc' => gettext("Select the colour scheme.")),
+							gettext('Border type') => array('key' => 'zenfluid_border', 'order' => 0, 'type' => OPTION_TYPE_SELECTOR, 'selections' => $borderList, 'desc' => gettext("Select the border scheme.")),
+							gettext('Font type') => array('key' => 'zenfluid_font', 'order' => 0, 'type' => OPTION_TYPE_SELECTOR, 'selections' => $fontList, 'desc' => gettext("Select the font style."))
 							);
 	return $options;
 	}

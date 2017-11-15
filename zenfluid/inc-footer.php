@@ -1,12 +1,14 @@
 <?php
-	// force UTF-8 Ø
+  // force UTF-8 Ø
 ?>
-<?php if (getOption('zenfluid_showfooter')) { ?>
-	<div class="footer border colour">
-<?php } else { ?>
-	<div class="sidebarfooter border colour">
-<?php } ?>
-		<?php echo gettext('ZenFluid theme designed by '); ?> Jim Brown&nbsp;|&nbsp;
-		<?php printZenphotoLink(); echo "\n"; ?>
-	</div>
-<?php zp_apply_filter('theme_body_close'); ?>
+      <?php if (getOption('zenfluid_showfooter')) { ?>
+        <div class="footer border colour" <?php echo $titleStyle;?>>
+          <?php echo gettext('ZenFluid theme designed by '); ?> Jim Brown&nbsp;|&nbsp;
+          <?php printZenphotoLink(); echo "\n"; ?>
+        </div>
+      <?php } ?>
+    </div>
+    <?php include("inc-sidebar.php"); ?>
+  </div>
+
+  <?php zp_apply_filter('theme_body_close'); ?>
