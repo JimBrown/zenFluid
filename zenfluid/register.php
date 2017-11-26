@@ -1,4 +1,5 @@
 <?php
+/*LegacyConverter was here*/
   // force UTF-8 Ø
   if (!defined('WEBPATH')) die();
 ?>
@@ -20,7 +21,7 @@ if (function_exists('printRegistrationForm')) {?>
         </div>
         <div class="content border colour">
           <div class="contactbox" <?php echo $commentStyle;?>>
-            <?php printRegistrationForm(); ?>
+            <?php printRegistrationForm(NULL, false); ?>
           </div>
         </div>
       </div>

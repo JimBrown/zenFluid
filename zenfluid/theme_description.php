@@ -1,4 +1,5 @@
 <?php
+/*LegacyConverter was here*/
 // force UTF-8 Ø
 
 // Zenphoto theme definition file

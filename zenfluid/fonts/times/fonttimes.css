@@ -38,6 +38,7 @@ body {
 }
 .pagetext {
   font-family: Times,"Times New Roman",Georgia,serif;
+  font-size: 15px;
 }
 .textarea_inputbox {
   font-family: "Helvetica Neue", "Lucida Grande", Arial, Helvetica, sans-serif;

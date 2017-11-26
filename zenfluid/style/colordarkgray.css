@@ -2,7 +2,7 @@ html, body, #sidebar, #container, #contents {
 	color: #ddd;
 	background-color: rgb(72,72,72);
 }
-.colour, #passwordform {
+.colour, #passwordform, #admin_tb, #admin_tb_data {
 	background-color: rgb(72,72,72);
 }
 .sidebarsubtitle {
@@ -38,9 +38,6 @@ a:visited {
 a:active {
 	color: #ddd;
 }
-/*a.menu-active {
-	color: #ddd !important;
-}*/
 a:hover {
 	color: #ddd;
 }
@@ -50,11 +47,7 @@ a:hover {
 .errorbox {
 	color: #DD6666;
 }
-
 .errorbox h2 {
 	color: #DD6666;
 	background-color: #FDD;
-}
-#admin_data {
-	background-color: rgb(72,72,72);
 }

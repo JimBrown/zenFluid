@@ -1,4 +1,5 @@
 <?php
+/*LegacyConverter was here*/
   // force UTF-8 Ø
 ?>
 <div id="sidebar">
@@ -41,6 +42,15 @@
         <?php printAllNewsCategories(gettext("All news"), false, "", "menu-active", true, "submenu", "menu-active"); ?>
       </div>
     <?php }
+    if (class_exists('RSS') && (getOption('RSS_album_image') || getOption('RSS_articles'))) { ?>
+      <div class="menu border colour">
+        <?php if (getOption('zenfluid_menutitles')) echo '<div class="menutitle">' . gettext('RSS Feeds') . '</div>';echo "\n"; ?>
+        <?php printRSSLink('Gallery', '<ul>', gettext('Gallery RSS'), '</ul>');
+        if (getNumNews(true)) {
+          printRSSLink("News", "<ul>", gettext("News RSS"), '</ul>');
+        } ?>
+      </div>
+    <?php }
   } else { ?>
     <div class="menu border colour">
       <?php echo gettext("The ZenFluid theme requires that the zenpage plugin be enabled.");?>
@@ -53,11 +63,9 @@
           if (!function_exists('printCommentForm') || !commentFormUseCaptcha()) setOption("contactform_captcha",0,false); ?>
           <li><?php printCustomPageURL(gettext('Contact us'), 'contact', '', '');?></li>
         <?php }
-        if(function_exists('printUserLogin_out')) {
-          if ($_zp_gallery_page != 'register.php') { ?>
+        if(function_exists('printUserLogin_out')) { ?>
             <li><?php printUserLogin_out();?></li>
-          <?php }
-          if (!zp_loggedin()) {?>
+          <?php if (!zp_loggedin()) {?>
             <li><?php printCustomPageURL(gettext('Register'), 'register', '', '');?></li>
           <?php } else { ?>
             <li><?php printLinkHTML(WEBPATH . '/' . ZENFOLDER . '/admin-users.php?page=users', gettext('Profile'), gettext('Your user profile'));?></li>

@@ -1,4 +1,5 @@
 <?php
+/*LegacyConverter was here*/
   // force UTF-8 Ø
   if (!defined('WEBPATH')) die();
 ?>
@@ -35,7 +36,7 @@
       } ?>
       <div class="image" <?php echo $imageStyle;?>>
         <?php if (getOption("Use_thickbox")) {
-          $boxclass = "class=\"thickbox\"";
+          $boxclass = 'class="thickbox"';
         } else {
           $boxclass = "";
         }
@@ -48,7 +49,7 @@
           echo "\n</a>\n";
         }?>
       </div>
-      <?php } else {
+    <?php } else {
       $metadata = getImageMetaData(NULL,false);
       $vidWidth = $metadata['VideoResolution_x'];
       $vidHeight = $metadata['VideoResolution_y'];

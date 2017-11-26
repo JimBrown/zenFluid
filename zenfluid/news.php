@@ -1,4 +1,5 @@
 <?php
+/*LegacyConverter was here*/
   // force UTF-8 Ø
   if (!defined('WEBPATH') || !class_exists("CMS")) die();
 ?>
@@ -48,7 +49,7 @@
               <?php echo "Views: " . getHitcounter();?>
             </div>
           <?php }
-          if (function_exists('printCommentForm') && ($_zp_current_zenpage_news->getCommentsAllowed() || $commentCount)) { 
+          if (function_exists('printCommentForm') && ($_zp_current_article->getCommentsAllowed() || $commentCount)) { 
             if ($commentCount == 0) {
               $comments = gettext('No Comments');
             } else {
@@ -69,7 +70,7 @@
           <?php } ?>
         </div>
         <div class="clearing" ></div>
-        <?php if (function_exists('printCommentForm') && ($_zp_current_zenpage_news->getCommentsAllowed() || $commentCount)) { ?>
+        <?php if (function_exists('printCommentForm') && ($_zp_current_article->getCommentsAllowed() || $commentCount)) { ?>
           <a id="readComment"></a>
           <div class="content border colour">
             <div class="commentbox" <?php echo $commentStyle;?>>
@@ -116,7 +117,7 @@
               </div>
             <?php }
             $commentCount = function_exists('printCommentForm') ? getCommentCount() : 0;
-            if (function_exists('printCommentForm') && ($_zp_current_zenpage_news->getCommentsAllowed() || $commentCount)) { 
+            if (function_exists('printCommentForm') && ($_zp_current_article->getCommentsAllowed() || $commentCount)) { 
               if ($commentCount == 0) {
                 $comments = gettext('No Comments');
               } else {

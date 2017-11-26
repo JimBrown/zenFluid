@@ -8,6 +8,7 @@ html, body {
 body {
 	font-size: 100%;
 }
+
 /* Layout */
 .border, #search_input, #search_submit, #searchextrashow, .inputbox, input.button, .textarea_inputbox, .zenpage_customimage,
 #passwordform, form#confirm input, form#discard input {
@@ -26,14 +27,8 @@ body {
 .header {
 	padding: 10px 10px 10px 10px;
 }
-.headertitle {
-}
-.headersubtitle {
-}
 .sidebartitle {
 	margin: 0px 0px 4px 0px;
-}
-.sidebarsubtitle {
 }
 
 /* Generic elements
@@ -45,12 +40,8 @@ body {
 	font-size: 15px;
 	padding: 4px 0px 4px 0px;
 }
-.content {
-}
 .content p {
 	padding: 4px 0px 4px 0px;
-}
-.stage {
 }
 .thumbstage {
 	text-align: left;
@@ -121,17 +112,14 @@ body {
 	top: -2px;
 	left: 2px;
 }
+
 /* Image or Video
 -------------------------------*/
-.image {
-}
 .imagedesc {
 	padding: 0px 8px 0px 8px;
 }
 .videocontainer {
 	margin: 0px 0px 4px 4px;
-}
-.video {
 }
 
 /* Page and News
@@ -167,13 +155,11 @@ body {
 	text-align: left;
 	margin: 0px 0px 5px 4px;
 }
-
 .button {
 	margin: 0px 0px 0px 0px;
 	text-align: center;
 	font-size: 13px;
 	padding: 5px 5px 5px 5px;
-/*	float: left; */
 	display: inline-block;
 }
 .button.fb-button {
@@ -188,8 +174,6 @@ body {
 
 /* Comments and forms
 -------------------------------*/
-#commentcontent {
-}
 .comment {
 	padding: 8px 8px 8px 8px;
 	text-align: left;
@@ -223,22 +207,10 @@ body {
 .contactbox {
 	padding: 8px 8px 8px 8px;
 }
-#mailform {
-}
 #mailform label {
 	width: 220px;
 	float: left;
 	padding: 4px 0px 4px 0px;
-}
-#registration_form {
-}
-#registration_form label {
-	width: 220px;
-	float: left;
-	padding: 4px 0px 4px 0px;
-}
-#registration_form label {
-	clear: both;
 }
 .inputbox {
 	padding: 4px 8px 4px 8px;
@@ -249,16 +221,28 @@ input.button {
 	margin: 0px;
 	padding: 8px 8px 8px 8px;
 }
-form label strong, form p strong {
-}
 #private {
 	margin: 5px 0px 0px 0px;
 }
 .textarea_inputbox {
-	width: 100% !important;
+	width: 97.5% !important;
 	height: 150px;
-	margin: 0px 0px 0px -1px;
+	margin: 0px 0px 0px 0px;
 	padding: 8px 8px 8px 8px;
+}
+
+/* Registration form
+-------------------------------*/
+#registration_form label {
+  width: 273px;
+  float: left;
+  padding: 4px 0px 4px 0px;
+}
+#pass {
+  margin: -4px 0px 0px 0px;
+}
+.disclose_password_show {
+  display: none;
 }
 form#confirm input, form#discard input {
 	padding: 8px 8px 8px 8px;
@@ -307,7 +291,6 @@ form#confirm input, form#discard input {
 	margin: 8px 0px 0px 0px;
 }
 
-
 /* Login form
 -------------------------------*/
 #passwordform {
@@ -342,8 +325,6 @@ a:hover {
 #content-error {
 	padding: 45px 25px 45px 25px;
 }
-.error {
-}
 .errorbox {
 	padding: 20px;
 	border-top: 1px solid #FAA;
@@ -351,34 +332,24 @@ a:hover {
 	border-right: 1px solid #FAA;
 	border-bottom: 5px solid #FAA;
 }
-
 .errorbox h2 {
 	margin: 0px;
 }
 .errorlist {
 	list-style-type: none;
 }
+
 /* Admin Toolbox
 ------------------------------ */
-#admin,#admin_data {
-	position: fixed;
-	right: 0px;
-	top: 0px;
-	width: 130px;
-	border-bottom: 1px solid #E6E6DF;
-	border-left: 1px solid #E6E6DF;
-	background: #fff;
-	z-index: 1001;
+#admin_tb, #admin_tb_data {
 	font-size: 13px;
 }
-
-#admin_data {
-	padding-top: 20px;
-	z-index: 1000;
-	line-height: 16px;
+#admin_tb {
+	margin-right: 0px;
+	padding-bottom: 10px;
+	padding-right: 5px;
 }
-
-#admin h3 {
-	margin: 0;
-	text-align: center;
+#admin_tb_data {
+	padding-left: 15px;
+	line-height: 16px;
 }

@@ -1,4 +1,5 @@
 <?php
+/*LegacyConverter was here*/
   // force UTF-8 Ø
 zp_apply_filter('theme_body_open');
 $stageWidth = getOption('zenfluid_stagewidth');
