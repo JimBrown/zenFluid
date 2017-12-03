@@ -1,6 +1,5 @@
 <?php
-/*LegacyConverter was here*/
-  // force UTF-8 Ø
+// force UTF-8 Ø
 zp_apply_filter('theme_body_open');
 $stageWidth = getOption('zenfluid_stagewidth');
 $stagePosition = getOption('zenfluid_stageposition');
@@ -49,11 +48,14 @@ $buttonStyle = 'style="text-align: '.getOption('zenfluid_buttonposition').';"';
 $menuStyle = 'style="text-align: '.getOption('zenfluid_menuposition').';"';
 $justifyStyle = 'style="text-align: '.getOption('zenfluid_descriptionjustification').';"';
 
-$homeLink = getOption('zenfluid_homelink') ? 'Home<br>&nbsp' : '';?>
+$homeLink = getOption('zenfluid_homelink') ? 'Home<br>&nbsp' : '';
 
+?>
   <div id="container">
     <div id="contents">
-      <?php if (getOption('zenfluid_showheader')) { ?>
+      <?php 
+      if (getOption('zenfluid_showheader')) {
+        ?>
         <div class="header border colour">
           <div class="headertitle" <?php echo $titleStyle;?>>
             <a href="<?php echo getGalleryIndexURL(); ?>"><?php printGalleryTitle();?></a>
@@ -62,5 +64,6 @@ $homeLink = getOption('zenfluid_homelink') ? 'Home<br>&nbsp' : '';?>
             </div>
           </div>
         </div>
-      <?php }
+        <?php
+      }
 ?>

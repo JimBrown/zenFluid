@@ -1,8 +1,7 @@
 <?php
-/*LegacyConverter was here*/
-	// force UTF-8 Ø
+// force UTF-8 Ø
+zp_apply_filter('theme_head');
 ?>
-<?php zp_apply_filter('theme_head'); ?>
 <title><?php echo getBareGalleryTitle(); ?></title>
 <meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 <link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style/style.css" type="text/css" />
