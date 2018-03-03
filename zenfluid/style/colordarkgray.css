@@ -26,6 +26,9 @@ html, body, #sidebar, #container, #contents {
 form label strong, form p strong {
 	color: red;
 }
+input, textarea, button {
+  background-color: #bbb;
+}
 #articlethumb p {
 	color: rgb(195, 224, 160);
 }

@@ -1,4 +1,4 @@
-.border, #search_input, #search_submit, #searchextrashow, .inputbox, input.button, .textarea_inputbox, .zenpage_customimage,
+.border, #search_input, #search_submit, #searchextrashow, .button, .inputbox, input.button, .textarea_inputbox, .zenpage_customimage,
 #passwordform, form#confirm input, form#discard input, #admin_tb, #admin_tb_data {
-/*	box-shadow: 0.1em 0.1em 0.5em -0.2em #777;/*
+  border-width: 0px;
 }

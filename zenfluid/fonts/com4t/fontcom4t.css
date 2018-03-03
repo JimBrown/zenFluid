@@ -19,7 +19,6 @@ body {
 	font-family: 'com4t_fine_regularregular',Times,"Times New Roman",Georgia,serif;
 	font-size: 63px;
 	font-style: italic;
-	font-weight: bold;
 }
 .headersubtitle {
 	font-size: 15px;
@@ -27,11 +26,21 @@ body {
 .sidebartitle {
 	font-family: 'com4t_fine_regularregular',Times,"Times New Roman",Georgia,serif;
 	font-size: 63px;
+  line-height: 60px;
 	font-style: normal;
-	font-weight: bold;
 }
-.sidebarsubtitle, .sidebarfooter, .footer, .zen_logo {
+.sidebarsubtitle p {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+.sidebarsubtitle {
 	font-size: 15px;
+}
+.sidebarfooter, .footer, .zen_logo {
+  font-size: 10px;
+}
+.menu ul {
+  line-height: 20px;
 }
 .title {
 	font-family: 'com4t_fine_regularregular',Times,"Times New Roman",Georgia,serif;
