@@ -1,10 +1,11 @@
 <?php
-// force UTF-8 Ø
+// force UTF-8 Ã¸
 
 /**
  * Remove admin toolbox for all but site and album admins.
  */
-if (!zp_loggedin(ADMIN_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS)) zp_remove_filter('theme_body_close', 'adminToolbox');
+if (!zp_loggedin(ADMIN_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS))
+	zp_remove_filter('theme_body_close', 'adminToolbox');
 
 /**
  * Returns an image for the home page
@@ -12,7 +13,8 @@ if (!zp_loggedin(ADMIN_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS)) zp_remove_filter('them
  */
 function printHomepageImage($imageRoot, $imageRandom, $titleStyle, $imageStyle) {
 	global $_zp_gallery;
-	if ($imageRoot == '*All Albums*') $imageRoot = '';
+	if ($imageRoot == '*All Albums*')
+		$imageRoot = '';
 	if (empty($imageRoot)) {
 		if ($imageRandom) {
 			$titleImage = getRandomImages();
@@ -30,25 +32,25 @@ function printHomepageImage($imageRoot, $imageRandom, $titleStyle, $imageStyle) 
 		$title = $titleImage->getTitle();
 		if (getOption('zenfluid_titletop')) {
 			if ($title) {
-        ?>
-				<div class="title border colour" <?php echo $titleStyle;?>>
-					<a href="<?php echo $titleImage->getLink();?>"><?php echo $title; ?></a>
+				?>
+				<div class="title border colour" <?php echo $titleStyle; ?>>
+					<a href="<?php echo $titleImage->getLink(); ?>"><?php echo $title; ?></a>
 				</div>
-  			<?php 
-      }
+				<?php
+			}
 		}
-		echo '<a href="'.$titleImage->getLink().'"><img class="imgheight border" style="'.$imageStyle.'" src="'.$titleImage->getCustomImage(null, null, null, null, null, null, null).'" title="'.$title.'" /></a>';
+		echo '<a href="' . $titleImage->getLink() . '"><img class="imgheight border" style="' . $imageStyle . '" src="' . $titleImage->getCustomImage(null, null, null, null, null, null, null) . '" title="' . $title . '" /></a>';
 		if (!getOption('zenfluid_titletop')) {
 			if ($title) {
-        ?>
-				<div class="title border colour" <?php echo $titleStyle;?>>
-					<a href="<?php echo $titleImage->getLink();?>"><?php echo $title; ?></a>
+				?>
+				<div class="title border colour" <?php echo $titleStyle; ?>>
+					<a href="<?php echo $titleImage->getLink(); ?>"><?php echo $title; ?></a>
 				</div>
-  			<?php 
-      }
+				<?php
+			}
 		}
 	} else {
-		debugLog('PrintHomepageImage: No images found in album path "' . $imageRoot .'"');
+		debugLog('PrintHomepageImage: No images found in album path "' . $imageRoot . '"');
 	}
 }
 
@@ -81,7 +83,8 @@ function getLatestImagesAlbum($rootAlbum = '') {
 		$albumInWhere = prefix('albums') . ".show=1";
 	}
 	$query = "SELECT id FROM " . prefix('albums') . " WHERE ";
-	if ($albumInWhere) $query .= $albumInWhere . ' AND ';
+	if ($albumInWhere)
+		$query .= $albumInWhere . ' AND ';
 	$query .= "folder LIKE " . db_quote(db_LIKE_escape($albumfolder) . '%');
 	$result = query($query);
 	if ($result) {
@@ -92,9 +95,9 @@ function getLatestImagesAlbum($rootAlbum = '') {
 		db_free_result($result);
 		$albumInWhere = ' AND ' . substr($albumInWhere, 0, -2) . ')';
 		$sql = 'SELECT `folder`, `filename` ' .
-			' FROM ' . prefix('images') . ', ' . prefix('albums') .
-			' WHERE ' . prefix('albums') . '.folder!="" AND ' . prefix('images') . '.albumid = ' .
-			prefix('albums') . '.id ' . $albumInWhere . $imageWhere . ' ORDER BY '.prefix("images").'.date DESC LIMIT 1';
+						' FROM ' . prefix('images') . ', ' . prefix('albums') .
+						' WHERE ' . prefix('albums') . '.folder!="" AND ' . prefix('images') . '.albumid = ' .
+						prefix('albums') . '.id ' . $albumInWhere . $imageWhere . ' ORDER BY ' . prefix("images") . '.date DESC LIMIT 1';
 		$result = query($sql);
 		$image = filterImageQuery($result, $album->name);
 	}
@@ -116,7 +119,7 @@ function getLatestImages() {
 	$result = query('SELECT `folder`, `filename` ' .
 					' FROM ' . prefix('images') . ', ' . prefix('albums') .
 					' WHERE ' . prefix('albums') . '.folder!="" AND ' . prefix('images') . '.albumid = ' .
-					prefix('albums') . '.id ' . $imageWhere . ' ORDER BY '.prefix("images").'.date DESC');
+					prefix('albums') . '.id ' . $imageWhere . ' ORDER BY ' . prefix("images") . '.date DESC');
 
 	$image = filterImageQuery($result, NULL);
 	if ($image) {
@@ -126,7 +129,7 @@ function getLatestImages() {
 }
 
 function printFormattedGalleryDesc($galleryDesc = "") {
-	$galleryDescFormatted = str_replace("[br]","<br />",$galleryDesc);
+	$galleryDescFormatted = str_replace("[br]", "<br />", $galleryDesc);
 	echo $galleryDescFormatted;
 	return;
 }
@@ -134,7 +137,7 @@ function printFormattedGalleryDesc($galleryDesc = "") {
 /**
  * Javascript to resize the image whenever the browser is resized.
  */
-function ImageJS($titleMargin = 0,$stageWidth = 0, $stageImage = true) {
+function ImageJS($titleMargin = 0, $stageWidth = 0, $stageImage = true) {
 	return <<<EOJS
 	<script type="text/javascript">
 		// <!-- <![CDATA[
@@ -160,7 +163,7 @@ function ImageJS($titleMargin = 0,$stageWidth = 0, $stageImage = true) {
 			imgheightmarginright = parseInt($(".imgheight").css("margin-right"));
 			imgheightborderleft = parseInt($(".imgheight.border").css("border-left-width"));
 			imgheightborderright = parseInt($(".imgheight.border").css("border-right-width"));
-			if (footerheight > 0) { 
+			if (footerheight > 0) {
 				footerheight = footerheight + 11;
 				if ((sidebarheight + footerheight) > viewportheight) {
 					footerheight = footerheight - (sidebarheight + footerheight - viewportheight);
@@ -243,9 +246,9 @@ EOJS;
 }
 
 /**
-	* Javascript to hide comments div if no comments
-*/
-function CommentsJS ($commentCount = 0) {
+ * Javascript to hide comments div if no comments
+ */
+function CommentsJS($commentCount = 0) {
 	return <<<EOJS
 	<script type="text/javascript">
 		// <!-- <![CDATA[
@@ -292,18 +295,18 @@ EOJS;
 function printZDSearchShowMoreLink($option, $number_to_show) {
 	$option = strtolower($option);
 	switch ($option) {
-	case "news":
-		$num = getNumNews();
-		break;
-	case "pages":
-		$num = getNumPages();
-		break;
+		case "news":
+			$num = getNumNews();
+			break;
+		case "pages":
+			$num = getNumPages();
+			break;
 	}
 	if ($num > $number_to_show) {
-  	?>
-  	<a class="<?php echo $option; ?>_showmore"href="javascript:toggleExtraElements('<?php echo $option; ?>',true);"><?php echo gettext('Show more results'); ?></a>
-  	<a class="<?php echo $option; ?>_showless" style="display: none;"	href="javascript:toggleExtraElements('<?php echo $option; ?>',false);"><?php echo gettext('Show fewer results'); ?></a>
-  	<?php
+		?>
+		<a class="<?php echo $option; ?>_showmore"href="javascript:toggleExtraElements('<?php echo $option; ?>',true);"><?php echo gettext('Show more results'); ?></a>
+		<a class="<?php echo $option; ?>_showless" style="display: none;"	href="javascript:toggleExtraElements('<?php echo $option; ?>',false);"><?php echo gettext('Show fewer results'); ?></a>
+		<?php
 	}
 }
 
@@ -317,7 +320,7 @@ function printZDToggleClass($option, $c, $number_to_show) {
 	$option = strtolower($option);
 	$c = sanitize_numeric($c);
 	if ($c > $number_to_show) {
-  	echo ' class="' . $option . '_extrashow" style="display:none;"';
+		echo ' class="' . $option . '_extrashow" style="display:none;"';
 	}
 }
 
@@ -328,20 +331,20 @@ function printZDToggleClass($option, $c, $number_to_show) {
 function printZDSearchToggleJS() {
 	?>
 	<script type="text/javascript">
-	// <!-- <![CDATA[
-	/* Search results toggle */
-	function toggleExtraElements(category, show) {
-		if (show) {
-		jQuery('.' + category + '_showless').show();
-		jQuery('.' + category + '_showmore').hide();
-		jQuery('.' + category + '_extrashow').show();
-		} else {
-		jQuery('.' + category + '_showless').hide();
-		jQuery('.' + category + '_showmore').show();
-		jQuery('.' + category + '_extrashow').hide();
+		// <!-- <![CDATA[
+		/* Search results toggle */
+		function toggleExtraElements(category, show) {
+			if (show) {
+				jQuery('.' + category + '_showless').show();
+				jQuery('.' + category + '_showmore').hide();
+				jQuery('.' + category + '_extrashow').show();
+			} else {
+				jQuery('.' + category + '_showless').hide();
+				jQuery('.' + category + '_showmore').show();
+				jQuery('.' + category + '_extrashow').hide();
+			}
 		}
-	}
-	// ]]> -->
+		// ]]> -->
 	</script>
 	<?php
 }
@@ -367,5 +370,4 @@ function debugLogRaw($message) {
 	ob_end_clean();
 	debugLog($message . $str);
 }
-
 ?>
