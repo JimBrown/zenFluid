@@ -230,15 +230,15 @@ body {
 /* Registration form
 -------------------------------*/
 #registration_form label {
-  width: 273px;
-  float: left;
-  padding: 4px 0px 4px 0px;
+	width: 273px;
+	float: left;
+	padding: 4px 0px 4px 0px;
 }
 #pass {
-  margin: -4px 0px 0px 0px;
+	margin: -4px 0px 0px 0px;
 }
 .disclose_password_show {
-  display: none;
+	display: none;
 }
 form#confirm input, form#discard input {
 	padding: 8px 8px 8px 8px;
@@ -340,7 +340,7 @@ a:hover {
 #admin_tb, #admin_tb_data {
 	font-size: 13px;
 }
-#admin_tb {
+#admin_tb, .themeSwitcherMenuMain, .themeSwitcherControlLink {
 	margin-right: 0px;
 	padding-bottom: 10px;
 	padding-right: 5px;

@@ -1,5 +1,5 @@
 <?php
-// force UTF-8 Ø
+// force UTF-8 Ã˜
 
 /**
  * Remove admin toolbox for all but site and album admins.
@@ -30,22 +30,22 @@ function printHomepageImage($imageRoot, $imageRandom, $titleStyle, $imageStyle) 
 		$title = $titleImage->getTitle();
 		if (getOption('zenfluid_titletop')) {
 			if ($title) {
-        ?>
+				?>
 				<div class="title border colour" <?php echo $titleStyle;?>>
 					<a href="<?php echo $titleImage->getLink();?>"><?php echo $title; ?></a>
 				</div>
-  			<?php 
-      }
+				<?php 
+			}
 		}
 		echo '<a href="'.$titleImage->getLink().'"><img class="imgheight border" style="'.$imageStyle.'" src="'.$titleImage->getCustomImage(null, null, null, null, null, null, null).'" title="'.$title.'" /></a>';
 		if (!getOption('zenfluid_titletop')) {
 			if ($title) {
-        ?>
+				?>
 				<div class="title border colour" <?php echo $titleStyle;?>>
 					<a href="<?php echo $titleImage->getLink();?>"><?php echo $title; ?></a>
 				</div>
-  			<?php 
-      }
+				<?php 
+			}
 		}
 	} else {
 		debugLog('PrintHomepageImage: No images found in album path "' . $imageRoot .'"');
@@ -300,10 +300,10 @@ function printZDSearchShowMoreLink($option, $number_to_show) {
 		break;
 	}
 	if ($num > $number_to_show) {
-  	?>
-  	<a class="<?php echo $option; ?>_showmore"href="javascript:toggleExtraElements('<?php echo $option; ?>',true);"><?php echo gettext('Show more results'); ?></a>
-  	<a class="<?php echo $option; ?>_showless" style="display: none;"	href="javascript:toggleExtraElements('<?php echo $option; ?>',false);"><?php echo gettext('Show fewer results'); ?></a>
-  	<?php
+		?>
+		<a class="<?php echo $option; ?>_showmore"href="javascript:toggleExtraElements('<?php echo $option; ?>',true);"><?php echo gettext('Show more results'); ?></a>
+		<a class="<?php echo $option; ?>_showless" style="display: none;"	href="javascript:toggleExtraElements('<?php echo $option; ?>',false);"><?php echo gettext('Show fewer results'); ?></a>
+		<?php
 	}
 }
 
@@ -317,7 +317,7 @@ function printZDToggleClass($option, $c, $number_to_show) {
 	$option = strtolower($option);
 	$c = sanitize_numeric($c);
 	if ($c > $number_to_show) {
-  	echo ' class="' . $option . '_extrashow" style="display:none;"';
+		echo ' class="' . $option . '_extrashow" style="display:none;"';
 	}
 }
 

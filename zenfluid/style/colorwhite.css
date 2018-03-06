@@ -1,7 +1,7 @@
 html, body {
 	background-color: white;
 }
-.colour, #passwordform, #admin_tb, #admin_tb_data {
+.colour, #passwordform, #admin_tb, #admin_tb_data, .themeSwitcherMenuMain, .themeSwitcherControlLink {
 	background-color: white;
 }
 a.menu-active {

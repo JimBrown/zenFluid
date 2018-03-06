@@ -1,7 +1,7 @@
 html, body {
 	background-color: white;
 }
-.colour, #passwordform, #admin_tb, #admin_tb_data {
+.colour, #passwordform, #admin_tb, #admin_tb_data, .themeSwitcherMenuMain, .themeSwitcherControlLink {
 /* fallback */
 	background-color: #E4E7D2;
 /* Safari 4-5, Chrome 1-9 */ 

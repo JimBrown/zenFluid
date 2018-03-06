@@ -1,5 +1,5 @@
 <?php
-// force UTF-8 Ø
+// force UTF-8 Ã˜
 
 // Zenphoto theme definition file
 $theme_description['name'] = 'ZenFluid';
