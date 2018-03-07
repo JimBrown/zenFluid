@@ -283,7 +283,7 @@ class ThemeOptions {
   }
 
   function getOptionsDisabled() {
-    return array('custom_index_page');
+    return array('custom_index_page','albums_per_row','images_per_row');
   }
 
   function handleOption($option, $currentValue) {
