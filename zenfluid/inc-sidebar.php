@@ -121,7 +121,7 @@
 	if (!getOption('zenfluid_showfooter')) {
 		?>
 		<div class="sidebarfooter border colour" <?php echo $titleStyle;?>>
-			<?php echo gettext('ZenFluid theme designed by '); ?> <br>Jim Brown<br>
+			<?php echo gettext('zenFluid theme designed by '); ?> <br>Jim Brown<br>
 			<?php printZenphotoLink();?>
 		</div>
 		<?php 
