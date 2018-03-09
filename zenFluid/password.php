@@ -16,7 +16,7 @@ zp_apply_filter('theme_file_top');
 		</div>
 
 		<div style='display: none;'>
-			<?php printPasswordForm(isset($hint) ? $hint : NULL, false, false, isset($hint) ? WEBPATH : NULL); ?>
+			<?php printPasswordForm(isset($hint) ? $hint : NULL, false, true, NULL); ?>
 		</div>
 		<script type="text/javascript">
 			//<![CDATA[
