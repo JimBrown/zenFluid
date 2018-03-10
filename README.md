@@ -1,3 +1,7 @@
+# NOTICE!!!!
+
+## zenFluid is now a Zenphoto20 standard theme. As such, this repository will no longer be updated or maintained.
+
 zenFluid theme for ZenPhoto20
 ==================================
 
